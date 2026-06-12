@@ -569,10 +569,10 @@ function renderWorkspaceLayout(slide) {
                         </div>
                     </div>
                     <div class="sorting-drop-zones">
-                        <div class="sorting-column drop-zone teal-theme" ondragover="allowDrop(event)" ondrop="dropTag(event)">
+                        <div class="sorting-column drop-zone teal-theme" id="drop-teal" ondragover="allowDrop(event)" ondrop="dropTag(event)">
                             <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-graduation-cap"></i> <span contenteditable="true">Quy trình học hiệu quả</span></h4>
                         </div>
-                        <div class="sorting-column drop-zone orange-theme" ondragover="allowDrop(event)" ondrop="dropTag(event)">
+                        <div class="sorting-column drop-zone orange-theme" id="drop-orange" ondragover="allowDrop(event)" ondrop="dropTag(event)">
                             <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-exclamation"></i> <span contenteditable="true">Quy trình chỉ hoàn thành nhiệm vụ</span></h4>
                         </div>
                     </div>
@@ -641,10 +641,10 @@ function renderWorkspaceLayout(slide) {
                 <div class="glass-card" style="border-top: 3px solid var(--color-orange); padding:25px;">
                     <p contenteditable="true" style="color:var(--text-muted); font-size:1rem; margin-bottom:15px;">Trong tuần tới, em hãy áp dụng nghiêm túc quy trình học với AI, tích chọn vào các ô đã thực hiện:</p>
                     <ul class="checklist-interactive" style="margin-top:0; gap:15px;">
-                        ${slide.checklist.map(item => `
+                        ${slide.checklist.map((item, idx) => `
                             <li>
                                 <label class="checkbox-container">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="check-${slide.id}-${idx}" onchange="saveCheckboxState('${slide.id}')">
                                     <span class="checkmark"></span>
                                     <span contenteditable="true">${item}</span>
                                 </label>
@@ -714,6 +714,16 @@ function initSlideInteractions(slide) {
         if (signBtn) {
             signBtn.addEventListener('click', triggerGraduationConfetti);
         }
+    }
+
+    // 4. Setup card-sorting restoration
+    if (slide.workspaceType === 'card-sorting') {
+        restoreCardSortingState(slide.id);
+    }
+    
+    // 5. Setup commitment-checklist restoration
+    if (slide.workspaceType === 'commitment-checklist') {
+        restoreCheckboxState(slide.id);
     }
 }
 
@@ -1055,6 +1065,20 @@ function initDesignMode() {
                     delete slideTextEdits[slideId];
                 }
                 
+                // Clear sorting state for this slide
+                const sortingState = JSON.parse(localStorage.getItem('slideSortingState') || '{}');
+                if (sortingState[slideId]) {
+                    delete sortingState[slideId];
+                    localStorage.setItem('slideSortingState', JSON.stringify(sortingState));
+                }
+                
+                // Clear checkbox state for this slide
+                const checkboxStates = JSON.parse(localStorage.getItem('slideCheckboxStates') || '{}');
+                if (checkboxStates[slideId]) {
+                    delete checkboxStates[slideId];
+                    localStorage.setItem('slideCheckboxStates', JSON.stringify(checkboxStates));
+                }
+                
                 // Save to localStorage
                 localStorage.setItem('slideObjectOffsets', JSON.stringify(slideObjectOffsets));
                 localStorage.setItem('slideTextEdits', JSON.stringify(slideTextEdits));
@@ -1109,42 +1133,6 @@ function restoreAndSetupDraggables(slideId) {
             el.classList.add('draggable-object');
             const elKey = selector + '_' + idx;
             
-            // Set all text blocks editable and restore content edits
-            if (el.tagName !== 'I' && !el.classList.contains('sphere-3d-wrapper') && !el.classList.contains('prep-visual-panel')) {
-                if (el.children.length === 0 || 
-                    el.classList.contains('welcome-badge') || 
-                    el.classList.contains('welcome-title') || 
-                    el.classList.contains('welcome-subtitle') || 
-                    el.classList.contains('welcome-subject') || 
-                    el.classList.contains('bq-text') || 
-                    el.classList.contains('bq-sub') || 
-                    el.classList.contains('step-text') || 
-                    el.classList.contains('list-item-story') || 
-                    el.classList.contains('sorting-tag') || 
-                    el.classList.contains('report-card-item')) {
-                    
-                    el.setAttribute('contenteditable', 'true');
-                    el.setAttribute('data-el-key', elKey);
-                    
-                    // Restore text edit if exists
-                    if (slideTextEdits[slideId] && slideTextEdits[slideId][elKey] !== undefined) {
-                        el.innerHTML = slideTextEdits[slideId][elKey];
-                    }
-                } else {
-                    const subTexts = el.querySelectorAll('h3, h4, p, li, span, strong, label');
-                    subTexts.forEach((sub, subIdx) => {
-                        const subKey = elKey + '_sub_' + subIdx;
-                        sub.setAttribute('contenteditable', 'true');
-                        sub.setAttribute('data-el-key', subKey);
-                        
-                        // Restore subtext edit if exists
-                        if (slideTextEdits[slideId] && slideTextEdits[slideId][subKey] !== undefined) {
-                            sub.innerHTML = slideTextEdits[slideId][subKey];
-                        }
-                    });
-                }
-            }
-            
             // Restore offsets and size if saved
             let dx = 0, dy = 0;
             if (slideObjectOffsets[slideId][elKey]) {
@@ -1186,6 +1174,99 @@ function restoreAndSetupDraggables(slideId) {
                 setupResizeEvents(slideId, elKey, el, resizer);
             }
         });
+    });
+
+    // Setup and restore explicit contenteditable fields
+    restoreAndSetupTextEdits(slideId);
+}
+
+function restoreAndSetupTextEdits(slideId) {
+    const slideContent = document.querySelector('.slide-content');
+    if (!slideContent) return;
+    
+    const editables = slideContent.querySelectorAll('[contenteditable="true"]');
+    editables.forEach((el, idx) => {
+        // Use element ID if it exists (e.g. draggable cards), otherwise fallback to index key
+        const elKey = el.id ? el.id : `edit_${idx}`;
+        el.setAttribute('data-el-key', elKey);
+        
+        // Restore text edit if we have saved content for it
+        if (slideTextEdits[slideId] && slideTextEdits[slideId][elKey] !== undefined) {
+            el.innerHTML = slideTextEdits[slideId][elKey];
+        }
+    });
+}
+
+function saveCardSortingState() {
+    const currentSlide = slidesData[currentSlideIndex];
+    if (!currentSlide || currentSlide.workspaceType !== 'card-sorting') return;
+    
+    const slideId = currentSlide.id;
+    const sortingState = JSON.parse(localStorage.getItem('slideSortingState') || '{}');
+    
+    sortingState[slideId] = {};
+    
+    const tags = document.querySelectorAll('.sorting-tag');
+    tags.forEach(tag => {
+        const parentZone = tag.parentElement.closest('.drop-zone');
+        if (parentZone) {
+            const zoneId = parentZone.id || (parentZone.classList.contains('teal-theme') ? 'drop-teal' : (parentZone.classList.contains('orange-theme') ? 'drop-orange' : 'sorting-pool'));
+            sortingState[slideId][tag.id] = zoneId;
+        }
+    });
+    
+    localStorage.setItem('slideSortingState', JSON.stringify(sortingState));
+}
+
+function restoreCardSortingState(slideId) {
+    const sortingState = JSON.parse(localStorage.getItem('slideSortingState') || '{}');
+    if (!sortingState[slideId]) return;
+    
+    const slideState = sortingState[slideId];
+    Object.keys(slideState).forEach(tagId => {
+        const tag = document.getElementById(tagId);
+        const zoneId = slideState[tagId];
+        let zone = document.getElementById(zoneId);
+        if (!zone && zoneId) {
+            if (zoneId === 'drop-teal') {
+                zone = document.querySelector('.sorting-column.teal-theme');
+            } else if (zoneId === 'drop-orange') {
+                zone = document.querySelector('.sorting-column.orange-theme');
+            } else if (zoneId === 'sorting-pool') {
+                zone = document.querySelector('#sorting-pool');
+            }
+        }
+        if (tag && zone) {
+            zone.appendChild(tag);
+        }
+    });
+}
+
+window.saveCheckboxState = function(slideId) {
+    const checkboxes = document.querySelectorAll(`.checklist-interactive input[type="checkbox"]`);
+    const states = [];
+    checkboxes.forEach((cb) => {
+        states.push({
+            id: cb.id,
+            checked: cb.checked
+        });
+    });
+    
+    const allCheckboxStates = JSON.parse(localStorage.getItem('slideCheckboxStates') || '{}');
+    allCheckboxStates[slideId] = states;
+    localStorage.setItem('slideCheckboxStates', JSON.stringify(allCheckboxStates));
+};
+
+function restoreCheckboxState(slideId) {
+    const allCheckboxStates = JSON.parse(localStorage.getItem('slideCheckboxStates') || '{}');
+    if (!allCheckboxStates[slideId]) return;
+    
+    const states = allCheckboxStates[slideId];
+    states.forEach(state => {
+        const cb = document.getElementById(state.id);
+        if (cb) {
+            cb.checked = state.checked;
+        }
     });
 }
 
@@ -1400,5 +1481,7 @@ window.dropTag = function(ev) {
     const dropZone = ev.target.closest('.drop-zone');
     if (dropZone && tagElement) {
         dropZone.appendChild(tagElement);
+        // Save sorting state after tag is dropped
+        saveCardSortingState();
     }
 };

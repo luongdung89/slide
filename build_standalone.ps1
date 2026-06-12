@@ -31,7 +31,7 @@ foreach ($line in $htmlLines) {
         }
         $outputLines.Add("    </style>")
     }
-    elseif ($line -match '<script.*src="slidesData.js".*><./script>') {
+    elseif ($line -match '<script.*src="slidesData.js".*></script>') {
         $outputLines.Add("    <script>")
         $dataLines = $dataContent -split "`r?`n"
         foreach ($dataLine in $dataLines) {
@@ -39,7 +39,7 @@ foreach ($line in $htmlLines) {
         }
         $outputLines.Add("    </script>")
     }
-    elseif ($line -match '<script.*src="app.js".*><./script>') {
+    elseif ($line -match '<script.*src="app.js".*></script>') {
         $outputLines.Add("    <script>")
         $appLines = $appContent -split "`r?`n"
         foreach ($appLine in $appLines) {
