@@ -220,11 +220,15 @@ body {
     justify-content: center;
     position: relative;
     margin: auto;
-    border: 2px dashed rgba(6, 182, 212, 0.25);
+    border: 2px dashed transparent;
     border-radius: 16px;
     padding: 35px 45px;
     background: rgba(8, 12, 20, 0.45);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(6, 182, 212, 0.03);
+}
+
+.design-mode .slide-content {
+    border: 2px dashed rgba(6, 182, 212, 0.35) !important;
 }
 
 .slide-heading {
@@ -1789,6 +1793,34 @@ body {
     z-index: 1000;
     box-shadow: 0 0 8px var(--color-teal-glow);
     border: 1.5px solid var(--text-primary);
+}
+
+.draggable-object .delete-handle {
+    display: none;
+}
+
+.design-mode .draggable-object .delete-handle {
+    display: flex !important;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 26px;
+    height: 26px;
+    background-color: #ef4444;
+    color: var(--text-primary);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    cursor: pointer !important;
+    z-index: 1000;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+    border: 1.5px solid var(--text-primary);
+}
+
+.design-mode .draggable-object:hover .delete-handle {
+    background-color: #dc2626;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
 }
 
 .design-mode .draggable-object:hover {

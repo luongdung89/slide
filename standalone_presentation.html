@@ -233,11 +233,15 @@ body {
     justify-content: center;
     position: relative;
     margin: auto;
-    border: 2px dashed rgba(6, 182, 212, 0.25);
+    border: 2px dashed transparent;
     border-radius: 16px;
     padding: 35px 45px;
     background: rgba(8, 12, 20, 0.45);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(6, 182, 212, 0.03);
+}
+
+.design-mode .slide-content {
+    border: 2px dashed rgba(6, 182, 212, 0.35) !important;
 }
 
 .slide-heading {
@@ -1802,6 +1806,34 @@ body {
     z-index: 1000;
     box-shadow: 0 0 8px var(--color-teal-glow);
     border: 1.5px solid var(--text-primary);
+}
+
+.draggable-object .delete-handle {
+    display: none;
+}
+
+.design-mode .draggable-object .delete-handle {
+    display: flex !important;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 26px;
+    height: 26px;
+    background-color: #ef4444;
+    color: var(--text-primary);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    cursor: pointer !important;
+    z-index: 1000;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+    border: 1.5px solid var(--text-primary);
+}
+
+.design-mode .draggable-object:hover .delete-handle {
+    background-color: #dc2626;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
 }
 
 .design-mode .draggable-object:hover {
@@ -3413,7 +3445,7 @@ function renderSlide(index) {
                                 <text x="50%" y="62%" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="36" fill="var(--color-orange)" filter="drop-shadow(0 0 6px var(--color-orange-glow))" class="pulse-element">?</text>
                             </svg>
                         </div>
-                        <span class="bq-tag"><i class="fa-solid fa-circle-question"></i> ${slide.title}</span>
+                        <span class="bq-tag" contenteditable="true"><i class="fa-solid fa-circle-question"></i> ${slide.title}</span>
                         <h2 class="bq-text text-glow" contenteditable="true">${slide.question}</h2>
                         <p class="bq-sub" contenteditable="true">${slide.subtext}</p>
                     </div>
@@ -3545,43 +3577,43 @@ function renderSlide(index) {
                         <div class="flowchart-path path-active">
                             <h4 contenteditable="true"><i class="fa-solid fa-graduation-cap"></i> Quy trình Học thực sự (Chủ động):</h4>
                             <div class="flowchart-steps">
-                                <div class="fc-step step-teal" contenteditable="true">
+                                <div class="fc-step step-teal">
                                     <i class="fa-solid fa-book-open"></i>
-                                    <span>Đọc đề bài</span>
+                                    <span contenteditable="true">Đọc đề bài</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal" contenteditable="true">
+                                <div class="fc-step step-teal">
                                     <i class="fa-solid fa-brain"></i>
-                                    <span>Tự suy nghĩ</span>
+                                    <span contenteditable="true">Tự suy nghĩ</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal" contenteditable="true">
+                                <div class="fc-step step-teal">
                                     <i class="fa-solid fa-laptop-code"></i>
-                                    <span>Hỏi AI</span>
+                                    <span contenteditable="true">Hỏi AI</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal" contenteditable="true">
+                                <div class="fc-step step-teal">
                                     <i class="fa-solid fa-magnifying-glass"></i>
-                                    <span>Kiểm tra</span>
+                                    <span contenteditable="true">Kiểm tra</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal" contenteditable="true">
+                                <div class="fc-step step-teal">
                                     <i class="fa-solid fa-arrows-rotate"></i>
-                                    <span>Làm lại</span>
+                                    <span contenteditable="true">Làm lại</span>
                                 </div>
                             </div>
                         </div>
                         <div class="flowchart-path path-passive" style="margin-top: 20px;">
                             <h4 contenteditable="true"><i class="fa-solid fa-circle-exclamation"></i> Quy trình Đối phó (Thụ động):</h4>
                             <div class="flowchart-steps">
-                                <div class="fc-step step-orange" contenteditable="true">
+                                <div class="fc-step step-orange">
                                     <i class="fa-solid fa-copy"></i>
-                                    <span>Chép đáp án</span>
+                                    <span contenteditable="true">Chép đáp án</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-orange" contenteditable="true">
+                                <div class="fc-step step-orange">
                                     <i class="fa-solid fa-paper-plane"></i>
-                                    <span>Nộp bài ngay</span>
+                                    <span contenteditable="true">Nộp bài ngay</span>
                                 </div>
                             </div>
                         </div>
@@ -3733,7 +3765,7 @@ function renderSlide(index) {
                     <div class="bq-glow-bg"></div>
                     <div class="bq-wrapper" style="border-color: var(--color-teal);">
                         <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-teal); filter:drop-shadow(0 0 10px rgba(6,182,212,0.4));"></i>
-                        <span class="bq-tag" style="color:var(--color-teal);"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
+                        <span class="bq-tag" style="color:var(--color-teal);" contenteditable="true"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
                         <h2 class="bq-text text-glow" style="font-size:2.4rem;" contenteditable="true">${slide.question}</h2>
                         <div style="width: 100%; height: 1px; background: var(--border-glass); margin: 20px 0;"></div>
                         <p class="card-content-text" style="font-size:1.2rem; text-align:left; line-height:1.75; color: #f1f5f9;" contenteditable="true">${slide.answer}</p>
@@ -3987,7 +4019,7 @@ function renderWorkspaceLayout(slide) {
                     <!-- Timer widget -->
                     <div class="workspace-timer-widget" id="timer-widget-${slide.id}" data-duration="${slide.duration || 60}">
                         <span class="ws-timer-label">THỜI GIAN HOẠT ĐỘNG</span>
-                        <div class="ws-timer-display" id="timer-display-${slide.id}">00:00</div>
+                        <div class="ws-timer-display" id="timer-display-${slide.id}" contenteditable="true" title="Click để chỉnh sửa thời gian (phút hoặc mm:ss)" onfocus="pauseWorkspaceTimer('${slide.id}')" onblur="updateTimerDurationFromElement('${slide.id}')">00:00</div>
                         <div class="timer-controls">
                             <button class="btn-timer btn-start" onclick="startWorkspaceTimer('${slide.id}')"><i class="fa-solid fa-play"></i></button>
                             <button class="btn-timer btn-pause" onclick="pauseWorkspaceTimer('${slide.id}')"><i class="fa-solid fa-pause"></i></button>
@@ -4050,8 +4082,12 @@ function initSlideInteractions(slide) {
 // Timer sub-logic
 function initTimerState(slideId, initialDuration) {
     if (!timerStates[slideId]) {
+        // Load custom duration from localStorage if saved
+        const savedDurations = JSON.parse(localStorage.getItem('slideTimerDurations') || '{}');
+        const duration = savedDurations[slideId] !== undefined ? savedDurations[slideId] : initialDuration;
+        
         timerStates[slideId] = {
-            remainingTime: initialDuration,
+            remainingTime: duration,
             intervalId: null
         };
     }
@@ -4109,7 +4145,12 @@ window.resetWorkspaceTimer = function(slideId, initialDuration) {
     if (state) {
         clearInterval(state.intervalId);
         state.intervalId = null;
-        state.remainingTime = initialDuration;
+        
+        // Load custom duration from localStorage if saved
+        const savedDurations = JSON.parse(localStorage.getItem('slideTimerDurations') || '{}');
+        const duration = savedDurations[slideId] !== undefined ? savedDurations[slideId] : initialDuration;
+        
+        state.remainingTime = duration;
         updateTimerDisplay(slideId);
         
         timerWidget.classList.remove('timer-running', 'timer-finished');
@@ -4118,6 +4159,41 @@ window.resetWorkspaceTimer = function(slideId, initialDuration) {
             display.classList.remove('blink-text');
         }
     }
+};
+
+window.updateTimerDurationFromElement = function(slideId) {
+    const display = document.getElementById(`timer-display-${slideId}`);
+    if (!display) return;
+    
+    const text = display.textContent.trim();
+    let seconds = 0;
+    
+    if (text.includes(':')) {
+        const parts = text.split(':');
+        const mins = parseInt(parts[0] || 0);
+        const secs = parseInt(parts[1] || 0);
+        seconds = mins * 60 + secs;
+    } else {
+        const mins = parseInt(text || 0);
+        seconds = mins * 60;
+    }
+    
+    if (isNaN(seconds) || seconds <= 0) {
+        // Fallback to slide default
+        const slide = slidesData.find(s => s.id === slideId);
+        seconds = slide ? (slide.duration || 60) : 60;
+    }
+    
+    if (!timerStates[slideId]) {
+        timerStates[slideId] = {};
+    }
+    timerStates[slideId].remainingTime = seconds;
+    
+    const savedDurations = JSON.parse(localStorage.getItem('slideTimerDurations') || '{}');
+    savedDurations[slideId] = seconds;
+    localStorage.setItem('slideTimerDurations', JSON.stringify(savedDurations));
+    
+    updateTimerDisplay(slideId);
 };
 
 // Matrix reveal sub-logic
@@ -4334,8 +4410,9 @@ periodBtns.forEach(btn => {
 let designModeActive = false;
 const slideObjectOffsets = {};
 const slideTextEdits = {};
+const slideHiddenElements = {};
 
-// Load offsets and text edits from localStorage on script load
+// Load offsets, text edits, and hidden elements from localStorage on script load
 try {
     const storedOffsets = localStorage.getItem('slideObjectOffsets');
     if (storedOffsets) {
@@ -4345,6 +4422,11 @@ try {
     const storedTextEdits = localStorage.getItem('slideTextEdits');
     if (storedTextEdits) {
         Object.assign(slideTextEdits, JSON.parse(storedTextEdits));
+    }
+    
+    const storedHidden = localStorage.getItem('slideHiddenElements');
+    if (storedHidden) {
+        Object.assign(slideHiddenElements, JSON.parse(storedHidden));
     }
 } catch (e) {
     console.error("Failed to load slide state from localStorage:", e);
@@ -4398,6 +4480,19 @@ function initDesignMode() {
                     localStorage.setItem('slideCheckboxStates', JSON.stringify(checkboxStates));
                 }
                 
+                // Clear hidden elements for this slide
+                if (slideHiddenElements[slideId]) {
+                    delete slideHiddenElements[slideId];
+                    localStorage.setItem('slideHiddenElements', JSON.stringify(slideHiddenElements));
+                }
+                
+                // Clear custom timer durations for this slide
+                const timerDurations = JSON.parse(localStorage.getItem('slideTimerDurations') || '{}');
+                if (timerDurations[slideId]) {
+                    delete timerDurations[slideId];
+                    localStorage.setItem('slideTimerDurations', JSON.stringify(timerDurations));
+                }
+                
                 // Save to localStorage
                 localStorage.setItem('slideObjectOffsets', JSON.stringify(slideObjectOffsets));
                 localStorage.setItem('slideTextEdits', JSON.stringify(slideTextEdits));
@@ -4422,24 +4517,27 @@ function restoreAndSetupDraggables(slideId) {
     if (!slideContent) return;
     
     const selectors = [
-        '.welcome-badge', '.welcome-title', '.welcome-subtitle', '.welcome-subject', '.welcome-objectives', '.sphere-3d-wrapper',
-        '.bq-tag', '.bq-text', '.bq-sub', '.bq-graphic-icon',
+        '.welcome-badge', '.welcome-title', '.welcome-subtitle', '.welcome-subject', '.welcome-objectives', '.welcome-visual-side', '.sphere-3d-wrapper',
+        '.bq-tag', '.bq-text', '.bq-sub', '.bq-visual-graphic', '.bq-wrapper',
         '.role-info-card',
-        '.stage-num-badge', '.stage-title', '.stage-lock-icon',
-        '.act-intro-card', '.act-intro-icon', '.act-intro-badge', '.act-intro-title', '.act-intro-goal',
+        '.stage-num-badge', '.stage-title', '.stage-lock-wrapper',
+        '.act-intro-card', '.act-intro-icon', '.act-intro-badge', '.act-intro-title', '.act-intro-goal', '.act-intro-visual',
         '.prep-box', '.prep-item',
         '.step-item-card',
-        '.story-column', '.workspace-questions-card',
+        '.story-column', '.character-img-box', '.workspace-questions-card',
         '.mission-envelope-container',
-        '.sorting-tag', '.drawing-placeholder', '.workspace-timer-widget',
-        '.report-card-item', '.report-highlight-banner',
-        '.matrix-cell-label', '.matrix-cell-content',
-        '.gf-node',
+        '.sorting-pool', '.sorting-column', '.sorting-tag', '.drawing-placeholder', '.workspace-timer-widget',
+        '.matrix-grid',
+        '.flowchart-container',
+        '.golden-flow-wrapper', '.gf-node',
         '.subject-step-box',
+        '.transition-wrapper', '.transition-card',
         '.takeaway-large-card', '.takeaway-quote-box', '.takeaway-message-text',
         '.final-output-details', '.final-output-visual-box',
         '.reflection-prompt-item',
-        '.commitment-end-card'
+        '.commitment-end-card',
+        '.fc-step',
+        '.glass-card', '.slide-heading'
     ];
     
     if (!slideObjectOffsets[slideId]) {
@@ -4449,8 +4547,17 @@ function restoreAndSetupDraggables(slideId) {
     selectors.forEach(selector => {
         const elements = slideContent.querySelectorAll(selector);
         elements.forEach((el, idx) => {
+            if (el.classList.contains('draggable-object')) return;
+            
             el.classList.add('draggable-object');
             const elKey = selector + '_' + idx;
+            
+            // Restore hidden state (delete/hide)
+            if (slideHiddenElements[slideId] && slideHiddenElements[slideId].includes(elKey)) {
+                el.style.display = 'none';
+            } else {
+                el.style.display = '';
+            }
             
             // Restore offsets and size if saved
             let dx = 0, dy = 0;
@@ -4491,6 +4598,29 @@ function restoreAndSetupDraggables(slideId) {
                 el.appendChild(resizer);
                 
                 setupResizeEvents(slideId, elKey, el, resizer);
+            }
+
+            // Add delete handle if not present
+            if (!el.querySelector('.delete-handle')) {
+                const delBtn = document.createElement('div');
+                delBtn.className = 'delete-handle';
+                delBtn.title = 'Xóa phần tử khỏi slide';
+                delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                el.appendChild(delBtn);
+                
+                delBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (confirm("Bạn có chắc chắn muốn xóa phần tử này khỏi slide không?")) {
+                        el.style.display = 'none';
+                        if (!slideHiddenElements[slideId]) {
+                            slideHiddenElements[slideId] = [];
+                        }
+                        if (!slideHiddenElements[slideId].includes(elKey)) {
+                            slideHiddenElements[slideId].push(elKey);
+                        }
+                        localStorage.setItem('slideHiddenElements', JSON.stringify(slideHiddenElements));
+                    }
+                });
             }
         });
     });
