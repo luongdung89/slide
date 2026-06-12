@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực Hành Dùng AI Để Học - Slide Tương Tác V3.0</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- AI AMBIENT BACKGROUND -->
+    <div class="ai-ambient-bg"></div>
+
+    <!-- TOP HEADER / PROGRESS BAR -->
+    <header class="app-header">
+        <div class="logo">
+            <i class="fa-solid fa-brain logo-icon"></i>
+            <span>AI CLASSROOM <span class="badge">CHUYÊN GIA AI</span></span>
+        </div>
+        <div class="period-navigator">
+            <button class="btn-period active" data-period="1">Tiết 1: Khám phá</button>
+            <button class="btn-period" data-period="2" disabled style="opacity:0.5; cursor:not-allowed;">Tiết 2 (Khóa)</button>
+            <button class="btn-period" data-period="3" disabled style="opacity:0.5; cursor:not-allowed;">Tiết 3 (Khóa)</button>
+        </div>
+        <div class="slide-indicator">
+            <span id="current-slide-num">1</span>/<span id="total-slides-num">62</span>
+        </div>
+    </header>
+
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="main-progress"></div>
+    </div>
+
+    <!-- MAIN PRESENTATION AREA -->
+    <main class="presentation-container">
+        <!-- SIDEBAR NAVIGATION (Drawer) -->
+        <aside class="sidebar-nav" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Danh sách 62 Slide</h3>
+                <button class="btn-close-sidebar" id="close-sidebar-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <ul class="slide-list" id="slide-list-menu">
+                <!-- Will be dynamically populated by JS -->
+            </ul>
+        </aside>
+
+        <!-- DYNAMIC SLIDE VIEWER CONTAINER -->
+        <div class="slides-wrapper" id="slide-viewer">
+            <!-- Slide contents will be dynamically rendered and injected here by app.js -->
+        </div>
+    </main>
+
+    <!-- FOOTER CONTROLS -->
+    <footer class="app-footer">
+        <div class="footer-left">
+            <button class="btn-footer" id="toggle-sidebar-btn" title="Danh sách slide (M)">
+                <i class="fa-solid fa-list-ul"></i> Menu
+            </button>
+            <button class="btn-footer" id="toggle-notes-btn" title="Ghi chú giáo viên (T)">
+                <i class="fa-solid fa-comment-medical"></i> Ghi chú Giáo viên
+            </button>
+            <button class="btn-footer" id="toggle-design-btn" title="Chế độ thiết kế / Di chuyển text và ảnh (D)">
+                <i class="fa-solid fa-crop-simple"></i> Chế độ thiết kế
+            </button>
+            <button class="btn-footer" id="save-edits-btn" title="Lưu lại các chỉnh sửa hiện tại">
+                <i class="fa-solid fa-floppy-disk" style="color:#10b981;"></i> Lưu chỉnh sửa
+            </button>
+            <button class="btn-footer" id="reset-slide-btn" title="Khôi phục slide về mặc định">
+                <i class="fa-solid fa-rotate-left"></i> Khôi phục
+            </button>
+        </div>
+        <div class="footer-center">
+            <button class="btn-nav" id="prev-btn" title="Slide trước (Mũi tên Trái)"><i class="fa-solid fa-chevron-left"></i></button>
+            <span class="slide-title-display" id="slide-title-text">Đang tải slide...</span>
+            <button class="btn-nav" id="next-btn" title="Slide sau (Mũi tên Phải / Space / Enter)"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="footer-right">
+            <button class="btn-footer" id="fullscreen-btn" title="Toàn màn hình (F)">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- TEACHER NOTES DRAWER -->
+    <div class="teacher-notes-drawer" id="notes-drawer">
+        <div class="notes-header">
+            <h3><i class="fa-solid fa-chalkboard-user"></i> KỊCH BẢN GIẢNG DẠY (TEACHER'S SCRIPT)</h3>
+            <button class="btn-close-notes" id="close-notes-btn"><i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="notes-content" id="notes-text-box">
+            <!-- Will be populated dynamically by JS -->
+        </div>
+    </div>
+
+    <!-- DATA SOURCE & APPLICATION LOGIC -->
+    <script src="slidesData.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
