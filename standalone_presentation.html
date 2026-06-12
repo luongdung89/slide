@@ -3885,7 +3885,7 @@ function renderWorkspaceLayout(slide) {
                     <p contenteditable="true" style="font-size: 1.05rem; line-height: 1.5; color: var(--text-muted); margin-bottom: 12px;">${slide.instructions}</p>
                     <div class="sorting-drag-area">
                         <div class="sorting-pool drop-zone" id="sorting-pool" ondragover="allowDrop(event)" ondrop="dropTag(event)">
-                            ${slide.cards.map((card, i) => `<div class="sorting-tag" draggable="true" ondragstart="dragTag(event)" id="tag-${slide.id}-${i}" contenteditable="true">${card}</div>`).join('')}
+                            ${slide.cards.map((card, i) => `<div class="sorting-tag" draggable="true" ondragstart="dragTag(event)" id="tag-${slide.id}-${i}"><span contenteditable="true">${card}</span></div>`).join('')}
                         </div>
                     </div>
                     <div class="sorting-drop-zones">
@@ -4326,8 +4326,7 @@ periodBtns.forEach(btn => {
     });
 });
 
-// Run first slide loading
-goToSlide(0);
+// Variable initialization finished
 
 // ==========================================
 // DRAG AND DROP OBJECT SEGMENTATION (DESIGN MODE)
@@ -4506,8 +4505,9 @@ function restoreAndSetupTextEdits(slideId) {
     
     const editables = slideContent.querySelectorAll('[contenteditable="true"]');
     editables.forEach((el, idx) => {
-        // Use element ID if it exists (e.g. draggable cards), otherwise fallback to index key
-        const elKey = el.id ? el.id : `edit_${idx}`;
+        // Use element ID if it exists, check parent .sorting-tag to keep card text bound to card ID, otherwise fallback to index key
+        const parentTag = el.closest('.sorting-tag');
+        const elKey = el.id ? el.id : (parentTag ? parentTag.id : `edit_${idx}`);
         el.setAttribute('data-el-key', elKey);
         
         // Restore text edit if we have saved content for it
@@ -4791,7 +4791,10 @@ window.dragTag = function(ev) {
         ev.preventDefault();
         return;
     }
-    ev.dataTransfer.setData("text", ev.target.id);
+    const tag = ev.target.closest('.sorting-tag');
+    if (tag) {
+        ev.dataTransfer.setData("text", tag.id);
+    }
 };
 
 window.dropTag = function(ev) {
@@ -4805,6 +4808,9 @@ window.dropTag = function(ev) {
         saveCardSortingState();
     }
 };
+
+// Start slide presentation by loading the first slide
+goToSlide(0);
 
     </script>
 </body>
