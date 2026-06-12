@@ -1060,7 +1060,7 @@ const slideObjectOffsets = {};
 const slideTextEdits = {};
 const slideHiddenElements = {};
 
-// Load offsets, text edits, and hidden elements from localStorage on script load
+// Load offsets, text edits, and hidden elements from localStorage first (for offline support)
 try {
     const storedOffsets = localStorage.getItem('slideObjectOffsets');
     if (storedOffsets) {
@@ -1078,6 +1078,74 @@ try {
     }
 } catch (e) {
     console.error("Failed to load slide state from localStorage:", e);
+}
+
+// Load from inlined serverSavedState if available (compiled standalone mode)
+if (typeof serverSavedState !== 'undefined' && serverSavedState) {
+    try {
+        if (serverSavedState.slideObjectOffsets) {
+            Object.assign(slideObjectOffsets, serverSavedState.slideObjectOffsets);
+            localStorage.setItem('slideObjectOffsets', JSON.stringify(slideObjectOffsets));
+        }
+        if (serverSavedState.slideTextEdits) {
+            Object.assign(slideTextEdits, serverSavedState.slideTextEdits);
+            localStorage.setItem('slideTextEdits', JSON.stringify(slideTextEdits));
+        }
+        if (serverSavedState.slideHiddenElements) {
+            Object.assign(slideHiddenElements, serverSavedState.slideHiddenElements);
+            localStorage.setItem('slideHiddenElements', JSON.stringify(slideHiddenElements));
+        }
+        if (serverSavedState.slideSortingState) {
+            localStorage.setItem('slideSortingState', JSON.stringify(serverSavedState.slideSortingState));
+        }
+        if (serverSavedState.slideCheckboxStates) {
+            localStorage.setItem('slideCheckboxStates', JSON.stringify(serverSavedState.slideCheckboxStates));
+        }
+        if (serverSavedState.slideTimerDurations) {
+            localStorage.setItem('slideTimerDurations', JSON.stringify(serverSavedState.slideTimerDurations));
+        }
+    } catch (e) {
+        console.error("Failed to load inlined serverSavedState:", e);
+    }
+}
+
+// Try to load savedState.json asynchronously from server (to sync edits from other devices / git)
+if (window.location.protocol.startsWith('http')) {
+    fetch('/savedState.json')
+        .then(res => {
+            if (res.ok) return res.json();
+            throw new Error("No saved state on server");
+        })
+        .then(state => {
+            if (state) {
+                if (state.slideObjectOffsets) {
+                    Object.assign(slideObjectOffsets, state.slideObjectOffsets);
+                    localStorage.setItem('slideObjectOffsets', JSON.stringify(slideObjectOffsets));
+                }
+                if (state.slideTextEdits) {
+                    Object.assign(slideTextEdits, state.slideTextEdits);
+                    localStorage.setItem('slideTextEdits', JSON.stringify(slideTextEdits));
+                }
+                if (state.slideHiddenElements) {
+                    Object.assign(slideHiddenElements, state.slideHiddenElements);
+                    localStorage.setItem('slideHiddenElements', JSON.stringify(slideHiddenElements));
+                }
+                if (state.slideSortingState) {
+                    localStorage.setItem('slideSortingState', JSON.stringify(state.slideSortingState));
+                }
+                if (state.slideCheckboxStates) {
+                    localStorage.setItem('slideCheckboxStates', JSON.stringify(state.slideCheckboxStates));
+                }
+                if (state.slideTimerDurations) {
+                    localStorage.setItem('slideTimerDurations', JSON.stringify(state.slideTimerDurations));
+                }
+                // Re-render current slide to apply synced state
+                goToSlide(currentSlideIndex);
+            }
+        })
+        .catch(err => {
+            console.log("Using browser local storage state:", err.message);
+        });
 }
 
 function initDesignMode() {
@@ -1531,12 +1599,39 @@ const saveEditsBtn = document.getElementById('save-edits-btn');
 if (saveEditsBtn) {
     saveEditsBtn.addEventListener('click', () => {
         try {
-            // Save state manually
+            // Save state to localStorage first
             localStorage.setItem('slideObjectOffsets', JSON.stringify(slideObjectOffsets));
             localStorage.setItem('slideTextEdits', JSON.stringify(slideTextEdits));
             
-            // Show toast feedback
-            showToastNotification("Đã lưu lại toàn bộ thay đổi thành công!");
+            // Gather all state properties
+            const fullState = {
+                slideObjectOffsets,
+                slideTextEdits,
+                slideSortingState: JSON.parse(localStorage.getItem('slideSortingState') || '{}'),
+                slideCheckboxStates: JSON.parse(localStorage.getItem('slideCheckboxStates') || '{}'),
+                slideHiddenElements,
+                slideTimerDurations: JSON.parse(localStorage.getItem('slideTimerDurations') || '{}')
+            };
+            
+            // Post state to local server to save to disk
+            fetch('/api/save-state', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(fullState)
+            })
+            .then(res => {
+                if (res.ok) return res.json();
+                throw new Error("HTTP error " + res.status);
+            })
+            .then(data => {
+                showToastNotification("Đã lưu lại chỉnh sửa lên máy chủ và thiết bị thành công!");
+            })
+            .catch(err => {
+                console.warn("Could not save to disk server, saved in browser localStorage only:", err);
+                showToastNotification("Đã lưu chỉnh sửa cục bộ trên trình duyệt!");
+            });
         } catch (err) {
             console.error("Failed to save changes manually:", err);
             showToastNotification("Lỗi: Không thể lưu thay đổi.");

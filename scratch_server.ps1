@@ -23,6 +23,22 @@ while ($listener.IsListening) {
         $request = $context.Request
         $response = $context.Response
         
+        # Handle API POST save-state request
+        if ($request.HttpMethod -eq "POST" -and $request.Url.LocalPath -eq "/api/save-state") {
+            $reader = New-Object System.IO.StreamReader($request.InputStream, [System.Text.Encoding]::UTF8)
+            $body = $reader.ReadToEnd()
+            $reader.Close()
+            
+            [System.IO.File]::WriteAllText((Join-Path $workspacePath "savedState.json"), $body, [System.Text.Encoding]::UTF8)
+            
+            $response.StatusCode = 200
+            $response.ContentType = "application/json; charset=utf-8"
+            $msg = [System.Text.Encoding]::UTF8.GetBytes('{"status":"success"}')
+            $response.OutputStream.Write($msg, 0, $msg.Length)
+            $response.Close()
+            continue
+        }
+        
         # Clean up requested URL path
         $urlPath = $request.Url.LocalPath
         if ($urlPath -eq "/") {

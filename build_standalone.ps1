@@ -40,6 +40,13 @@ foreach ($line in $htmlLines) {
         $outputLines.Add("    </script>")
     }
     elseif ($line -match '<script.*src="app.js".*></script>') {
+        if (Test-Path "savedState.json") {
+            Write-Host "Inlining savedState.json into output..."
+            $savedStateContent = [System.IO.File]::ReadAllText("savedState.json", [System.Text.Encoding]::UTF8)
+            $outputLines.Add("    <script>")
+            $outputLines.Add("      const serverSavedState = $savedStateContent;")
+            $outputLines.Add("    </script>")
+        }
         $outputLines.Add("    <script>")
         $appLines = $appContent -split "`r?`n"
         foreach ($appLine in $appLines) {
