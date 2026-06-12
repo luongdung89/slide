@@ -655,19 +655,6 @@ const slidesData = [
     teacherNotes: `<h3>Tổng kết kiến thức 3 (1 phút)</h3>`
   },
   {
-    id: "END-02",
-    period: 1,
-    type: "final-output",
-    title: "SẢN PHẨM CUỐI TIẾT",
-    outputName: "Phiếu thiết kế quy trình học với AI theo môn học.",
-    components: [
-      "Quy trình chi tiết cho môn học tự chọn (Toán, Văn, Anh, Khoa).",
-      "Kịch bản câu lệnh (prompt) mẫu và cách kiểm tra chéo thông tin."
-    ],
-    teacherNotes: `<h3>Sản phẩm cuối tiết (1 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên tổng hợp các phiếu sản phẩm và chụp hình/lưu giữ lại.</p>`
-  },
-  {
     id: "END-03",
     period: 1,
     type: "bq-revisit",
