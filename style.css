@@ -2552,3 +2552,112 @@ body {
     padding: 3px 6px;
     line-height: inherit;
 }
+
+/* ==========================================
+   PRESENTATION MODE (SLIDE SHOW)
+   ========================================== */
+body.presentation-mode {
+    background-color: #030712 !important;
+}
+
+body.presentation-mode .app-header,
+body.presentation-mode .progress-bar-container,
+body.presentation-mode .app-footer,
+body.presentation-mode .sidebar-nav,
+body.presentation-mode .teacher-notes-drawer {
+    display: none !important;
+}
+
+body.presentation-mode .presentation-container {
+    height: 100vh !important;
+    width: 100vw !important;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex: 1;
+}
+
+body.presentation-mode .slide-content {
+    max-height: 96vh !important;
+    max-width: 170.6vh !important; /* Lock 16:9 ratio in presentation mode */
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Floating Navigation Controls */
+.presentation-controls {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(13, 21, 37, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 12px;
+    z-index: 99999;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+}
+
+body.presentation-mode .presentation-controls {
+    display: flex;
+}
+
+/* Show controls when mouse is active */
+body.presentation-mode.show-controls .presentation-controls {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.presentation-controls button {
+    background: transparent;
+    border: none;
+    color: #f8fafc;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.presentation-controls button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-teal);
+}
+
+.presentation-controls .presentation-slide-num {
+    color: #cbd5e1;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    min-width: 60px;
+    text-align: center;
+    user-select: none;
+}
+
+.presentation-controls .pres-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 4px;
+}
+
+.presentation-controls button.btn-exit-presentation {
+    color: #f87171;
+}
+
+.presentation-controls button.btn-exit-presentation:hover {
+    background: rgba(248, 113, 113, 0.15);
+    color: #ef4444;
+}

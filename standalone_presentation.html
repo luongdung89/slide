@@ -2566,6 +2566,115 @@ body {
     line-height: inherit;
 }
 
+/* ==========================================
+   PRESENTATION MODE (SLIDE SHOW)
+   ========================================== */
+body.presentation-mode {
+    background-color: #030712 !important;
+}
+
+body.presentation-mode .app-header,
+body.presentation-mode .progress-bar-container,
+body.presentation-mode .app-footer,
+body.presentation-mode .sidebar-nav,
+body.presentation-mode .teacher-notes-drawer {
+    display: none !important;
+}
+
+body.presentation-mode .presentation-container {
+    height: 100vh !important;
+    width: 100vw !important;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex: 1;
+}
+
+body.presentation-mode .slide-content {
+    max-height: 96vh !important;
+    max-width: 170.6vh !important; /* Lock 16:9 ratio in presentation mode */
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Floating Navigation Controls */
+.presentation-controls {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(13, 21, 37, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 12px;
+    z-index: 99999;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+}
+
+body.presentation-mode .presentation-controls {
+    display: flex;
+}
+
+/* Show controls when mouse is active */
+body.presentation-mode.show-controls .presentation-controls {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.presentation-controls button {
+    background: transparent;
+    border: none;
+    color: #f8fafc;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.presentation-controls button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-teal);
+}
+
+.presentation-controls .presentation-slide-num {
+    color: #cbd5e1;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    min-width: 60px;
+    text-align: center;
+    user-select: none;
+}
+
+.presentation-controls .pres-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 4px;
+}
+
+.presentation-controls button.btn-exit-presentation {
+    color: #f87171;
+}
+
+.presentation-controls button.btn-exit-presentation:hover {
+    background: rgba(248, 113, 113, 0.15);
+    color: #ef4444;
+}
+
     </style>
 </head>
 <body class="dark-theme">
@@ -2636,6 +2745,9 @@ body {
             <button class="btn-nav" id="next-btn" title="Slide sau (Mũi tên Phải / Space / Enter)"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
         <div class="footer-right">
+            <button class="btn-footer" id="start-presentation-btn" title="Bắt đầu trình chiếu (F5)">
+                <i class="fa-solid fa-play"></i> Trình chiếu
+            </button>
             <button class="btn-footer" id="fullscreen-btn" title="Toàn màn hình (F)">
                 <i class="fa-solid fa-expand"></i>
             </button>
@@ -2651,6 +2763,15 @@ body {
         <div class="notes-content" id="notes-text-box">
             <!-- Will be populated dynamically by JS -->
         </div>
+    </div>
+
+    <!-- FLOATING PRESENTATION CONTROLS -->
+    <div class="presentation-controls" id="presentation-controls-bar">
+        <button id="pres-prev-btn" title="Slide trước"><i class="fa-solid fa-chevron-left"></i></button>
+        <span class="presentation-slide-num" id="pres-slide-num">1 / 62</span>
+        <button id="pres-next-btn" title="Slide sau"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="pres-divider"></div>
+        <button id="pres-exit-btn" class="btn-exit-presentation" title="Thoát trình chiếu (Esc)"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
     <!-- DATA SOURCE & APPLICATION LOGIC -->
@@ -3378,6 +3499,16 @@ const toggleNotesBtn = document.getElementById('toggle-notes-btn');
 const closeNotesBtn = document.getElementById('close-notes-btn');
 const notesTextBox = document.getElementById('notes-text-box');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+// Presentation Mode DOM Elements
+const startPresentationBtn = document.getElementById('start-presentation-btn');
+const presentationControlsBar = document.getElementById('presentation-controls-bar');
+const presPrevBtn = document.getElementById('pres-prev-btn');
+const presNextBtn = document.getElementById('pres-next-btn');
+const presSlideNum = document.getElementById('pres-slide-num');
+const presExitBtn = document.getElementById('pres-exit-btn');
+let isPresentationMode = false;
+let presentationMouseMoveTimeout = null;
 
 // Update indicators
 totalSlidesNumDisp.textContent = totalSlides;
@@ -4283,6 +4414,9 @@ function goToSlide(index) {
     if (index < 0 || index >= totalSlides) return;
     currentSlideIndex = index;
     renderSlide(index);
+    if (presSlideNum) {
+        presSlideNum.textContent = `${index + 1} / ${totalSlides}`;
+    }
 }
 
 // Sidebar Drawer triggers
@@ -4327,8 +4461,87 @@ fullscreenBtn.addEventListener('click', () => {
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {
         fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i>';
+        if (isPresentationMode) {
+            togglePresentationMode(false);
+        }
+    } else {
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i>';
     }
 });
+
+// Presentation Mode core logic
+function togglePresentationMode(on) {
+    isPresentationMode = on;
+    if (on) {
+        document.body.classList.add('presentation-mode');
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+        }
+        showPresentationControlsTemporarily();
+    } else {
+        document.body.classList.remove('presentation-mode');
+        document.body.classList.remove('show-controls');
+        if (presentationMouseMoveTimeout) {
+            clearTimeout(presentationMouseMoveTimeout);
+        }
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+        }
+    }
+}
+
+function showPresentationControlsTemporarily() {
+    if (!isPresentationMode) return;
+    document.body.classList.add('show-controls');
+    if (presentationMouseMoveTimeout) {
+        clearTimeout(presentationMouseMoveTimeout);
+    }
+    presentationMouseMoveTimeout = setTimeout(() => {
+        if (isPresentationMode) {
+            document.body.classList.remove('show-controls');
+        }
+    }, 3000);
+}
+
+// Mouse tracking for auto-hiding presentation control bar
+document.addEventListener('mousemove', (e) => {
+    if (!isPresentationMode) return;
+    
+    // Always show controls if mouse is near bottom of screen
+    if (e.clientY > window.innerHeight - 80) {
+        document.body.classList.add('show-controls');
+        if (presentationMouseMoveTimeout) {
+            clearTimeout(presentationMouseMoveTimeout);
+        }
+    } else {
+        showPresentationControlsTemporarily();
+    }
+});
+
+// Presentation control bar button events
+if (startPresentationBtn) {
+    startPresentationBtn.addEventListener('click', () => {
+        togglePresentationMode(true);
+    });
+}
+
+if (presExitBtn) {
+    presExitBtn.addEventListener('click', () => {
+        togglePresentationMode(false);
+    });
+}
+
+if (presPrevBtn) {
+    presPrevBtn.addEventListener('click', () => {
+        if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1);
+    });
+}
+
+if (presNextBtn) {
+    presNextBtn.addEventListener('click', () => {
+        if (currentSlideIndex < totalSlides - 1) goToSlide(currentSlideIndex + 1);
+    });
+}
 
 // Navigation Triggers
 prevBtn.addEventListener('click', () => {
@@ -4356,6 +4569,14 @@ document.addEventListener('keydown', (e) => {
     } else if (e.key.toLowerCase() === 'm') {
         e.preventDefault();
         sidebar.classList.toggle('open');
+    } else if (e.key === 'F5') {
+        e.preventDefault();
+        togglePresentationMode(!isPresentationMode);
+    } else if (e.key === 'Escape') {
+        if (isPresentationMode) {
+            e.preventDefault();
+            togglePresentationMode(false);
+        }
     }
 });
 

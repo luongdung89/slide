@@ -24,6 +24,16 @@ const closeNotesBtn = document.getElementById('close-notes-btn');
 const notesTextBox = document.getElementById('notes-text-box');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
 
+// Presentation Mode DOM Elements
+const startPresentationBtn = document.getElementById('start-presentation-btn');
+const presentationControlsBar = document.getElementById('presentation-controls-bar');
+const presPrevBtn = document.getElementById('pres-prev-btn');
+const presNextBtn = document.getElementById('pres-next-btn');
+const presSlideNum = document.getElementById('pres-slide-num');
+const presExitBtn = document.getElementById('pres-exit-btn');
+let isPresentationMode = false;
+let presentationMouseMoveTimeout = null;
+
 // Update indicators
 totalSlidesNumDisp.textContent = totalSlides;
 
@@ -928,6 +938,9 @@ function goToSlide(index) {
     if (index < 0 || index >= totalSlides) return;
     currentSlideIndex = index;
     renderSlide(index);
+    if (presSlideNum) {
+        presSlideNum.textContent = `${index + 1} / ${totalSlides}`;
+    }
 }
 
 // Sidebar Drawer triggers
@@ -972,8 +985,87 @@ fullscreenBtn.addEventListener('click', () => {
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {
         fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i>';
+        if (isPresentationMode) {
+            togglePresentationMode(false);
+        }
+    } else {
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i>';
     }
 });
+
+// Presentation Mode core logic
+function togglePresentationMode(on) {
+    isPresentationMode = on;
+    if (on) {
+        document.body.classList.add('presentation-mode');
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+        }
+        showPresentationControlsTemporarily();
+    } else {
+        document.body.classList.remove('presentation-mode');
+        document.body.classList.remove('show-controls');
+        if (presentationMouseMoveTimeout) {
+            clearTimeout(presentationMouseMoveTimeout);
+        }
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+        }
+    }
+}
+
+function showPresentationControlsTemporarily() {
+    if (!isPresentationMode) return;
+    document.body.classList.add('show-controls');
+    if (presentationMouseMoveTimeout) {
+        clearTimeout(presentationMouseMoveTimeout);
+    }
+    presentationMouseMoveTimeout = setTimeout(() => {
+        if (isPresentationMode) {
+            document.body.classList.remove('show-controls');
+        }
+    }, 3000);
+}
+
+// Mouse tracking for auto-hiding presentation control bar
+document.addEventListener('mousemove', (e) => {
+    if (!isPresentationMode) return;
+    
+    // Always show controls if mouse is near bottom of screen
+    if (e.clientY > window.innerHeight - 80) {
+        document.body.classList.add('show-controls');
+        if (presentationMouseMoveTimeout) {
+            clearTimeout(presentationMouseMoveTimeout);
+        }
+    } else {
+        showPresentationControlsTemporarily();
+    }
+});
+
+// Presentation control bar button events
+if (startPresentationBtn) {
+    startPresentationBtn.addEventListener('click', () => {
+        togglePresentationMode(true);
+    });
+}
+
+if (presExitBtn) {
+    presExitBtn.addEventListener('click', () => {
+        togglePresentationMode(false);
+    });
+}
+
+if (presPrevBtn) {
+    presPrevBtn.addEventListener('click', () => {
+        if (currentSlideIndex > 0) goToSlide(currentSlideIndex - 1);
+    });
+}
+
+if (presNextBtn) {
+    presNextBtn.addEventListener('click', () => {
+        if (currentSlideIndex < totalSlides - 1) goToSlide(currentSlideIndex + 1);
+    });
+}
 
 // Navigation Triggers
 prevBtn.addEventListener('click', () => {
@@ -1001,6 +1093,14 @@ document.addEventListener('keydown', (e) => {
     } else if (e.key.toLowerCase() === 'm') {
         e.preventDefault();
         sidebar.classList.toggle('open');
+    } else if (e.key === 'F5') {
+        e.preventDefault();
+        togglePresentationMode(!isPresentationMode);
+    } else if (e.key === 'Escape') {
+        if (isPresentationMode) {
+            e.preventDefault();
+            togglePresentationMode(false);
+        }
     }
 });
 
