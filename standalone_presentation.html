@@ -227,16 +227,16 @@ body {
 
 .slide-content {
     box-sizing: border-box;
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    max-width: 1200px;
-    max-height: 100%;
-    height: auto;
+    width: 1200px;
+    height: 675px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
-    margin: auto;
     border: 2px dashed transparent;
     border-radius: 16px;
     padding: 35px 45px;
@@ -250,17 +250,18 @@ body {
 
 .slide-heading {
     font-family: var(--font-heading);
-    font-size: 2.6rem;
+    font-size: 1.9rem;
     font-weight: 850;
     text-transform: uppercase;
     letter-spacing: -0.5px;
-    line-height: 1.35;
+    line-height: 1.45;
     margin-bottom: 25px;
     background: linear-gradient(135deg, var(--text-primary), #cbd5e1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     border-left: 5px solid var(--color-teal);
     padding-left: 15px;
+    padding-top: 0.1em;
 }
 
 .section-desc {
@@ -331,14 +332,15 @@ body {
 }
 .welcome-title {
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: 2.8rem;
     font-weight: 900;
-    line-height: 1.3;
+    line-height: 1.45;
     letter-spacing: -2px;
     background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 50px rgba(6, 182, 212, 0.15);
+    padding-top: 0.1em;
 }
 .welcome-subtitle {
     font-size: 1.6rem;
@@ -396,7 +398,7 @@ body {
     background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95) 0%, rgba(8, 12, 20, 0.6) 100%);
     border: 1px solid var(--border-glass);
     border-radius: 24px;
-    padding: 50px;
+    padding: 35px 45px;
     position: relative;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -416,12 +418,13 @@ body {
 }
 .bq-text {
     font-family: var(--font-heading);
-    font-size: 3.2rem;
+    font-size: 2.1rem;
     font-weight: 900;
-    line-height: 1.4;
+    line-height: 1.45;
     margin-bottom: 20px;
     color: var(--text-primary);
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+    padding-top: 0.1em;
 }
 .bq-sub {
     color: var(--text-muted);
@@ -546,13 +549,14 @@ body {
 }
 .stage-title {
     font-family: var(--font-heading);
-    font-size: 3.8rem;
+    font-size: 2.5rem;
     font-weight: 900;
-    line-height: 1.3;
+    line-height: 1.45;
     letter-spacing: -1px;
     background: linear-gradient(135deg, #ffffff, #cbd5e1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    padding-top: 0.1em;
 }
 /* Lock animation object */
 .stage-lock-icon {
@@ -735,7 +739,7 @@ body {
 .workspace-main {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 .workspace-side {
     display: flex;
@@ -765,14 +769,13 @@ body {
 .stories-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    height: 100%;
+    gap: 15px;
 }
 .story-column {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--border-glass);
     border-radius: 12px;
-    padding: 20px;
+    padding: 12px 15px;
 }
 .story-column.nam-theme { border-top: 3px solid var(--color-teal); }
 .story-column.lan-theme { border-top: 3px solid var(--color-orange); }
@@ -780,7 +783,7 @@ body {
     font-family: var(--font-heading);
     font-weight: 800;
     font-size: 1.1rem;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -790,7 +793,7 @@ body {
 
 .list-item-story {
     font-size: 0.95rem;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     color: #e2e8f0;
     padding-left: 20px;
     position: relative;
@@ -809,20 +812,20 @@ body {
     border: 1px solid var(--border-glass);
     border-left: 4px solid var(--color-orange);
     border-radius: 12px;
-    padding: 20px;
+    padding: 10px 15px;
 }
 .workspace-questions-card h4 {
     font-family: var(--font-heading);
     font-weight: 800;
     font-size: 1.05rem;
     color: var(--color-orange);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .workspace-questions-card ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 .workspace-questions-card li {
     font-size: 1rem;
@@ -1847,6 +1850,21 @@ body {
     outline-color: var(--color-orange) !important;
 }
 
+.design-mode .glass-card:hover,
+.design-mode .step-item-card:hover,
+.design-mode .fc-step:hover {
+    transform: none;
+}
+
+.design-mode .slide-heading,
+.design-mode .stage-title,
+.design-mode .welcome-title {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    color: var(--text-primary) !important;
+}
+
 .design-mode .draggable-object:hover .drag-handle {
     background-color: var(--color-orange);
     box-shadow: 0 0 8px var(--color-orange-glow);
@@ -2343,7 +2361,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
 }
 .story-char-img {
     max-width: 140px;
@@ -2599,8 +2617,10 @@ body.presentation-mode .presentation-container {
 }
 
 body.presentation-mode .slide-content {
-    max-height: 96vh !important;
-    max-width: 170.6vh !important; /* Lock 16:9 ratio in presentation mode */
+    width: 1200px !important;
+    height: 675px !important;
+    max-height: none !important;
+    max-width: none !important;
     box-shadow: none !important;
     border: none !important;
 }
@@ -3486,7 +3506,7 @@ const slidesData = [
 
     </script>
     <script>
-      const serverSavedState = {"slideObjectOffsets":{"P0-01":{},"P0-02":{},"P0-03":{".role-info-card_0":{"dx":444,"dy":-164,"width":332.671875,"height":170},".role-info-card_1":{"dx":-192,"dy":36,"width":429.703125,"height":205},".role-info-card_2":{"dx":-185,"dy":41,"width":399.625,"height":199}},"STAGE-01":{},"STAGE-01-ACT-01":{".act-intro-goal_0":{"width":501.625,"height":78}},"STAGE-01-ACT-01B":{},"STAGE-01-ACT-02":{},"STAGE-01-ACT-03":{".workspace-timer-widget_0":{"width":232,"height":164,"dx":65,"dy":11}},"STAGE-01-ACT-04":{},"STAGE-01-ACT-05":{},"STAGE-02":{".stage-title_0":{"dx":5,"dy":1}},"STAGE-02-ACT-01":{".act-intro-card_0":{"width":749.625,"height":402}},"STAGE-02-ACT-01B":{},"STAGE-02-ACT-03":{".mission-envelope-container_0":{"dx":-3,"dy":111},".workspace-timer-widget_0":{"dx":-4,"dy":106},".slide-heading_0":{"dx":-6,"dy":76}},"STAGE-02-ACT-05":{},"STAGE-03":{},"STAGE-03-ACT-01":{},"STAGE-03-ACT-01B":{},"STAGE-03-ACT-02":{},"STAGE-03-ACT-03":{},"STAGE-03-ACT-04":{},"STAGE-03-ACT-05":{},"STAGE-04":{},"STAGE-04-ACT-01":{".act-intro-card_0":{"width":699.625,"height":371},".act-intro-goal_0":{"dx":-3,"dy":18},".act-intro-title_0":{"dx":-1,"dy":1}},"STAGE-04-ACT-01B":{},"STAGE-04-ACT-02":{},"STAGE-04-ACT-03":{".matrix-grid_0":{"dx":-19,"dy":36},".workspace-timer-widget_0":{"dx":-1,"dy":45}},"STAGE-04-ACT-04":{},"STAGE-04-ACT-05":{},"STAGE-05":{},"STAGE-05-ACT-01":{".act-intro-title_0":{"width":605.625,"height":115,"dx":1,"dy":2}},"STAGE-05-ACT-01B":{},"STAGE-05-ACT-03":{".drawing-placeholder_0":{"width":763,"height":512}},"STAGE-05-ACT-04":{},"STAGE-05-ACT-05":{},"STAGE-06":{},"STAGE-06-ACT-01":{".act-intro-title_0":{"width":627.625,"height":70,"dx":-2,"dy":36},".act-intro-goal_0":{"dx":0,"dy":85},".act-intro-card_0":{"width":709.625,"height":451}},"STAGE-06-ACT-01B":{},"STAGE-06-ACT-02":{},"STAGE-06-ACT-03":{},"STAGE-06-ACT-04-1":{},"STAGE-06-ACT-04-2":{},"STAGE-06-ACT-04-3":{},"STAGE-06-ACT-04-4":{},"STAGE-06-ACT-05":{},"STAGE-07":{},"STAGE-07-ACT-01":{".act-intro-title_0":{"width":583.625,"height":88}},"STAGE-07-ACT-01B":{},"STAGE-07-ACT-03":{},"STAGE-07-ACT-05":{},"STAGE-08":{},"STAGE-08-ACT-01":{".act-intro-goal_0":{"width":605.625,"height":91,"dx":0,"dy":68},".act-intro-card_0":{"width":682,"height":454},".act-intro-title_0":{"dx":0,"dy":38}},"STAGE-08-ACT-01B":{},"STAGE-08-ACT-03":{},"STAGE-08-ACT-05":{},"END-01-1":{},"END-01-2":{},"END-01-3":{".takeaway-quote-box_0":{"dx":0,"dy":-17}}},"slideTextEdits":{"P0-01":{"edit_4":"Học sinh hiểu và xây dựng được quy trình học tập hiệu quả, chủ động cùng trí tuệ nhân tạo (Nghĩ → Hỏi → Kiểm tra → Làm lại)."},"P0-03":{"edit_0":"<br>"},"STAGE-01-ACT-01":{"edit_2":"Khơi gợi vấn đề, tạo nhu cầu tìm hiểu về cách dùng AI đúng đắn thông qua việc so sánh hai trường hợp&nbsp;<div>thực tế.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-01-ACT-01B":{"edit_2":"- Vở ghi chép<div><br><div>- Bút</div></div>"},"STAGE-01-ACT-03":{"edit_2":"&nbsp; &nbsp;Đọc đề bài","edit_3":"&nbsp; Tự suy nghĩ","edit_4":"&nbsp; Hỏi AI khi gặp khó khăn","edit_5":"&nbsp; Kiểm tra lời giải của AI","edit_6":"&nbsp; Tự làm lại vào vở","edit_8":"&nbsp; Chụp đề bài","edit_9":"&nbsp; Gửi cho AI","edit_10":"&nbsp; Chép đáp án","edit_0":"AI GIÚP HAY AI THAY?","timer-display-STAGE-01-ACT-03":"03:57"},"STAGE-01-ACT-05":{"edit_3":"Một quy trình chuẩn để học với AI gồm những bước nào và từ đâu&nbsp;<div>mà có?</div>"},"STAGE-02":{"edit_1":"NHẬN YÊU CẦU TỪ&nbsp;<div>KHÁCH HÀNG<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-02-ACT-01":{"edit_2":"Giúp học sinh hiểu rõ nhiệm vụ học tập và xác định được các vấn đề cốt lõi cần điều tra.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>","edit_1":"NHIỆM VỤ&nbsp;<span style=\"font-size: 2.8rem;\">TỪ HỌC VIỆN AI</span><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-02-ACT-01B":{"edit_2":"- Giấy<div><br><div>- Bút</div></div>"},"STAGE-02-ACT-05":{"edit_3":"Làm sao để 'giải mã' và sắp xếp các hành động rời rạc thành&nbsp;<div>một&nbsp;<span style=\"font-size: 1.3rem;\">quy trình học tập tối ưu?</span></div>"},"STAGE-03-ACT-01B":{"edit_2":"Nhận bộ thẻ hành động từ giáo viên"},"STAGE-03-ACT-02":{"edit_3":"Thảo luận và phân loại các thẻ vào hai nhóm quy trình."},"STAGE-03-ACT-05":{"edit_3":"Nhưng tại sao các bước trong quy trình học hiệu quả lại quan trọng? Nếu lỡ bỏ qua một bước thì hệ quả sẽ ra sao?","edit_1":"Sự khác biệt giữa một quy trình học thông minh và một quy trình&nbsp;<div>đối phó.</div>"},"STAGE-04-ACT-01B":{"edit_2":"- Giấy viết<div><br>- Bút</div>"},"STAGE-04-ACT-04":{"edit_13":"Mỗi một bước trong ma trận đều có một sứ mệnh không thể thay thế."},"STAGE-04-ACT-05":{"edit_1":"Bản chất, vai trò kỹ thuật và lỗ hổng tư duy khi thiếu hụt các bước&nbsp;<div>phản hồi.</div>"},"STAGE-05-ACT-01B":{"edit_2":"- Giấy viết<div><br>- Bút</div>"},"STAGE-05-ACT-04":{"edit_1":"NGHĨ&nbsp;<div>(Não tự động)</div>","edit_2":"HỎI&nbsp;<div>(Tương tác)</div>","edit_4":"LÀM LẠI&nbsp;<div>(Tự giải)</div>"},"STAGE-05-ACT-05":{"edit_1":"Công thức vàng của một Chuyên gia AI thực thụ khi đứng trước&nbsp;<div>bài học mới.</div>"},"STAGE-06-ACT-01B":{"edit_2":"- Nhận phiếu thiết kế quy trình<div><br>- Bút</div>","edit_4":"Nhóm 4 học sinh"},"STAGE-07-ACT-01":{"edit_1":"NHẬT KÝ CHUYÊN GIA AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>"},"STAGE-07-ACT-01B":{"edit_2":"- Bút<div><br><div>- Phiếu nhật ký</div></div>"},"STAGE-08-ACT-01":{"edit_2":"Áp dụng kiến thức bài học vào đời sống thực tế, thiết lập cam kết hành động dài hạn để hình thành thói quen học tập&nbsp;<div>thông minh.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-08-ACT-01B":{"edit_2":"Phiếu cam kết hành động tuần (giáo viên phát)."},"STAGE-08-ACT-05":{"edit_1":"Bản cam kết hành động thực tế của những nhà thông thái công nghệ tương lai."},"END-01-1":{"edit_2":"<strong>&nbsp; &nbsp; &nbsp;Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu sâu sắc kiến thức.","edit_3":"<strong>&nbsp; &nbsp; &nbsp;Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI để nộp bài; bài tập hoàn thành nhưng bộ não không đọng lại kiến thức.","edit_0":"TỔNG KẾT","edit_1":"HỌC THỰC SỰ VÀ HỌC ĐỐI PHÓ"},"END-01-2":{"edit_0":"TỔNG KẾT"},"END-01-3":{"edit_0":"TỔNG KẾT","edit_1":"<br>"},"END-03":{"edit_1":"Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, ta bắt buộc phải làm chủ cuộc chơi tư duy bằng cách tuân thủ nghiêm ngặt quy trình: Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình."},"STAGE-06-ACT-01":{"edit_2":"Học sinh chuyển hóa lý thuyết thành công cụ thực tiễn, cụ thể hóa hành động học tập cho từng bộ môn học đường cụ thể.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><span class=\"fa-solid fa-arrows-up-down-left-right\"></span></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>"},"STAGE-04-ACT-03":{"edit_0":"MA TRẬN PHÂN TÍCH VAI TRÒ<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"}},"slideSortingState":{"STAGE-03-ACT-03":{"tag-STAGE-03-ACT-03-3":"sorting-pool","tag-STAGE-03-ACT-03-6":"sorting-pool","tag-STAGE-03-ACT-03-5":"sorting-pool","tag-STAGE-03-ACT-03-0":"sorting-pool","tag-STAGE-03-ACT-03-4":"sorting-pool","tag-STAGE-03-ACT-03-1":"sorting-pool","tag-STAGE-03-ACT-03-2":"sorting-pool"}},"slideCheckboxStates":{},"slideHiddenElements":{},"slideTimerDurations":{"STAGE-01-ACT-03":240,"STAGE-02-ACT-03":120}};
+      const serverSavedState = {"slideObjectOffsets":{"P0-01":{".welcome-title_0":{"width":742.6843706845353,"height":174.38752937081128},".welcome-subject_0":{"width":651.7305088868394,"height":82.82813790112696}},"P0-02":{},"P0-03":{".role-info-card_0":{"dx":427.9728059332509,"dy":-252.93943139678615,"width":332.671875,"height":170},".role-info-card_1":{"dx":-192,"dy":36,"width":429.703125,"height":205},".role-info-card_2":{"dx":-185,"dy":41,"width":399.625,"height":199}},"STAGE-01":{".stage-title_0":{"width":862.8344334247528,"height":102.53279300496371}},"STAGE-01-ACT-01":{".act-intro-goal_0":{"width":501.625,"height":78},".act-intro-card_0":{"width":783.9346377604971,"height":461.39099913268217}},"STAGE-01-ACT-01B":{},"STAGE-01-ACT-02":{},"STAGE-01-ACT-03":{".workspace-timer-widget_0":{"width":232,"height":164,"dx":65,"dy":11}},"STAGE-01-ACT-04":{},"STAGE-01-ACT-05":{".transition-wrapper_0":{"width":839,"height":463},".transition-card_0":{"width":798.1161676319626,"height":342.4660257120215}},"STAGE-02":{".stage-title_0":{"dx":5,"dy":1}},"STAGE-02-ACT-01":{".act-intro-card_0":{"width":743.625,"height":510}},"STAGE-02-ACT-01B":{},"STAGE-02-ACT-03":{".mission-envelope-container_0":{"dx":-3,"dy":111},".workspace-timer-widget_0":{"dx":-4,"dy":106},".slide-heading_0":{"dx":-6,"dy":76}},"STAGE-02-ACT-05":{".transition-wrapper_0":{"width":830,"height":448},".transition-card_0":{"width":757,"height":326,"dx":24,"dy":-1}},"STAGE-03":{".stage-title_0":{"width":807,"height":230,"dx":-10,"dy":8}},"STAGE-03-ACT-01":{".act-intro-title_0":{"width":613.2937739010353,"height":99.62548160435094,"dx":0,"dy":14.184177997527811},".act-intro-goal_0":{"dx":1.6687268232385661,"dy":35.04326328800989},".act-intro-card_0":{"width":695.2812845538956,"height":437.66824559611354}},"STAGE-03-ACT-01B":{},"STAGE-03-ACT-02":{},"STAGE-03-ACT-03":{},"STAGE-03-ACT-04":{},"STAGE-03-ACT-05":{},"STAGE-04":{},"STAGE-04-ACT-01":{".act-intro-card_0":{"width":699.6250261040346,"height":458.6081751197466},".act-intro-goal_0":{"dx":-3,"dy":18},".act-intro-title_0":{"dx":-1,"dy":1,"width":599.9874496931493,"height":90.67491736488671}},"STAGE-04-ACT-01B":{},"STAGE-04-ACT-02":{},"STAGE-04-ACT-03":{".matrix-grid_0":{"dx":-19,"dy":36},".workspace-timer-widget_0":{"dx":-1,"dy":45}},"STAGE-04-ACT-04":{},"STAGE-04-ACT-05":{".transition-wrapper_0":{"width":854,"height":515}},"STAGE-05":{},"STAGE-05-ACT-01":{".act-intro-title_0":{"width":890.625,"height":119,"dx":1,"dy":2},".act-intro-goal_0":{"dx":-3,"dy":33}},"STAGE-05-ACT-01B":{},"STAGE-05-ACT-03":{".drawing-placeholder_0":{"width":763,"height":512}},"STAGE-05-ACT-04":{},"STAGE-05-ACT-05":{},"STAGE-06":{".stage-title_0":{"width":743.453125,"height":118}},"STAGE-06-ACT-01":{".act-intro-title_0":{"width":869.625,"height":51,"dx":-2,"dy":36},".act-intro-goal_0":{"dx":0,"dy":85},".act-intro-card_0":{"width":838,"height":505}},"STAGE-06-ACT-01B":{},"STAGE-06-ACT-02":{},"STAGE-06-ACT-03":{},"STAGE-06-ACT-04-1":{},"STAGE-06-ACT-04-2":{},"STAGE-06-ACT-04-3":{},"STAGE-06-ACT-04-4":{},"STAGE-06-ACT-05":{},"STAGE-07":{},"STAGE-07-ACT-01":{".act-intro-title_0":{"width":583.625,"height":88},".act-intro-card_0":{"width":729.625,"height":543},".act-intro-goal_0":{"dx":3,"dy":100}},"STAGE-07-ACT-01B":{},"STAGE-07-ACT-03":{},"STAGE-07-ACT-05":{},"STAGE-08":{},"STAGE-08-ACT-01":{".act-intro-goal_0":{"width":605.625,"height":91,"dx":0,"dy":68},".act-intro-card_0":{"width":690,"height":527},".act-intro-title_0":{"dx":0,"dy":38}},"STAGE-08-ACT-01B":{},"STAGE-08-ACT-03":{},"STAGE-08-ACT-05":{},"END-01-1":{},"END-01-2":{},"END-01-3":{".takeaway-quote-box_0":{"dx":0,"dy":-17}},"END-03":{},"END-04":{},"END-05":{}},"slideTextEdits":{"P0-01":{"edit_4":"Học sinh hiểu và xây dựng được quy trình học tập hiệu quả, chủ động cùng trí tuệ nhân tạo (Nghĩ → Hỏi → Kiểm tra → Làm lại).","edit_1":"THỰC HÀNH DÙNG AI ĐỂ HỌC<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"P0-03":{"edit_0":"<br>"},"STAGE-01-ACT-01":{"edit_2":"Khơi gợi vấn đề, tạo nhu cầu tìm hiểu về cách dùng AI đúng đắn thông qua việc so sánh hai trường hợp&nbsp;<span style=\"font-size: 1.2rem;\">thực tế.</span><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-01-ACT-01B":{"edit_2":"- Vở ghi chép<div><br><div>- Bút</div></div>"},"STAGE-01-ACT-03":{"edit_2":"&nbsp; &nbsp;Đọc đề bài","edit_3":"&nbsp; Tự suy nghĩ","edit_4":"&nbsp; Hỏi AI khi gặp khó khăn","edit_5":"&nbsp; Kiểm tra lời giải của AI","edit_6":"&nbsp; Tự làm lại vào vở","edit_8":"&nbsp; Chụp đề bài","edit_9":"&nbsp; Gửi cho AI","edit_10":"&nbsp; Chép đáp án","edit_0":"AI GIÚP HAY AI THAY?","timer-display-STAGE-01-ACT-03":"03:57"},"STAGE-01-ACT-05":{"edit_3":"Một quy trình chuẩn để học với AI gồm những bước nào và từ đâu&nbsp;<span style=\"font-size: 1.3rem;\">mà có?</span>"},"STAGE-02":{"edit_1":"NHẬN YÊU CẦU TỪ&nbsp;<div>KHÁCH HÀNG<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-02-ACT-01":{"edit_2":"Giúp học sinh hiểu rõ nhiệm vụ học tập và xác định được các vấn đề cốt lõi cần điều tra.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>","edit_1":"NHIỆM VỤ&nbsp;<span style=\"font-size: 2.8rem;\">TỪ&nbsp;</span><div><span style=\"font-size: 2.8rem;\">HỌC VIỆN AI</span><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div></div>"},"STAGE-02-ACT-01B":{"edit_2":"- Giấy<div><br><div>- Bút</div></div>"},"STAGE-02-ACT-05":{"edit_3":"Làm sao để 'giải mã' và sắp xếp các hành động rời rạc thành&nbsp;<span style=\"font-size: 1.3rem;\">một&nbsp;</span><span style=\"font-size: 1.3rem;\">quy trình học tập tối ưu?</span>"},"STAGE-03-ACT-01B":{"edit_2":"Nhận bộ thẻ hành động từ giáo viên"},"STAGE-03-ACT-02":{"edit_3":"Thảo luận và phân loại các thẻ vào hai nhóm quy trình."},"STAGE-03-ACT-05":{"edit_3":"Nhưng tại sao các bước trong quy trình học hiệu quả lại quan trọng? Nếu lỡ bỏ qua một bước thì hệ quả sẽ ra sao?","edit_1":"Sự khác biệt giữa một quy trình học thông minh và một quy trình&nbsp;<span style=\"font-size: 1.3rem;\">đối phó.</span>"},"STAGE-04-ACT-01B":{"edit_2":"- Giấy viết<div><br>- Bút</div>"},"STAGE-04-ACT-04":{"edit_13":"Mỗi một bước trong ma trận đều có một sứ mệnh không thể thay thế."},"STAGE-04-ACT-05":{"edit_1":"Bản chất, vai trò kỹ thuật và lỗ hổng tư duy khi thiếu hụt các bước&nbsp;<span style=\"font-size: 1.3rem;\">phản hồi.</span>"},"STAGE-05-ACT-01B":{"edit_2":"- Giấy viết<div><br>- Bút</div>"},"STAGE-05-ACT-04":{"edit_1":"NGHĨ&nbsp;<div>(Não tự động)</div>","edit_2":"HỎI&nbsp;<div>(Tương tác)</div>","edit_4":"LÀM LẠI&nbsp;<div>(Tự giải)</div>"},"STAGE-05-ACT-05":{"edit_1":"Công thức vàng của một Chuyên gia AI thực thụ khi đứng trước&nbsp;<span style=\"font-size: 1.3rem;\">bài học mới.</span>","edit_3":"Làm sao để biến công thức mang tính lý thuyết này thành một công cụ thực chiến cho từng môn học&nbsp;<div>cụ thể trên lớp?</div>"},"STAGE-06-ACT-01B":{"edit_2":"- Nhận phiếu thiết kế quy trình<div><br>- Bút</div>","edit_4":"Nhóm 4 học sinh"},"STAGE-07-ACT-01":{"edit_1":"NHẬT KÝ&nbsp;<div>CHUYÊN GIA AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-07-ACT-01B":{"edit_2":"- Bút<div><br><div>- Phiếu nhật ký</div></div>"},"STAGE-08-ACT-01":{"edit_2":"Áp dụng kiến thức bài học vào đời sống thực tế, thiết lập cam kết hành động dài hạn để hình thành thói quen học tập&nbsp;<span style=\"font-size: 1.2rem;\">thông minh.</span><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-08-ACT-01B":{"edit_2":"Phiếu cam kết hành động tuần"},"STAGE-08-ACT-05":{"edit_1":"Bản cam kết hành động thực tế của những nhà thông thái công nghệ tương lai."},"END-01-1":{"edit_2":"<strong>&nbsp; &nbsp; &nbsp;Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu sâu sắc kiến thức.","edit_3":"<strong>&nbsp; &nbsp; &nbsp;Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI để nộp bài; bài tập hoàn thành nhưng bộ não không đọng lại kiến thức.","edit_0":"TỔNG KẾT","edit_1":"HỌC THỰC SỰ VÀ HỌC ĐỐI PHÓ"},"END-01-2":{"edit_0":"TỔNG KẾT"},"END-01-3":{"edit_0":"TỔNG KẾT","edit_1":"<br>","edit_3":"Hãy biến AI thành bệ phóng cho trí tuệ của bạn, đừng biến mình thành cái bóng thụ động của&nbsp;<div>công nghệ!<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"END-03":{"edit_1":"Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, ta bắt buộc phải làm chủ cuộc chơi tư duy bằng cách tuân thủ nghiêm ngặt quy trình: Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình.","bq-revisit-answer":"Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, hãy tuân thủ nghiêm ngặt quy trình: Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình."},"STAGE-06-ACT-01":{"edit_2":"Học sinh chuyển hóa lý thuyết thành công cụ thực tiễn, cụ thể hóa hành động học tập cho từng bộ môn học đường cụ thể.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><span class=\"fa-solid fa-arrows-up-down-left-right\"></span></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>"},"STAGE-04-ACT-03":{"edit_0":"MA TRẬN PHÂN TÍCH VAI TRÒ<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"P0-02":{"edit_0":"<i class=\"fa-solid fa-circle-question\"></i> CÂU HỎI LỚN&nbsp;<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-03":{"edit_1":"THU THẬP&nbsp;<div>THÔNG TIN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-04":{"edit_1":"PHÂN TÍCH&nbsp;<div>PHẢN HỒI AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-06-ACT-03":{"edit_3":"(Chúng tôi sẽ tự suy nghĩ điều gì trước?)<br><br>&nbsp;_______________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">_______________________</span>","edit_4":"(Chúng tôi sẽ nhập câu lệnh/prompt gì để hỏi AI?)<br><br>&nbsp;___________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">____________________________</span>","edit_5":"(Chúng tôi kiểm tra tính đúng đắn bằng cách nào?)<br><br>&nbsp;______________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">__________</span>","edit_6":"(Chúng tôi tự luyện tập lại ra sao?)<br><br>&nbsp;__________________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">____________________</span>","edit_2":"Khi học môn ____________ với AI, chúng tôi sẽ:<div><br></div>"},"STAGE-07":{"edit_1":"NHẬT KÝ&nbsp;<div>CHUYÊN GIA AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"}},"slideSortingState":{"STAGE-03-ACT-03":{"tag-STAGE-03-ACT-03-3":"sorting-pool","tag-STAGE-03-ACT-03-6":"sorting-pool","tag-STAGE-03-ACT-03-5":"sorting-pool","tag-STAGE-03-ACT-03-0":"sorting-pool","tag-STAGE-03-ACT-03-4":"sorting-pool","tag-STAGE-03-ACT-03-1":"sorting-pool","tag-STAGE-03-ACT-03-2":"sorting-pool"}},"slideCheckboxStates":{},"slideHiddenElements":{},"slideTimerDurations":{"STAGE-01-ACT-03":240,"STAGE-02-ACT-03":120}};
     </script>
     <script>
 // ==========================================
@@ -3921,10 +3941,10 @@ function renderSlide(index) {
                     <div class="bq-glow-bg"></div>
                     <div class="bq-wrapper" style="border-color: var(--color-teal);">
                         <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-teal); filter:drop-shadow(0 0 10px rgba(6,182,212,0.4));"></i>
-                        <span class="bq-tag" style="color:var(--color-teal);" contenteditable="true"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
-                        <h2 class="bq-text text-glow" style="font-size:2.4rem;" contenteditable="true">${slide.question}</h2>
+                        <span class="bq-tag" style="color:var(--color-teal);" contenteditable="true" id="bq-revisit-tag"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
+                        <h2 class="bq-text text-glow" style="font-size:2.1rem; padding-top:0.1em; line-height:1.45;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
                         <div style="width: 100%; height: 1px; background: var(--border-glass); margin: 20px 0;"></div>
-                        <p class="card-content-text" style="font-size:1.2rem; text-align:left; line-height:1.75; color: #f1f5f9;" contenteditable="true">${slide.answer}</p>
+                        <p class="card-content-text" style="font-size:1.15rem; text-align:left; line-height:1.7; color: #f1f5f9;" contenteditable="true" id="bq-revisit-answer">${slide.answer}</p>
                     </div>
                 </div>
             `;
@@ -3975,6 +3995,9 @@ function renderSlide(index) {
                     slideHtml.substring(closingDivIndex);
     }
     slideViewer.innerHTML = slideHtml;
+    
+    // Scale slide to 16:9 box
+    adjustSlideScale();
     
     // Setup interactive events for the active slide (timers, forms, widgets)
     initSlideInteractions(slide);
@@ -4031,21 +4054,25 @@ function renderWorkspaceLayout(slide) {
             workspaceContentHtml = `
                 <div class="stories-columns">
                     <div class="story-column nam-theme">
-                        <div class="character-img-box">
-                            <img src="nam_active.png" class="story-char-img" alt="Bạn Nam">
+                        <div class="story-column-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+                            <div class="character-img-box" style="width: 140px; height: 110px; flex-shrink: 0; margin-bottom: 0; display: flex; justify-content: center; align-items: center;">
+                                <img src="nam_active.png" class="story-char-img" style="width: 140px; height: 110px; flex-shrink: 0; object-fit: cover;" alt="Bạn Nam">
+                            </div>
+                            <h4 style="display:flex; align-items:center; gap:8px; margin-bottom: 0;"><i class="fa-solid fa-user-shield text-teal"></i> <span contenteditable="true">Bạn Nam:</span></h4>
                         </div>
-                        <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-user-shield text-teal"></i> <span contenteditable="true">Bạn Nam:</span></h4>
                         ${slide.storyNam.map(s => `<p class="list-item-story" contenteditable="true">${s}</p>`).join('')}
                     </div>
                     <div class="story-column lan-theme">
-                        <div class="character-img-box">
-                            <img src="lan_passive.png" class="story-char-img" alt="Bạn Lan">
+                        <div class="story-column-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+                            <div class="character-img-box" style="width: 140px; height: 110px; flex-shrink: 0; margin-bottom: 0; display: flex; justify-content: center; align-items: center;">
+                                <img src="lan_passive.png" class="story-char-img" style="width: 140px; height: 110px; flex-shrink: 0; object-fit: cover;" alt="Bạn Lan">
+                            </div>
+                            <h4 style="display:flex; align-items:center; gap:8px; margin-bottom: 0;"><i class="fa-solid fa-user-large-slash text-orange"></i> <span contenteditable="true">Bạn Lan:</span></h4>
                         </div>
-                        <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-user-large-slash text-orange"></i> <span contenteditable="true">Bạn Lan:</span></h4>
                         ${slide.storyLan.map(s => `<p class="list-item-story" contenteditable="true">${s}</p>`).join('')}
                     </div>
                 </div>
-                <div class="workspace-questions-card" style="margin-top: 15px;">
+                <div class="workspace-questions-card" style="margin-top: 12px;">
                     <h4 contenteditable="true">Câu hỏi thảo luận nhóm:</h4>
                     <ul>
                         ${slide.questions.map(q => `<li contenteditable="true">${q}</li>`).join('')}
@@ -4515,6 +4542,9 @@ function togglePresentationMode(on) {
             document.exitFullscreen().catch(() => {});
         }
     }
+    adjustSlideScale();
+    setTimeout(adjustSlideScale, 100);
+    setTimeout(adjustSlideScale, 300);
 }
 
 function showPresentationControlsTemporarily() {
@@ -4857,6 +4887,38 @@ function initDesignMode() {
     });
 }
 
+function adjustSlideScale() {
+    const slideContent = document.querySelector('.slide-content');
+    if (!slideContent) return;
+    
+    const container = document.getElementById('slide-viewer');
+    if (!container) return;
+    
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+    
+    const baseWidth = 1200;
+    const baseHeight = 675;
+    
+    const scaleX = containerWidth / baseWidth;
+    const scaleY = containerHeight / baseHeight;
+    const scale = Math.min(scaleX, scaleY);
+    
+    slideContent.setAttribute('data-scale-factor', scale);
+    
+    slideContent.style.width = baseWidth + 'px';
+    slideContent.style.height = baseHeight + 'px';
+    slideContent.style.position = 'absolute';
+    slideContent.style.left = '50%';
+    slideContent.style.top = '50%';
+    slideContent.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    slideContent.style.transformOrigin = 'center center';
+    slideContent.style.overflow = 'visible';
+}
+
+window.addEventListener('resize', adjustSlideScale);
+document.addEventListener('fullscreenchange', adjustSlideScale);
+
 function restoreAndSetupDraggables(slideId) {
     const slideContent = document.querySelector('.slide-content');
     if (!slideContent) return;
@@ -4864,7 +4926,7 @@ function restoreAndSetupDraggables(slideId) {
     const selectors = [
         '.welcome-badge', '.welcome-title', '.welcome-subtitle', '.welcome-subject', '.welcome-objectives', '.welcome-visual-side', '.sphere-3d-wrapper',
         '.bq-tag', '.bq-text', '.bq-sub', '.bq-visual-graphic', '.bq-wrapper',
-        '.role-info-card',
+        '.role-info-card', '.role-badge-text', '.role-info-card h3',
         '.stage-num-badge', '.stage-title', '.stage-lock-wrapper',
         '.act-intro-card', '.act-intro-icon', '.act-intro-badge', '.act-intro-title', '.act-intro-goal', '.act-intro-visual',
         '.prep-box', '.prep-item',
@@ -4892,9 +4954,25 @@ function restoreAndSetupDraggables(slideId) {
     selectors.forEach(selector => {
         const elements = slideContent.querySelectorAll(selector);
         elements.forEach((el, idx) => {
-            if (el.classList.contains('draggable-object')) return;
+            // Apply draggable-object class
+            if (!el.classList.contains('draggable-object')) {
+                el.classList.add('draggable-object');
+            }
             
-            el.classList.add('draggable-object');
+            // Handle HTML5 draggable attribute on sorting tags in design mode
+            if (selector === '.sorting-tag') {
+                if (designModeActive) {
+                    if (el.getAttribute('draggable') === 'true') {
+                        el.setAttribute('data-was-draggable', 'true');
+                    }
+                    el.setAttribute('draggable', 'false');
+                } else {
+                    if (el.getAttribute('data-was-draggable') === 'true') {
+                        el.setAttribute('draggable', 'true');
+                    }
+                }
+            }
+
             const elKey = selector + '_' + idx;
             
             // Restore hidden state (delete/hide)
@@ -4924,7 +5002,7 @@ function restoreAndSetupDraggables(slideId) {
             }
             
             // Add drag handle if not present
-            if (!el.querySelector('.drag-handle')) {
+            if (!el.querySelector(':scope > .drag-handle')) {
                 const handle = document.createElement('div');
                 handle.className = 'drag-handle';
                 handle.title = 'Kéo để di chuyển';
@@ -4935,7 +5013,7 @@ function restoreAndSetupDraggables(slideId) {
             }
             
             // Add resize handle if not present
-            if (!el.querySelector('.resize-handle')) {
+            if (!el.querySelector(':scope > .resize-handle')) {
                 const resizer = document.createElement('div');
                 resizer.className = 'resize-handle';
                 resizer.title = 'Kéo để co giãn';
@@ -4946,7 +5024,7 @@ function restoreAndSetupDraggables(slideId) {
             }
 
             // Add delete handle if not present
-            if (!el.querySelector('.delete-handle')) {
+            if (!el.querySelector(':scope > .delete-handle')) {
                 const delBtn = document.createElement('div');
                 delBtn.className = 'delete-handle';
                 delBtn.title = 'Xóa phần tử khỏi slide';
@@ -5109,8 +5187,11 @@ function setupDragEvents(slideId, elKey, element, handle) {
         const diffX = currentX - startX;
         const diffY = currentY - startY;
         
-        const nextX = dx + diffX;
-        const nextY = dy + diffY;
+        const slideContent = document.querySelector('.slide-content');
+        const scale = slideContent ? parseFloat(slideContent.getAttribute('data-scale-factor') || 1) : 1;
+        
+        const nextX = dx + diffX / scale;
+        const nextY = dy + diffY / scale;
         
         element.style.transform = `translate(${nextX}px, ${nextY}px)`;
         element.setAttribute('data-dx', nextX);
@@ -5148,9 +5229,12 @@ function setupResizeEvents(slideId, elKey, element, resizer) {
         
         element.style.transition = 'none';
         
+        const slideContent = document.querySelector('.slide-content');
+        const scale = slideContent ? parseFloat(slideContent.getAttribute('data-scale-factor') || 1) : 1;
+        
         const rect = element.getBoundingClientRect();
-        startWidth = rect.width;
-        startHeight = rect.height;
+        startWidth = rect.width / scale;
+        startHeight = rect.height / scale;
         
         if (e.type === 'touchstart') {
             startX = e.touches[0].clientX;
@@ -5179,8 +5263,11 @@ function setupResizeEvents(slideId, elKey, element, resizer) {
         const diffX = currentX - startX;
         const diffY = currentY - startY;
         
-        const newWidth = Math.max(50, startWidth + diffX);
-        const newHeight = Math.max(30, startHeight + diffY);
+        const slideContent = document.querySelector('.slide-content');
+        const scale = slideContent ? parseFloat(slideContent.getAttribute('data-scale-factor') || 1) : 1;
+        
+        const newWidth = Math.max(50, startWidth + diffX / scale);
+        const newHeight = Math.max(30, startHeight + diffY / scale);
         
         element.style.width = newWidth + 'px';
         element.style.height = newHeight + 'px';

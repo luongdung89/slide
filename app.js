@@ -430,10 +430,10 @@ function renderSlide(index) {
                     <div class="bq-glow-bg"></div>
                     <div class="bq-wrapper" style="border-color: var(--color-teal);">
                         <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-teal); filter:drop-shadow(0 0 10px rgba(6,182,212,0.4));"></i>
-                        <span class="bq-tag" style="color:var(--color-teal);" contenteditable="true"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
-                        <h2 class="bq-text text-glow" style="font-size:2.4rem;" contenteditable="true">${slide.question}</h2>
+                        <span class="bq-tag" style="color:var(--color-teal);" contenteditable="true" id="bq-revisit-tag"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
+                        <h2 class="bq-text text-glow" style="font-size:2.1rem; padding-top:0.1em; line-height:1.45;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
                         <div style="width: 100%; height: 1px; background: var(--border-glass); margin: 20px 0;"></div>
-                        <p class="card-content-text" style="font-size:1.2rem; text-align:left; line-height:1.75; color: #f1f5f9;" contenteditable="true">${slide.answer}</p>
+                        <p class="card-content-text" style="font-size:1.15rem; text-align:left; line-height:1.7; color: #f1f5f9;" contenteditable="true" id="bq-revisit-answer">${slide.answer}</p>
                     </div>
                 </div>
             `;
@@ -484,6 +484,9 @@ function renderSlide(index) {
                     slideHtml.substring(closingDivIndex);
     }
     slideViewer.innerHTML = slideHtml;
+    
+    // Scale slide to 16:9 box
+    adjustSlideScale();
     
     // Setup interactive events for the active slide (timers, forms, widgets)
     initSlideInteractions(slide);
@@ -540,21 +543,25 @@ function renderWorkspaceLayout(slide) {
             workspaceContentHtml = `
                 <div class="stories-columns">
                     <div class="story-column nam-theme">
-                        <div class="character-img-box">
-                            <img src="nam_active.png" class="story-char-img" alt="Bạn Nam">
+                        <div class="story-column-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+                            <div class="character-img-box" style="width: 140px; height: 110px; flex-shrink: 0; margin-bottom: 0; display: flex; justify-content: center; align-items: center;">
+                                <img src="nam_active.png" class="story-char-img" style="width: 140px; height: 110px; flex-shrink: 0; object-fit: cover;" alt="Bạn Nam">
+                            </div>
+                            <h4 style="display:flex; align-items:center; gap:8px; margin-bottom: 0;"><i class="fa-solid fa-user-shield text-teal"></i> <span contenteditable="true">Bạn Nam:</span></h4>
                         </div>
-                        <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-user-shield text-teal"></i> <span contenteditable="true">Bạn Nam:</span></h4>
                         ${slide.storyNam.map(s => `<p class="list-item-story" contenteditable="true">${s}</p>`).join('')}
                     </div>
                     <div class="story-column lan-theme">
-                        <div class="character-img-box">
-                            <img src="lan_passive.png" class="story-char-img" alt="Bạn Lan">
+                        <div class="story-column-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+                            <div class="character-img-box" style="width: 140px; height: 110px; flex-shrink: 0; margin-bottom: 0; display: flex; justify-content: center; align-items: center;">
+                                <img src="lan_passive.png" class="story-char-img" style="width: 140px; height: 110px; flex-shrink: 0; object-fit: cover;" alt="Bạn Lan">
+                            </div>
+                            <h4 style="display:flex; align-items:center; gap:8px; margin-bottom: 0;"><i class="fa-solid fa-user-large-slash text-orange"></i> <span contenteditable="true">Bạn Lan:</span></h4>
                         </div>
-                        <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-user-large-slash text-orange"></i> <span contenteditable="true">Bạn Lan:</span></h4>
                         ${slide.storyLan.map(s => `<p class="list-item-story" contenteditable="true">${s}</p>`).join('')}
                     </div>
                 </div>
-                <div class="workspace-questions-card" style="margin-top: 15px;">
+                <div class="workspace-questions-card" style="margin-top: 12px;">
                     <h4 contenteditable="true">Câu hỏi thảo luận nhóm:</h4>
                     <ul>
                         ${slide.questions.map(q => `<li contenteditable="true">${q}</li>`).join('')}
@@ -1024,6 +1031,9 @@ function togglePresentationMode(on) {
             document.exitFullscreen().catch(() => {});
         }
     }
+    adjustSlideScale();
+    setTimeout(adjustSlideScale, 100);
+    setTimeout(adjustSlideScale, 300);
 }
 
 function showPresentationControlsTemporarily() {
@@ -1366,6 +1376,38 @@ function initDesignMode() {
     });
 }
 
+function adjustSlideScale() {
+    const slideContent = document.querySelector('.slide-content');
+    if (!slideContent) return;
+    
+    const container = document.getElementById('slide-viewer');
+    if (!container) return;
+    
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+    
+    const baseWidth = 1200;
+    const baseHeight = 675;
+    
+    const scaleX = containerWidth / baseWidth;
+    const scaleY = containerHeight / baseHeight;
+    const scale = Math.min(scaleX, scaleY);
+    
+    slideContent.setAttribute('data-scale-factor', scale);
+    
+    slideContent.style.width = baseWidth + 'px';
+    slideContent.style.height = baseHeight + 'px';
+    slideContent.style.position = 'absolute';
+    slideContent.style.left = '50%';
+    slideContent.style.top = '50%';
+    slideContent.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    slideContent.style.transformOrigin = 'center center';
+    slideContent.style.overflow = 'visible';
+}
+
+window.addEventListener('resize', adjustSlideScale);
+document.addEventListener('fullscreenchange', adjustSlideScale);
+
 function restoreAndSetupDraggables(slideId) {
     const slideContent = document.querySelector('.slide-content');
     if (!slideContent) return;
@@ -1373,7 +1415,7 @@ function restoreAndSetupDraggables(slideId) {
     const selectors = [
         '.welcome-badge', '.welcome-title', '.welcome-subtitle', '.welcome-subject', '.welcome-objectives', '.welcome-visual-side', '.sphere-3d-wrapper',
         '.bq-tag', '.bq-text', '.bq-sub', '.bq-visual-graphic', '.bq-wrapper',
-        '.role-info-card',
+        '.role-info-card', '.role-badge-text', '.role-info-card h3',
         '.stage-num-badge', '.stage-title', '.stage-lock-wrapper',
         '.act-intro-card', '.act-intro-icon', '.act-intro-badge', '.act-intro-title', '.act-intro-goal', '.act-intro-visual',
         '.prep-box', '.prep-item',
@@ -1401,9 +1443,25 @@ function restoreAndSetupDraggables(slideId) {
     selectors.forEach(selector => {
         const elements = slideContent.querySelectorAll(selector);
         elements.forEach((el, idx) => {
-            if (el.classList.contains('draggable-object')) return;
+            // Apply draggable-object class
+            if (!el.classList.contains('draggable-object')) {
+                el.classList.add('draggable-object');
+            }
             
-            el.classList.add('draggable-object');
+            // Handle HTML5 draggable attribute on sorting tags in design mode
+            if (selector === '.sorting-tag') {
+                if (designModeActive) {
+                    if (el.getAttribute('draggable') === 'true') {
+                        el.setAttribute('data-was-draggable', 'true');
+                    }
+                    el.setAttribute('draggable', 'false');
+                } else {
+                    if (el.getAttribute('data-was-draggable') === 'true') {
+                        el.setAttribute('draggable', 'true');
+                    }
+                }
+            }
+
             const elKey = selector + '_' + idx;
             
             // Restore hidden state (delete/hide)
@@ -1433,7 +1491,7 @@ function restoreAndSetupDraggables(slideId) {
             }
             
             // Add drag handle if not present
-            if (!el.querySelector('.drag-handle')) {
+            if (!el.querySelector(':scope > .drag-handle')) {
                 const handle = document.createElement('div');
                 handle.className = 'drag-handle';
                 handle.title = 'Kéo để di chuyển';
@@ -1444,7 +1502,7 @@ function restoreAndSetupDraggables(slideId) {
             }
             
             // Add resize handle if not present
-            if (!el.querySelector('.resize-handle')) {
+            if (!el.querySelector(':scope > .resize-handle')) {
                 const resizer = document.createElement('div');
                 resizer.className = 'resize-handle';
                 resizer.title = 'Kéo để co giãn';
@@ -1455,7 +1513,7 @@ function restoreAndSetupDraggables(slideId) {
             }
 
             // Add delete handle if not present
-            if (!el.querySelector('.delete-handle')) {
+            if (!el.querySelector(':scope > .delete-handle')) {
                 const delBtn = document.createElement('div');
                 delBtn.className = 'delete-handle';
                 delBtn.title = 'Xóa phần tử khỏi slide';
@@ -1618,8 +1676,11 @@ function setupDragEvents(slideId, elKey, element, handle) {
         const diffX = currentX - startX;
         const diffY = currentY - startY;
         
-        const nextX = dx + diffX;
-        const nextY = dy + diffY;
+        const slideContent = document.querySelector('.slide-content');
+        const scale = slideContent ? parseFloat(slideContent.getAttribute('data-scale-factor') || 1) : 1;
+        
+        const nextX = dx + diffX / scale;
+        const nextY = dy + diffY / scale;
         
         element.style.transform = `translate(${nextX}px, ${nextY}px)`;
         element.setAttribute('data-dx', nextX);
@@ -1657,9 +1718,12 @@ function setupResizeEvents(slideId, elKey, element, resizer) {
         
         element.style.transition = 'none';
         
+        const slideContent = document.querySelector('.slide-content');
+        const scale = slideContent ? parseFloat(slideContent.getAttribute('data-scale-factor') || 1) : 1;
+        
         const rect = element.getBoundingClientRect();
-        startWidth = rect.width;
-        startHeight = rect.height;
+        startWidth = rect.width / scale;
+        startHeight = rect.height / scale;
         
         if (e.type === 'touchstart') {
             startX = e.touches[0].clientX;
@@ -1688,8 +1752,11 @@ function setupResizeEvents(slideId, elKey, element, resizer) {
         const diffX = currentX - startX;
         const diffY = currentY - startY;
         
-        const newWidth = Math.max(50, startWidth + diffX);
-        const newHeight = Math.max(30, startHeight + diffY);
+        const slideContent = document.querySelector('.slide-content');
+        const scale = slideContent ? parseFloat(slideContent.getAttribute('data-scale-factor') || 1) : 1;
+        
+        const newWidth = Math.max(50, startWidth + diffX / scale);
+        const newHeight = Math.max(30, startHeight + diffY / scale);
         
         element.style.width = newWidth + 'px';
         element.style.height = newHeight + 'px';
