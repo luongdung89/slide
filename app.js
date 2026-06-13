@@ -1887,5 +1887,19 @@ window.dropTag = function(ev) {
     }
 };
 
+// Force clean any legacy hidden/offset states for END-05 to restore default certificate layout
+try {
+    if (slideHiddenElements["END-05"]) {
+        delete slideHiddenElements["END-05"];
+        localStorage.setItem('slideHiddenElements', JSON.stringify(slideHiddenElements));
+    }
+    if (slideObjectOffsets["END-05"]) {
+        delete slideObjectOffsets["END-05"];
+        localStorage.setItem('slideObjectOffsets', JSON.stringify(slideObjectOffsets));
+    }
+} catch (e) {
+    console.error("Failed to clean legacy states for END-05:", e);
+}
+
 // Start slide presentation by loading the first slide
 goToSlide(0);
