@@ -75,9 +75,17 @@
             </button>
         </div>
         <div class="footer-center">
-            <button class="btn-nav" id="prev-btn" title="Slide trước (Mũi tên Trái)"><i class="fa-solid fa-chevron-left"></i></button>
-            <span class="slide-title-display" id="slide-title-text">Đang tải slide...</span>
-            <button class="btn-nav" id="next-btn" title="Slide sau (Mũi tên Phải / Space / Enter)"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-footer" id="prev-btn" title="Slide trước (Mũi tên Trái)" style="display: flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 20px;">
+                <i class="fa-solid fa-chevron-left"></i> Trước
+            </button>
+            <span class="slide-jump-container" style="color: var(--text-primary); font-family: var(--font-heading); font-weight: 600; display: flex; align-items: center; gap: 8px; margin: 0 15px; user-select: none;">
+                Trang 
+                <input type="number" id="jump-slide-input" value="1" min="1" max="62" style="width: 60px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; text-align: center; border-radius: 6px; font-weight: bold; font-family: inherit; font-size: 1.05rem; padding: 4px 6px;"> 
+                / <span id="jump-total-slides">62</span>
+            </span>
+            <button class="btn-footer" id="next-btn" title="Slide sau (Mũi tên Phải / Space / Enter)" style="display: flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 20px;">
+                Sau <i class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
         <div class="footer-right">
             <button class="btn-footer" id="start-presentation-btn" title="Bắt đầu trình chiếu (F5)">

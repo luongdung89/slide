@@ -34,8 +34,15 @@ const presExitBtn = document.getElementById('pres-exit-btn');
 let isPresentationMode = false;
 let presentationMouseMoveTimeout = null;
 
+// Page Jump Input elements
+const jumpSlideInput = document.getElementById('jump-slide-input');
+const jumpTotalSlidesDisp = document.getElementById('jump-total-slides');
+
 // Update indicators
 totalSlidesNumDisp.textContent = totalSlides;
+if (jumpTotalSlidesDisp) {
+    jumpTotalSlidesDisp.textContent = totalSlides;
+}
 
 // ==========================================
 // UTILITY FUNCTIONS
@@ -486,7 +493,12 @@ function renderSlide(index) {
     
     // Update Indicators
     currentSlideNumDisp.textContent = index + 1;
-    slideTitleText.textContent = slide.title || `Slide ${index + 1}`;
+    if (slideTitleText) {
+        slideTitleText.textContent = slide.title || `Slide ${index + 1}`;
+    }
+    if (jumpSlideInput) {
+        jumpSlideInput.value = index + 1;
+    }
     
     // Update progress bar
     const progressPercent = (index / (totalSlides - 1)) * 100;
@@ -1075,6 +1087,32 @@ prevBtn.addEventListener('click', () => {
 nextBtn.addEventListener('click', () => {
     if (currentSlideIndex < totalSlides - 1) goToSlide(currentSlideIndex + 1);
 });
+
+// Page Jump input events
+if (jumpSlideInput) {
+    // Jump to slide when pressing Enter
+    jumpSlideInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            let val = parseInt(jumpSlideInput.value);
+            if (!isNaN(val)) {
+                if (val < 1) val = 1;
+                if (val > totalSlides) val = totalSlides;
+                goToSlide(val - 1);
+                jumpSlideInput.blur();
+            }
+        }
+    });
+
+    // Jump to slide on blur / change
+    jumpSlideInput.addEventListener('change', () => {
+        let val = parseInt(jumpSlideInput.value);
+        if (!isNaN(val)) {
+            if (val < 1) val = 1;
+            if (val > totalSlides) val = totalSlides;
+            goToSlide(val - 1);
+        }
+    });
+}
 
 // Keyboard Navigation Bindings
 document.addEventListener('keydown', (e) => {

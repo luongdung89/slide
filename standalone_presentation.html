@@ -49,7 +49,7 @@
 }
 
 html {
-    font-size: 19px;
+    font-size: 22px;
 }
 
 body {
@@ -1724,7 +1724,7 @@ body {
    ========================================== */
 @media (max-height: 750px) {
     html {
-        font-size: 16px;
+        font-size: 17px;
     }
     .slide-content {
         max-height: 600px;
@@ -2747,9 +2747,17 @@ body.presentation-mode.show-controls .presentation-controls {
             </button>
         </div>
         <div class="footer-center">
-            <button class="btn-nav" id="prev-btn" title="Slide trước (Mũi tên Trái)"><i class="fa-solid fa-chevron-left"></i></button>
-            <span class="slide-title-display" id="slide-title-text">Đang tải slide...</span>
-            <button class="btn-nav" id="next-btn" title="Slide sau (Mũi tên Phải / Space / Enter)"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="btn-footer" id="prev-btn" title="Slide trước (Mũi tên Trái)" style="display: flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 20px;">
+                <i class="fa-solid fa-chevron-left"></i> Trước
+            </button>
+            <span class="slide-jump-container" style="color: var(--text-primary); font-family: var(--font-heading); font-weight: 600; display: flex; align-items: center; gap: 8px; margin: 0 15px; user-select: none;">
+                Trang 
+                <input type="number" id="jump-slide-input" value="1" min="1" max="62" style="width: 60px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; text-align: center; border-radius: 6px; font-weight: bold; font-family: inherit; font-size: 1.05rem; padding: 4px 6px;"> 
+                / <span id="jump-total-slides">62</span>
+            </span>
+            <button class="btn-footer" id="next-btn" title="Slide sau (Mũi tên Phải / Space / Enter)" style="display: flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 20px;">
+                Sau <i class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
         <div class="footer-right">
             <button class="btn-footer" id="start-presentation-btn" title="Bắt đầu trình chiếu (F5)">
@@ -3517,8 +3525,15 @@ const presExitBtn = document.getElementById('pres-exit-btn');
 let isPresentationMode = false;
 let presentationMouseMoveTimeout = null;
 
+// Page Jump Input elements
+const jumpSlideInput = document.getElementById('jump-slide-input');
+const jumpTotalSlidesDisp = document.getElementById('jump-total-slides');
+
 // Update indicators
 totalSlidesNumDisp.textContent = totalSlides;
+if (jumpTotalSlidesDisp) {
+    jumpTotalSlidesDisp.textContent = totalSlides;
+}
 
 // ==========================================
 // UTILITY FUNCTIONS
@@ -3969,7 +3984,12 @@ function renderSlide(index) {
     
     // Update Indicators
     currentSlideNumDisp.textContent = index + 1;
-    slideTitleText.textContent = slide.title || `Slide ${index + 1}`;
+    if (slideTitleText) {
+        slideTitleText.textContent = slide.title || `Slide ${index + 1}`;
+    }
+    if (jumpSlideInput) {
+        jumpSlideInput.value = index + 1;
+    }
     
     // Update progress bar
     const progressPercent = (index / (totalSlides - 1)) * 100;
@@ -4558,6 +4578,32 @@ prevBtn.addEventListener('click', () => {
 nextBtn.addEventListener('click', () => {
     if (currentSlideIndex < totalSlides - 1) goToSlide(currentSlideIndex + 1);
 });
+
+// Page Jump input events
+if (jumpSlideInput) {
+    // Jump to slide when pressing Enter
+    jumpSlideInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            let val = parseInt(jumpSlideInput.value);
+            if (!isNaN(val)) {
+                if (val < 1) val = 1;
+                if (val > totalSlides) val = totalSlides;
+                goToSlide(val - 1);
+                jumpSlideInput.blur();
+            }
+        }
+    });
+
+    // Jump to slide on blur / change
+    jumpSlideInput.addEventListener('change', () => {
+        let val = parseInt(jumpSlideInput.value);
+        if (!isNaN(val)) {
+            if (val < 1) val = 1;
+            if (val > totalSlides) val = totalSlides;
+            goToSlide(val - 1);
+        }
+    });
+}
 
 // Keyboard Navigation Bindings
 document.addEventListener('keydown', (e) => {

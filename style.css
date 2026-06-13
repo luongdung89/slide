@@ -36,7 +36,7 @@
 }
 
 html {
-    font-size: 19px;
+    font-size: 22px;
 }
 
 body {
@@ -1711,7 +1711,7 @@ body {
    ========================================== */
 @media (max-height: 750px) {
     html {
-        font-size: 16px;
+        font-size: 17px;
     }
     .slide-content {
         max-height: 600px;
