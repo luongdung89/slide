@@ -150,28 +150,7 @@ const slidesData = [
     icon: "fa-solid fa-envelope-open-text",
     teacherNotes: `<h3>Giới thiệu Hoạt động 2</h3>`
   },
-  {
-    id: "STAGE-02-ACT-01B",
-    period: 1,
-    type: "act-prep",
-    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
-    prep: "Nhật ký ghi chép (Giấy, bút).",
-    format: "Tổ hợp 4 Kỹ sư (Nhóm 4 học sinh).",
-    icon: "fa-solid fa-radar",
-    teacherNotes: `<h3>Chuẩn bị (0.5 phút)</h3>`
-  },
-  {
-    id: "STAGE-02-ACT-02",
-    period: 1,
-    type: "act-howto",
-    title: "MÃ LỆNH VẬN HÀNH",
-    steps: [
-      "Bước 1: Đọc và phân tích yêu cầu trong mật thư nhiệm vụ.",
-      "Bước 2: Xác định 2 tọa độ mục tiêu (2 câu hỏi điều tra) và thảo luận chiến thuật trả lời.",
-      "Bước 3: Trình bày kết quả điều tra sơ bộ."
-    ],
-    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
-  },
+
   {
     id: "STAGE-02-ACT-03",
     period: 1,
