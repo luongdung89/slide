@@ -250,7 +250,7 @@ body {
 
 .slide-heading {
     font-family: var(--font-heading);
-    font-size: 1.9rem;
+    font-size: 1.55rem;
     font-weight: 850;
     text-transform: uppercase;
     letter-spacing: -0.5px;
@@ -261,7 +261,8 @@ body {
     -webkit-text-fill-color: transparent;
     border-left: 5px solid var(--color-teal);
     padding-left: 15px;
-    padding-top: 0.1em;
+    padding-top: 0.12em;
+    padding-bottom: 0.12em;
 }
 
 .section-desc {
@@ -418,13 +419,14 @@ body {
 }
 .bq-text {
     font-family: var(--font-heading);
-    font-size: 2.1rem;
+    font-size: 1.55rem;
     font-weight: 900;
     line-height: 1.45;
     margin-bottom: 20px;
     color: var(--text-primary);
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
-    padding-top: 0.1em;
+    padding-top: 0.12em;
+    padding-bottom: 0.12em;
 }
 .bq-sub {
     color: var(--text-muted);
@@ -549,14 +551,15 @@ body {
 }
 .stage-title {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 1.9rem;
     font-weight: 900;
     line-height: 1.45;
     letter-spacing: -1px;
     background: linear-gradient(135deg, #ffffff, #cbd5e1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding-top: 0.1em;
+    padding-top: 0.12em;
+    padding-bottom: 0.12em;
 }
 /* Lock animation object */
 .stage-lock-icon {
@@ -2702,6 +2705,1955 @@ body.presentation-mode.show-controls .presentation-controls {
     color: #ef4444;
 }
 
+/* ==========================================
+   CYBER CONTROL ROOM HUD & LAYOUTS (GAME EDITION)
+   ========================================== */
+
+/* Neon Accent Colors */
+:root {
+    --color-volt: #39ff14;
+    --color-volt-glow: rgba(57, 255, 20, 0.35);
+    --color-pink: #ff2a85;
+    --color-pink-glow: rgba(255, 42, 133, 0.35);
+    --color-gold: #ffd700;
+    --color-gold-glow: rgba(255, 215, 0, 0.35);
+    --text-glow-cyan: 0 0 10px var(--color-teal-glow);
+    --text-glow-orange: 0 0 10px var(--color-orange-glow);
+    --text-glow-lime: 0 0 10px var(--color-volt-glow);
+    --text-glow-pink: 0 0 10px var(--color-pink-glow);
+}
+
+/* Base welcome layout (Login Portal) */
+.layout-welcome.login-portal {
+    position: relative;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%) !important;
+    overflow: hidden;
+}
+
+.matrix-rain-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.welcome-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.welcome-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    border: 1px solid var(--color-teal);
+    background: rgba(6, 182, 212, 0.08);
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px var(--color-teal-glow);
+}
+
+.welcome-title.text-glow {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #fff;
+    text-shadow: 0 0 15px var(--color-teal-glow);
+    margin-bottom: 15px;
+    padding-top: 0.12em;
+    padding-bottom: 0.12em;
+}
+
+.welcome-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-subject {
+    font-size: 0.9rem;
+    color: var(--color-orange);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.welcome-objectives {
+    background: rgba(6, 182, 212, 0.05);
+    border-left: 3px solid var(--color-teal);
+    padding: 12px 18px;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #e2e8f0;
+    border-top: 1px solid rgba(6, 182, 212, 0.1);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+    border-right: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+/* Fingerprint Scan Portal Widget */
+.scanner-portal-widget {
+    background: rgba(13, 21, 37, 0.85);
+    border: 1.5px solid var(--color-teal);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 0 25px var(--color-teal-glow);
+    width: 280px;
+    margin: 0 auto;
+}
+
+.scanner-header {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fingerprint-scan-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: rgba(6, 182, 212, 0.03);
+    border: 1.5px dashed rgba(6, 182, 212, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.fingerprint-icon {
+    font-size: 4.8rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 12px var(--color-teal-glow));
+}
+
+.fingerprint-laser-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--color-teal);
+    box-shadow: 0 0 10px var(--color-teal), 0 0 20px var(--color-teal);
+    top: 0;
+    left: 0;
+    animation: scanLaser 3s infinite ease-in-out;
+}
+
+.scanner-footer {
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* Big Question Circuits Brain vs AI Energy Core */
+.layout-big-question {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.bq-glow-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bq-wrapper {
+    position: relative;
+    background: rgba(13, 21, 37, 0.85);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 28px;
+    padding: 35px 45px;
+    text-align: center;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.circuits-brain-vs-ai {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+.circuit-brain-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brain-neon-icon {
+    font-size: 3.6rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 12px var(--color-teal-glow));
+    z-index: 2;
+}
+
+.brain-circuit-line {
+    position: absolute;
+    border: 1.5px solid rgba(6, 182, 212, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.brain-circuit-line.line1 {
+    width: 110px;
+    height: 110px;
+    border-style: dashed;
+    animation: rotateCw 25s linear infinite;
+}
+
+.brain-circuit-line.line2 {
+    width: 130px;
+    height: 130px;
+    border-style: dotted;
+    animation: rotateCcw 30s linear infinite;
+}
+
+.electric-question-mark {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eq-text.text-glow {
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 15px var(--color-orange-glow);
+}
+
+.pulse-element {
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+.ai-energy-core-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-neon-icon {
+    font-size: 3.6rem;
+    color: var(--color-volt);
+    filter: drop-shadow(0 0 12px var(--color-volt-glow));
+    z-index: 2;
+}
+
+.ai-core-energy {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.18) 0%, transparent 70%);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.bq-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    border: 1px solid var(--color-teal);
+    background: rgba(6, 182, 212, 0.06);
+    padding: 5px 15px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.bq-text {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #fff;
+    margin-bottom: 15px;
+    padding-top: 0.12em;
+    padding-bottom: 0.12em;
+}
+
+.bq-sub {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Tactical HUD Dashboard (Role Intro) */
+.layout-role-intro.dashboard-theme {
+    background: radial-gradient(circle at center, #0b1120 0%, #030712 100%) !important;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 25px;
+    align-items: stretch;
+    width: 100%;
+}
+
+.db-panel {
+    background: rgba(13, 21, 37, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.db-panel.db-left-panel {
+    border-top: 3px solid var(--color-teal);
+}
+
+.panel-header {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--color-teal);
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.hologram-avatar-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(6, 182, 212, 0.25);
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(6, 182, 212, 0.02);
+    overflow: hidden;
+}
+
+.engineer-avatar-icon {
+    font-size: 4.8rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 15px var(--color-teal-glow));
+    z-index: 1;
+}
+
+.avatar-hud-ring {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1.5px dashed var(--color-teal);
+    border-radius: 50%;
+    animation: rotateCw 20s linear infinite;
+    opacity: 0.4;
+}
+
+.hologram-glitch-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.hud-parameters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hud-param-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+}
+
+.param-value.text-glow-cyan {
+    color: var(--color-teal);
+    text-shadow: 0 0 8px var(--color-teal-glow);
+}
+
+.param-value.text-glow-orange {
+    color: var(--color-orange);
+    text-shadow: 0 0 8px var(--color-orange-glow);
+}
+
+.hud-progress {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.hud-progress-bar {
+    height: 100%;
+    background: var(--color-teal);
+    box-shadow: 0 0 8px var(--color-teal-glow);
+    border-radius: 4px;
+}
+
+.hud-progress-bar.warning-bar {
+    background: var(--color-orange);
+    box-shadow: 0 0 8px var(--color-orange-glow);
+}
+
+.db-panels-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.db-panel.panel-desc {
+    border-left: 4px solid var(--color-teal);
+}
+
+.db-panel.panel-mission {
+    border-left: 4px solid var(--color-orange);
+}
+
+.db-panel h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-content-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
+.text-teal { color: var(--color-teal); }
+.text-orange { color: var(--color-orange); }
+
+/* Glitch Video Call & Secure Lock */
+.layout-stage-intro.video-call-incoming {
+    background: radial-gradient(circle at center, #130f26 0%, #030408 100%) !important;
+}
+
+.glitch-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.video-call-screen {
+    position: relative;
+    width: 250px;
+    height: 150px;
+    border-radius: 14px;
+    border: 1.5px solid var(--color-orange);
+    background: #090d16;
+    overflow: hidden;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px var(--color-orange-glow);
+}
+
+.call-static-noise {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.call-overlay-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    pointer-events: none;
+    z-index: 2;
+    font-family: var(--font-heading);
+}
+
+.blink-rec {
+    color: var(--color-orange);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    animation: blinkText 1.2s infinite;
+}
+
+.caller-id {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 3px 8px;
+    border-radius: 4px;
+    align-self: flex-start;
+}
+
+.caller-avatar-icon {
+    font-size: 4.2rem;
+    color: #475569;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
+    animation: videoGlitch 5s infinite alternate;
+}
+
+.beep-notification-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    background: rgba(249, 115, 22, 0.05);
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid rgba(249, 115, 22, 0.15);
+    font-weight: 700;
+}
+
+.blink-text {
+    animation: blinkText 1.5s infinite;
+}
+
+/* Radar Sweep HUD & Logic Matrix Wave */
+.radar-hud-circle {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(6, 182, 212, 0.2);
+    margin: 20px auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.04) 0%, transparent 80%);
+}
+
+.radar-line-sweep {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 0;
+    left: 50%;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.3) 0%, transparent 100%);
+    transform-origin: bottom left;
+    animation: rotateCw 4s linear infinite;
+    border-left: 1.5px solid var(--color-teal);
+}
+
+.radar-core-icon {
+    font-size: 2.4rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 10px var(--color-teal-glow));
+    z-index: 2;
+}
+
+.barcode-streams-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+}
+
+.barcode-stream-line {
+    position: absolute;
+    border: 1.5px solid rgba(6, 182, 212, 0.15);
+    border-radius: 50%;
+}
+
+.barcode-stream-line.l1 { width: 90px; height: 90px; border-style: dashed; animation: rotateCcw 12s linear infinite; }
+.barcode-stream-line.l2 { width: 120px; height: 120px; border-style: dotted; animation: rotateCw 18s linear infinite; }
+
+/* Brainwave Waveform Dashboard */
+.wave-dashboard-hud {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.brainwave-graph {
+    width: 220px;
+    height: 60px;
+    background: rgba(9, 13, 22, 0.85);
+    border: 1px solid var(--color-teal);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.brainwave-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.wave-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    animation: dashWave 12s linear infinite;
+}
+
+.dashboard-stats-readout {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: var(--color-teal);
+    text-align: left;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-left: 2px solid var(--color-teal);
+}
+
+/* Glowing Energy Core & Rotating Gears */
+.energy-core-glowing-widget {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.core-orbit {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(6, 182, 212, 0.25);
+    animation: rotateCw 15s linear infinite;
+}
+
+.core-nucleus {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+.core-bulb {
+    font-size: 2.6rem;
+    color: #fff;
+    filter: drop-shadow(0 0 15px var(--color-teal));
+    z-index: 2;
+}
+
+.gears-hud-assembly {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gear-big {
+    font-size: 3.6rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 8px var(--color-teal-glow));
+    position: absolute;
+    transform-origin: center center;
+}
+
+.gear-small {
+    font-size: 2.2rem;
+    color: var(--color-orange);
+    filter: drop-shadow(0 0 6px var(--color-orange-glow));
+    position: absolute;
+    transform: translate(26px, 26px);
+    transform-origin: center center;
+}
+
+/* Secure Coder Terminal */
+.coder-terminal-hud {
+    background: #04060b;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid var(--color-teal);
+    border-radius: 10px;
+    padding: 15px 20px;
+    max-width: 380px;
+    margin: 20px auto 0 auto;
+    text-align: left;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.terminal-text-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Stage Lock SVG Shackle */
+.stage-lock-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 140px;
+    margin: 20px auto 0 auto;
+}
+
+.stage-lock-svg {
+    width: 80px;
+    height: 80px;
+    z-index: 2;
+}
+
+.cyan-laser {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--color-teal);
+    box-shadow: 0 0 10px var(--color-teal);
+    top: 0;
+    left: 0;
+    z-index: 1;
+    animation: scanLaserVertical 3s infinite ease-in-out;
+}
+
+.lock-shackle {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+/* Data Loader Consoles */
+.data-split-screen-loader {
+    background: rgba(9, 13, 22, 0.9);
+    border: 1px solid var(--color-teal);
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    box-shadow: 0 0 20px var(--color-teal-glow);
+}
+
+.loader-header {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--color-teal);
+    letter-spacing: 1px;
+}
+
+.loader-status {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 10px var(--color-teal-glow);
+}
+
+.stream-console {
+    background: #04060b;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 10px 15px;
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    color: var(--color-teal);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+}
+
+.console-line {
+    white-space: nowrap;
+}
+
+/* Secure envelope & floating chips */
+.secure-envelope-hologram {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(13, 21, 37, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    animation: floatCartoon 5s infinite ease-in-out;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+.envelope-icon {
+    font-size: 4rem;
+    color: var(--color-orange);
+    filter: drop-shadow(0 0 12px var(--color-orange-glow));
+}
+
+.digital-seal {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-orange);
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 0 8px var(--color-orange-glow);
+    text-transform: uppercase;
+}
+
+.envelope-hud {
+    font-family: var(--font-heading);
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+.floating-data-cubes {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+}
+
+.cube {
+    background: rgba(13, 21, 37, 0.85);
+    border: 1.5px solid var(--border-glass);
+    border-radius: 14px;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.cube-nghi { border-color: var(--color-teal); color: var(--color-teal); animation: floatCartoon 5.5s infinite ease-in-out; }
+.cube-hoi { border-color: var(--color-orange); color: var(--color-orange); animation: floatCartoon 5s infinite ease-in-out 0.4s; }
+.cube-kiemtra { border-color: var(--color-green); color: var(--color-green); animation: floatCartoon 6s infinite ease-in-out 0.8s; }
+.cube-lamlai { border-color: var(--color-pink); color: var(--color-pink); animation: floatCartoon 5.2s infinite ease-in-out 1.2s; }
+
+/* X-Ray brain scanner & robot assistants */
+.xray-brain-scanner {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 18px;
+    border: 1.5px solid var(--color-teal);
+    background: rgba(13, 21, 37, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 25px var(--color-teal-glow);
+}
+
+.scanner-sweep-bar {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: var(--color-teal);
+    box-shadow: 0 0 10px var(--color-teal);
+    top: 0;
+    animation: scanLaserVertical 3s infinite ease-in-out;
+}
+
+.scan-brain-icon {
+    font-size: 3.8rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 12px var(--color-teal-glow));
+}
+
+.scanner-hud-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+    margin-top: 8px;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid rgba(6, 182, 212, 0.12);
+    padding-top: 4px;
+}
+
+.hologram-assistant-robot {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.robot-glow-icon {
+    font-size: 4.2rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 15px var(--color-teal-glow));
+    z-index: 2;
+    animation: floatCartoon 5s infinite ease-in-out;
+}
+
+.robot-glow-ring {
+    position: absolute;
+    width: 110px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(6, 182, 212, 0.3);
+    transform: rotateX(70deg) translateZ(-15px);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.hud-caption {
+    font-family: var(--font-heading);
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Cores preview grids & Biometric Diary & Mission Countdown */
+.cores-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.core-preview {
+    background: rgba(13, 21, 37, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    transition: var(--transition-fast);
+}
+
+.core-preview span {
+    font-size: 0.65rem;
+    color: #fff;
+}
+
+.core-preview.math-core { border-color: var(--color-teal); color: var(--color-teal); }
+.core-preview.lit-core { border-color: var(--color-pink); color: var(--color-pink); }
+.core-preview.eng-core { border-color: var(--color-volt); color: var(--color-volt); }
+.core-preview.sci-core { border-color: var(--color-green); color: var(--color-green); }
+
+.biometric-diary {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 18px;
+    border: 1.5px solid rgba(255, 255, 255, 0.06);
+    background: rgba(13, 21, 37, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    animation: floatCartoon 5.5s infinite ease-in-out;
+}
+
+.diary-icon {
+    font-size: 3.8rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 10px var(--color-teal-glow));
+}
+
+.diary-fingerprint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(249, 115, 22, 0.08);
+    border: 1px solid var(--color-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--color-orange);
+}
+
+.hud-status {
+    font-family: var(--font-heading);
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+
+.mission-countdown-hud {
+    background: rgba(13, 21, 37, 0.9);
+    border: 1.5px solid var(--color-orange);
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+    max-width: 250px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px var(--color-orange-glow);
+}
+
+.countdown-digits {
+    font-size: 1.65rem;
+    font-weight: 800;
+    font-family: 'Courier New', monospace;
+    color: var(--color-orange);
+    filter: drop-shadow(0 0 8px var(--color-orange-glow));
+    margin: 8px 0;
+    letter-spacing: 1px;
+}
+
+.mission-countdown-hud .hud-title {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    color: var(--color-orange);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.mission-countdown-hud .hud-subtitle {
+    font-family: var(--font-heading);
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Cyber Toolkits & prep layout style columns */
+.cyber-toolkit-box {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolkit-icon {
+    font-size: 4.2rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 12px var(--color-teal-glow));
+    z-index: 1;
+}
+
+.tools-inside {
+    position: absolute;
+    display: flex;
+    gap: 15px;
+    transform: translateY(-35px);
+    z-index: 2;
+}
+
+.pen-digital {
+    font-size: 1.6rem;
+    color: var(--color-orange);
+    filter: drop-shadow(0 0 6px var(--color-orange-glow));
+    animation: floatCartoon 3s infinite alternate;
+}
+
+.logbook-secured {
+    font-size: 1.6rem;
+    color: var(--color-volt);
+    filter: drop-shadow(0 0 6px var(--color-volt-glow));
+    animation: floatCartoon 3.5s infinite alternate-reverse;
+}
+
+.radar-scan-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.03) 0%, transparent 80%);
+}
+
+.radar-scan-container .radar-sweep {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 0;
+    left: 50%;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.25) 0%, transparent 100%);
+    transform-origin: bottom left;
+    animation: rotateCw 3s linear infinite;
+    border-left: 1.5px solid var(--color-teal);
+}
+
+.radar-magnifier {
+    font-size: 2.2rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 8px var(--color-teal-glow));
+    z-index: 2;
+}
+
+.engineers-squad-chips {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.squad-icon {
+    font-size: 3.2rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 10px var(--color-teal-glow));
+}
+
+.chips-row {
+    display: flex;
+    gap: 8px;
+}
+
+.nano-chip {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px currentColor;
+}
+
+.nano-chip.color-blue { color: var(--color-teal); background: var(--color-teal); }
+.nano-chip.color-orange { color: var(--color-orange); background: var(--color-orange); }
+.nano-chip.color-lime { color: var(--color-volt); background: var(--color-volt); }
+
+.matrix-empty-glow {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(13,21,37,0.5);
+}
+
+.matrix-led-icon {
+    font-size: 3rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 8px var(--color-teal-glow));
+}
+
+.blinking-led {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-volt);
+    box-shadow: 0 0 6px var(--color-volt);
+    animation: blinkText 0.8s infinite;
+}
+
+.concentration-beam-scanner {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.robot-beam-icon {
+    font-size: 3.2rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 10px var(--color-teal-glow));
+    z-index: 2;
+    animation: floatCartoon 4s infinite ease-in-out;
+}
+
+.scanning-laser-cone {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(to top, rgba(6, 182, 212, 0.15) 0%, transparent 100%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 1;
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+.blueprint-assembly {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.assembly-icon {
+    font-size: 3.6rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 8px var(--color-teal-glow));
+    z-index: 1;
+}
+
+.gears-assembly {
+    font-size: 1.8rem;
+    color: var(--color-orange);
+    filter: drop-shadow(0 0 6px var(--color-orange-glow));
+    position: absolute;
+    transform: translate(24px, -24px);
+    animation: rotateCw 8s linear infinite;
+    z-index: 2;
+}
+
+.biometric-unlocked {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.unlocked-lock {
+    font-size: 2.8rem;
+    color: var(--color-volt);
+    filter: drop-shadow(0 0 8px var(--color-volt-glow));
+    animation: floatCartoon 4s infinite alternate;
+}
+
+.unlocked-badge {
+    font-size: 1.5rem;
+    color: var(--color-teal);
+}
+
+.prep-grid-cols {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 25px;
+    align-items: center;
+    width: 100%;
+}
+
+.prep-box {
+    background: rgba(13, 21, 37, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 18px 22px;
+    text-align: left;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.prep-box.theme-teal { border-left: 4px solid var(--color-teal); }
+.prep-box.theme-orange { border-left: 4px solid var(--color-orange); }
+
+.prep-text {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: #e2e8f0;
+}
+
+/* Math, Lit, Eng, Sci Color Configurations */
+.layout-subject-report {
+    --color-subject: var(--color-teal);
+    --color-subject-glow: var(--color-teal-glow);
+}
+
+.layout-subject-report.core-blue {
+    --color-subject: var(--color-teal);
+    --color-subject-glow: var(--color-teal-glow);
+}
+
+.layout-subject-report.core-pink {
+    --color-subject: var(--color-pink);
+    --color-subject-glow: var(--color-pink-glow);
+}
+
+.layout-subject-report.core-volt {
+    --color-subject: var(--color-volt);
+    --color-subject-glow: var(--color-volt-glow);
+}
+
+.layout-subject-report.core-green {
+    --color-subject: var(--color-green);
+    --color-subject-glow: var(--color-green-glow);
+}
+
+.layout-subject-report .slide-heading {
+    color: var(--color-subject) !important;
+    text-shadow: 0 0 10px var(--color-subject-glow);
+}
+
+.subject-report-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.subject-step-box {
+    background: rgba(13, 21, 37, 0.7);
+    border: 1.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 14px 18px;
+    text-align: left;
+    transition: var(--transition-fast);
+}
+
+.subject-step-box h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--color-subject);
+}
+
+.subject-step-box:hover {
+    border-color: var(--color-subject);
+    box-shadow: 0 0 15px var(--color-subject-glow);
+    background: rgba(13, 21, 37, 0.85);
+}
+
+.subject-step-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #cbd5e1;
+}
+
+/* User Logs Split Columns */
+.stories-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.story-column {
+    background: rgba(13, 21, 37, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    padding: 18px 22px;
+    text-align: left;
+}
+
+.story-column.nam-theme { border-top: 3px solid var(--color-teal); }
+.story-column.lan-theme { border-top: 3px solid var(--color-orange); }
+
+.list-item-story {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 16px;
+    color: #e2e8f0;
+}
+
+.list-item-story::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-teal);
+    font-family: monospace;
+    font-weight: 700;
+}
+
+.story-column.lan-theme .list-item-story::before {
+    color: var(--color-orange);
+}
+
+.workspace-questions-card {
+    background: rgba(13, 21, 37, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 12px 18px;
+    text-align: left;
+}
+
+.workspace-questions-card h4 {
+    font-size: 0.85rem;
+    color: var(--color-teal);
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.workspace-questions-card ul {
+    margin-left: 18px;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: #cbd5e1;
+}
+
+/* Flow chart and step indicators */
+.golden-flow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background: rgba(13, 21, 37, 0.45);
+    border: 1.5px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.gf-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    text-align: center;
+}
+
+.gf-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-teal);
+    background: rgba(6, 182, 212, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 6px var(--color-teal-glow));
+    transition: var(--transition-fast);
+}
+
+.gf-node h4 {
+    font-size: 0.7rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.gf-arrow {
+    font-size: 1rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.flowchart-container {
+    background: rgba(13, 21, 37, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 18px;
+    width: 100%;
+}
+
+.flowchart-path {
+    text-align: left;
+}
+
+.flowchart-steps {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.fc-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(13, 21, 37, 0.75);
+    padding: 10px 8px;
+    border-radius: 12px;
+    flex: 1;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.fc-step i {
+    font-size: 1.1rem;
+}
+
+.fc-step.step-teal { border-color: rgba(6, 182, 212, 0.2); color: var(--color-teal); }
+.fc-step.step-orange { border-color: rgba(249, 115, 22, 0.2); color: var(--color-orange); }
+
+.fc-arrow {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    opacity: 0.4;
+}
+
+/* Card Sorting Pool & Columns */
+.sorting-preview {
+    text-align: left;
+}
+
+.sorting-drag-area {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1.5px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 12px;
+    min-height: 60px;
+}
+
+.sorting-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    min-height: 40px;
+    width: 100%;
+}
+
+.sorting-tag {
+    background: rgba(13, 21, 37, 0.95);
+    border: 1px solid var(--color-teal);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: grab;
+    transition: var(--transition-fast);
+    user-select: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: inline-flex;
+    align-items: center;
+}
+
+.sorting-tag:active {
+    cursor: grabbing;
+    opacity: 0.75;
+    transform: scale(0.96);
+}
+
+.sorting-drop-zones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+
+.sorting-column {
+    background: rgba(13, 21, 37, 0.75);
+    border: 1.5px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: var(--transition-fast);
+}
+
+.btn-check-sorting {
+    background: var(--color-teal);
+    border: none;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 10px var(--color-teal-glow);
+    transition: var(--transition-fast);
+}
+
+.btn-check-sorting:hover {
+    background: #00d8e6 !important;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.6) !important;
+    transform: translateY(-2px);
+}
+
+.sorting-tag.tag-correct {
+    border-color: var(--color-green) !important;
+    background: rgba(16, 185, 129, 0.15) !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3) !important;
+}
+
+.sorting-tag.tag-correct::after {
+    content: " \f058";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-left: 6px;
+    color: var(--color-green);
+}
+
+.sorting-tag.tag-incorrect {
+    border-color: var(--color-orange) !important;
+    background: rgba(249, 115, 22, 0.15) !important;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3) !important;
+}
+
+.sorting-tag.tag-incorrect::after {
+    content: " \f057";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-left: 6px;
+    color: var(--color-orange);
+}
+
+.sorting-column h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+}
+
+.sorting-column.teal-theme { border-color: rgba(6, 182, 212, 0.25); }
+.sorting-column.teal-theme h4 { color: var(--color-teal); }
+.sorting-column.orange-theme { border-color: rgba(249, 115, 22, 0.25); }
+.sorting-column.orange-theme h4 { color: var(--color-orange); }
+
+.sorting-column.dragover {
+    background: rgba(6, 182, 212, 0.04);
+    border-color: var(--color-teal);
+    box-shadow: 0 0 12px var(--color-teal-glow);
+}
+
+.sorting-column.orange-theme.dragover {
+    background: rgba(249, 115, 22, 0.04);
+    border-color: var(--color-orange);
+    box-shadow: 0 0 12px var(--color-orange-glow);
+}
+
+/* Matrix Results Grid Table */
+.matrix-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(13, 21, 37, 0.75);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.matrix-row {
+    display: grid;
+    grid-template-columns: 0.9fr 1.25fr 1.25fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    align-items: stretch;
+}
+
+.matrix-row.hdr {
+    background: rgba(6, 182, 212, 0.06);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-teal);
+    letter-spacing: 0.5px;
+    border-bottom: 1.5px solid rgba(6, 182, 212, 0.2);
+}
+
+.matrix-row:last-child {
+    border-bottom: none;
+}
+
+.matrix-row > div {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.matrix-cell-label {
+    font-weight: 700;
+    color: #fff;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.matrix-cell-content {
+    color: var(--text-muted);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.matrix-cell-content:last-child {
+    border-right: none;
+}
+
+/* Empty Drawing Board Placeholder */
+.drawing-placeholder {
+    border: 2px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text-muted);
+    height: 220px;
+}
+
+.drawing-placeholder i {
+    font-size: 3rem;
+    color: var(--color-teal);
+    filter: drop-shadow(0 0 8px var(--color-teal-glow));
+    animation: floatCartoon 5s infinite ease-in-out;
+}
+
+.drawing-placeholder p {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Interactive Checkboxes */
+.checklist-interactive {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 32px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    user-select: none;
+    text-align: left;
+    line-height: 1.4;
+    color: #cbd5e1;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(13, 21, 37, 0.85);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    transition: var(--transition-fast);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: var(--color-teal);
+    background-color: rgba(6, 182, 212, 0.04);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--color-teal);
+    border-color: var(--color-teal);
+    box-shadow: 0 0 8px var(--color-teal-glow);
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+    display: block;
+}
+
+.checkbox-container .checkmark::after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Animations & Keyframes */
+@keyframes scanLaser {
+    0%, 100% { top: 0; }
+    50% { top: 100%; }
+}
+
+@keyframes scanLaserVertical {
+    0%, 100% { top: 0; opacity: 0.3; }
+    50% { top: 100%; opacity: 1; }
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.4; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1.02); }
+}
+
+@keyframes rotateCw {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateCcw {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes videoGlitch {
+    0%, 100% { transform: scale(1) skewX(0deg); filter: hue-rotate(0deg); }
+    10% { transform: scale(1.02) skewX(1deg); filter: hue-rotate(10deg); }
+    20% { transform: scale(0.98) skewX(-1deg); }
+    30% { transform: scale(1) skewX(0deg); }
+}
+
+@keyframes dashWave {
+    0% { stroke-dashoffset: 1000; }
+    100% { stroke-dashoffset: 0; }
+}
+
     </style>
 </head>
 <body class="dark-theme">
@@ -2712,7 +4664,7 @@ body.presentation-mode.show-controls .presentation-controls {
     <header class="app-header">
         <div class="logo">
             <i class="fa-solid fa-brain logo-icon"></i>
-            <span>AI CLASSROOM <span class="badge">CHUYÊN GIA AI</span></span>
+            <span>PHÒNG HỌC AI <span class="badge">CHUYÊN GIA AI</span></span>
         </div>
         <div class="period-navigator">
             <button class="btn-period active" data-period="1">Tiết 1: Khám phá</button>
@@ -2751,7 +4703,7 @@ body.presentation-mode.show-controls .presentation-controls {
     <footer class="app-footer">
         <div class="footer-left">
             <button class="btn-footer" id="toggle-sidebar-btn" title="Danh sách slide (M)">
-                <i class="fa-solid fa-list-ul"></i> Menu
+                <i class="fa-solid fa-list-ul"></i> Danh sách
             </button>
             <button class="btn-footer" id="toggle-notes-btn" title="Ghi chú giáo viên (T)">
                 <i class="fa-solid fa-comment-medical"></i> Ghi chú Giáo viên
@@ -2792,7 +4744,7 @@ body.presentation-mode.show-controls .presentation-controls {
     <!-- TEACHER NOTES DRAWER -->
     <div class="teacher-notes-drawer" id="notes-drawer">
         <div class="notes-header">
-            <h3><i class="fa-solid fa-chalkboard-user"></i> KỊCH BẢN GIẢNG DẠY (TEACHER'S SCRIPT)</h3>
+            <h3><i class="fa-solid fa-chalkboard-user"></i> KỊCH BẢN GIẢNG DẠY (BẢN GIÁO VIÊN)</h3>
             <button class="btn-close-notes" id="close-notes-btn"><i class="fa-solid fa-chevron-down"></i></button>
         </div>
         <div class="notes-content" id="notes-text-box">
@@ -2817,621 +4769,636 @@ const slidesData = [
     id: "P0-01",
     period: 1,
     type: "welcome",
-    title: "THỰC HÀNH DÙNG AI ĐỂ HỌC",
-    subtitle: "TIẾT 1: KHÁM PHÁ CÙNG AI",
-    subject: "Kỹ năng công nghệ và Phương pháp học tập thời đại số",
-    role: "CHUYÊN GIA AI",
-    objectives: "Học sinh hiểu và xây dựng được quy trình học tập hiệu quả, chủ động cùng trí tuệ nhân tạo (Nghĩ → Hỏi → Kiểm tra → Làm lại).",
-    teacherNotes: `<h3>Mở đầu tiết học (1 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chào mừng các nhà nghiên cứu công nghệ đến với tiết học ngày hôm nay: <strong>Thực hành dùng AI để học</strong>. Hôm nay, chúng ta sẽ đóng vai là các <strong>Chuyên gia AI tập sự</strong> để đi giải mã bí mật của việc học hiệu quả."</p>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên trình chiếu slide welcome, giới thiệu ngắn gọn chủ đề và mục tiêu bài học.</p>`
+    title: "CHIẾN DỊCH: KHÁM PHÁ CÙNG AI",
+    subtitle: "MÃ LỆNH: NOVA-01",
+    subject: "Học viện AI Novastars",
+    role: "KỸ SƯ AI TẬP SỰ",
+    objectives: "Bẻ khóa thuật toán, xây dựng \"Quy trình Tương tác Thông minh\" để làm chủ các Siêu trí tuệ nhân tạo phục vụ học tập.",
+    teacherNotes: `<h3>Mở đầu chiến dịch (1 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Chào mừng các Kỹ sư tập sự đã đăng nhập vào hệ thống tối mật của Học viện AI Novastars! Hôm nay, các bạn chính thức bước vào Chiến dịch Nova-01 để làm chủ công nghệ mạnh mẽ nhất hành tinh."</p>
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên trình chiếu slide welcome, giới thiệu ngắn gọn chủ đề, vai trò kỹ sư tập sự và mục tiêu chiến dịch.</p>`
   },
   {
     id: "P0-02",
     period: 1,
     type: "big-question",
-    title: "CÂU HỎI LỚN (BIG QUESTION)",
-    question: "Làm thế nào để học cùng AI mà vẫn thực sự hiểu bài?",
+    title: "MẬT MÃ TỐI CAO",
+    question: "Làm thế nào để điều khiển AI hỗ trợ học tập mà không làm suy giảm tư duy của chính mình?",
     subtext: "Tư duy độc lập đối diện với Trí tuệ nhân tạo",
     teacherNotes: `<h3>Khơi gợi vấn đề (1 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Đây chính là câu hỏi lớn nhất mà chúng ta cần trả lời trong ngày hôm nay. Làm thế nào để khi dùng AI, bộ não của chúng ta vẫn thực sự hiểu bài và giỏi lên?"</p>`
+                   <p><strong>Lời thoại gợi ý:</strong> "Mật mã lớn nhất chúng ta cần giải đáp hôm nay: Làm sao để khối óc của Kỹ sư điều khiển được AI, chứ không bị AI thao túng và làm lười biếng bộ não?"</p>`
   },
   {
     id: "P0-03",
     period: 1,
     type: "role-intro",
-    title: "GIỚI THIỆU VAI TRÒ CHUYÊN GIA",
-    roleName: "CHUYÊN GIA AI",
-    roleDesc: "Trở thành các kỹ sư phân tích và tối ưu hóa cách thức con người tương tác với trí tuệ nhân tạo để phục vụ học tập.",
-    roleMission: "Giải mã các hành động, phân tích tác động và thiết kế ra một 'Quy trình học tập thông minh' tối ưu nhất.",
+    title: "GIỚI THIỆU VAI TRÒ NHẬP VAI",
+    roleName: "KỸ SƯ AI TẬP SỰ (AI ENGINEER)",
+    roleDesc: "Trở thành các kỹ sư phân tích dữ liệu hành vi và tối ưu hóa cách thức con người tương tác với AI.",
+    roleMission: "Giải mã nhật ký tương tác, phân tích tác động lỗi và thiết kế ra một \"Thuật toán học tập thông minh\" tối ưu nhất.",
     teacherNotes: `<h3>Giới thiệu vai trò (1 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Hôm nay các con sẽ đóng vai là Chuyên gia AI. Nhiệm vụ của các con là giải mã các cách dùng AI và thiết kế quy trình tối ưu."</p>`
+                   <p><strong>Lời thoại gợi ý:</strong> "Các Kỹ sư tập sự thân mến! Hôm nay, chúng ta có vai trò cực kỳ quan trọng là phân tích dữ liệu hành vi sử dụng AI và thiết kế quy trình tương tác chuẩn."</p>`
   },
 
-  // ==================== STAGE 1 ====================
+  // ==================== PART 2: STAGE & ACTIVITY FLOW ====================
+  // STAGE-01: GIAI ĐOẠN 1
   {
     id: "STAGE-01",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 1",
-    title: "MỞ KHÓA NHIỆM VỤ",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 1 (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta cùng mở khóa nhiệm vụ đầu tiên để tìm hiểu xem việc sử dụng AI hiện nay đang như thế nào nhé."</p>`
+    title: "BẬT NGUỒN & MỞ KHÓA NHIỆM VỤ",
+    teacherNotes: `<h3>Mở khóa nhiệm vụ (0.5 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Hệ thống đang khởi động... Chúng ta cùng bật nguồn và mở khóa nhiệm vụ đầu tiên."</p>`
   },
   {
     id: "STAGE-01-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "AI GIÚP HAY AI THAY?",
-    goal: "Khơi gợi vấn đề, tạo nhu cầu tìm hiểu về cách dùng AI đúng đắn thông qua việc so sánh hai trường hợp thực tế.",
+    title: "PHÂN TÍCH NHẬT KÝ KHÁM PHÁ: AI GIÚP HAY AI THAY?",
+    goal: "Màn hình mô phỏng một bảng so sánh dữ liệu (Data Split-Screen) đang tải nhật ký người dùng Nam & Lan.",
     icon: "fa-solid fa-bezier-curve",
     teacherNotes: `<h3>Giới thiệu Hoạt động 1</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Hoạt động đầu tiên có tên gọi: AI GIÚP HAY AI THAY? Chúng ta sẽ cùng xem câu chuyện của Nam và Lan."</p>`
+                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta sẽ tải nhật ký người dùng Nam và Lan để phân tích hành vi của họ."</p>`
   },
   {
     id: "STAGE-01-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Vở ghi chép cá nhân, bút mực.",
-    format: "Cả lớp",
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Nhật ký ghi chép (Giấy, bút).",
+    format: "Tổ hợp 4 Kỹ sư (Nhóm 4 học sinh).",
     icon: "fa-solid fa-book",
     teacherNotes: `<h3>Chuẩn bị hoạt động (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Các con hãy chuẩn bị sẵn vở ghi cá nhân và bút trên bàn nhé."</p>`
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên yêu cầu học sinh chuẩn bị giấy, bút và ổn định nhóm 4 kỹ sư.</p>`
   },
   {
     id: "STAGE-01-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Đọc 2 cách học của bạn Nam và bạn Lan trên màn hình.",
-      "Thảo luận nhanh và trả lời câu hỏi nhiệm vụ.",
-      "Đại diện phát biểu ý kiến trước lớp về câu trả lời."
+      "Bước 1: Quét và quan sát tình huống dữ liệu trên màn hình.",
+      "Bước 2: Đối chiếu dữ liệu, đưa ra nhận định và lập luận giải thích.",
+      "Bước 3: Trưởng nhóm kỹ sư đại diện phát biểu báo cáo trước toàn bộ Hội đồng."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước (0.5 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên đọc nhanh 3 bước thực hiện để học sinh nắm rõ tiến trình.</p>`
+    teacherNotes: `<h3>Hướng dẫn vận hành</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên đọc nhanh 3 mã lệnh vận hành để học sinh bắt đầu thực thi.</p>`
   },
   {
     id: "STAGE-01-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "KHÔNG GIAN HOẠT ĐỘNG: AI GIÚP HAY AI THAY?",
+    title: "PHÂN TÍCH NHẬT KÝ NGƯỜI DÙNG",
     duration: 300, // 5 mins
     workspaceType: "split-stories",
     storyNam: [
       "Đọc đề bài",
-      "Tự suy nghĩ",
-      "Hỏi AI khi gặp khó khăn",
-      "Kiểm tra lời giải của AI",
-      "Tự làm lại vào vở"
+      "Tự kích hoạt tư duy",
+      "Hỏi AI khi gặp vùng nghẽn",
+      "Kiểm tra thuật toán lời giải",
+      "Tự thực thi lại bài tập"
     ],
     storyLan: [
-      "Chụp đề bài",
-      "Gửi cho AI",
-      "Chép đáp án"
+      "Chụp ảnh đề bài",
+      "Đẩy dữ liệu vào AI",
+      "Sao chép nguyên văn đáp án"
     ],
     questions: [
-      "Bạn nào đang học?",
-      "Bạn nào đang hoàn thành bài tập?",
-      "Điều gì khác nhau giữa hai cách làm?"
+      "Hệ thống của Người dùng nào đang thực sự vận hành học tập?",
+      "Hệ thống của Người dùng nào chỉ đang chạy lệnh hoàn thành bài tập?",
+      "Điểm khác biệt giữa hai quy trình tương tác này là gì?"
     ],
-    teacherNotes: `<h3>Không gian làm việc (5 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên bấm chạy đồng hồ đếm ngược 5 phút. Yêu cầu học sinh đọc câu chuyện và suy nghĩ trả lời 3 câu hỏi trên màn hình.</p>`
+    teacherNotes: `<h3>Hoạt động phân tích (5 phút)</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên nhấn nút Play để đếm ngược 5 phút. Học sinh thảo luận nhóm để trả lời 3 câu hỏi trên màn hình.</p>`
   },
   {
     id: "STAGE-01-ACT-04",
     period: 1,
     type: "act-report",
-    title: "BÁO CÁO & TỔNG HỢP KẾT QUẢ",
+    title: "DỮ LIỆU PHÂN TÍCH CHUẨN HÓA",
     results: [
-      "Bạn Nam đang thực sự 'học' (não bộ được vận động và tiếp thu kiến thức).",
-      "Bạn Lan chỉ đang 'hoàn thành bài tập' một cách cơ học (não bộ thụ động, không có kiến thức đọng lại).",
-      "Sự khác biệt cốt lõi: Nằm ở Quy trình tương tác: Chủ động (Nam) so với Bị động/Phụ thuộc (Lan)."
+      "Kết quả 1 (Người dùng Nam): Não bộ được vận động tư duy và tiếp thu kiến thức ổn định (Hệ thống chạy tốt).",
+      "Kết quả 2 (Người dùng Lan): Não bộ rơi vào trạng thái thụ động, phụ thuộc hoàn toàn vào máy móc (Hệ thống gặp lỗi \"Rỗng kiến thức\").",
+      "Bản chất cốt lõi: Sự khác biệt nằm ở Quy trình tương tác: CHỦ ĐỘNG ĐIỀU KHIỂN (Nam) và THỤ ĐỘNG PHỤ THUỘC (Lan)."
     ],
-    message: "Nếu muốn học hiệu quả với AI, chúng ta cần biết quy trình sử dụng AI đúng cách.",
-    teacherNotes: `<h3>Tổng hợp kết quả (2 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Đúng vậy, sự chủ động của Nam giúp não bộ ghi nhớ kiến thức, còn cách làm của Lan chỉ giúp xong bài tập chứ không giúp học tập."</p>`
+    message: "Nguyên tắc kỹ sư: Muốn biến AI thành trợ thủ đắc lực, ta bắt buộc phải cài đặt một \"Quy trình Tương tác Đúng chuẩn\".",
+    teacherNotes: `<h3>Báo cáo kết quả (2 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Chính xác! Nam đã chủ động điều khiển AI làm trợ lý, còn Lan bị phụ thuộc thụ động. Ta cần quy trình tương tác chuẩn."</p>`
   },
   {
     id: "STAGE-01-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Sự khác biệt lớn giữa việc 'Dùng AI để học' và 'Để AI học hộ'.",
-    nextQuestion: "Một quy trình chuẩn để học với AI gồm những bước nào và từ đâu mà có?",
-    teacherNotes: `<h3>Chuyển giao giai đoạn (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta đã thấy sự khác biệt. Vậy quy trình chuẩn để học với AI gồm những bước cụ thể nào?"</p>`
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã giải mã xong Sự khác biệt giữa \"Dùng AI để học\" và \"Để AI học hộ\".",
+    nextQuestion: "Lệnh tiếp theo: Truy cập trung tâm dữ liệu để nhận Yêu cầu chính thức từ Khách hàng cao cấp.",
+    teacherNotes: `<h3>Chuyển giao (0.5 phút)</h3>`
   },
 
-  // ==================== STAGE 2 ====================
+  // STAGE-02: GIAI ĐOẠN 2
   {
     id: "STAGE-02",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 2",
-    title: "NHẬN YÊU CẦU TỪ KHÁCH HÀNG",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 2 (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta cùng đến với Giai đoạn 2 để nhận nhiệm vụ chính thức từ Học viện AI."</p>`
+    title: "NHẬT LỆNH TỪ KHÁCH HÀNG CAO CẤP",
+    teacherNotes: `<h3>Nhận yêu cầu khách hàng (0.5 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Một cuộc gọi video khẩn cấp từ Ban Giám đốc Học viện AI Novastars đang đến!"</p>`
   },
   {
     id: "STAGE-02-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "NHIỆM VỤ TỪ HỌC VIỆN AI",
-    goal: "Giúp học sinh hiểu rõ nhiệm vụ học tập và xác định được các vấn đề cốt lõi cần điều tra.",
+    title: "GIẢI MÃ NHIỆM VỤ TỪ HỌC VIỆN AI",
+    goal: "Bức thư bảo mật có gắn dấu niêm phong điện tử phát sáng đỏ hiển thị chính giữa màn hình.",
     icon: "fa-solid fa-envelope-open-text",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 2</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Học viện AI đã gửi một bức thư khẩn cấp giao nhiệm vụ cho chúng ta."</p>`
+    teacherNotes: `<h3>Giới thiệu Hoạt động 2</h3>`
   },
   {
     id: "STAGE-02-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Phiếu ghi chú điện tử, bút.",
-    format: "Cá nhân",
-    icon: "fa-solid fa-keyboard",
-    teacherNotes: `<h3>Chuẩn bị hoạt động (0.5 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Yêu cầu học sinh chuẩn bị phiếu ghi chú cá nhân.</p>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Nhật ký ghi chép (Giấy, bút).",
+    format: "Tổ hợp 4 Kỹ sư (Nhóm 4 học sinh).",
+    icon: "fa-solid fa-radar",
+    teacherNotes: `<h3>Chuẩn bị (0.5 phút)</h3>`
+  },
+  {
+    id: "STAGE-02-ACT-02",
+    period: 1,
+    type: "act-howto",
+    title: "MÃ LỆNH VẬN HÀNH",
+    steps: [
+      "Bước 1: Đọc và phân tích yêu cầu trong mật thư nhiệm vụ.",
+      "Bước 2: Xác định 2 tọa độ mục tiêu (2 câu hỏi điều tra) và thảo luận chiến thuật trả lời.",
+      "Bước 3: Trình bày kết quả điều tra sơ bộ."
+    ],
+    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
   },
   {
     id: "STAGE-02-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "NHIỆM VỤ TỪ HỌC VIỆN AI",
-    duration: 120, // 2 mins
+    title: "GIẢI MÃ NỘI DUNG MẬT THƯ",
+    duration: 240, // 4 mins
     workspaceType: "mission-document",
-    missionText: "“Hãy tìm ra cách sử dụng AI để học một bài mới mà vẫn hiểu bài và nhớ bài.”",
+    missionText: "“Gửi các Kỹ sư tập sự, thế giới đang bị bủa vây bởi việc dùng AI sai cách làm suy giảm trí tuệ. Hãy tìm ra thuật toán vàng để sử dụng AI học bài mới mà vẫn hiểu sâu và nhớ lâu!”",
     investigations: [
-      "Khi học với AI, chúng ta nên làm những bước nào?",
-      "Vì sao cần những bước đó?"
+      "Khi dùng AI để học, Kỹ sư cần thực hiện những bước nào?",
+      "Tại sao cần những bước đó?"
     ],
-    teacherNotes: `<h3>Không gian làm việc (2 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 2 phút. Học sinh đọc và thảo luận nhanh về 2 câu hỏi điều tra.</p>`
+    teacherNotes: `<h3>Giải mã mật thư (4 phút)</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 4 phút. Học sinh xác định 2 tọa độ mục tiêu cần bám sát.</p>`
   },
   {
     id: "STAGE-02-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Nhiệm vụ tối mật từ Học viện AI.",
-    nextQuestion: "Làm sao để 'giải mã' và sắp xếp các hành động rời rạc thành một quy trình học tập tối ưu?",
-    teacherNotes: `<h3>Chuyển giao (0.5 phút)</h3>`
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã xác lập xong Mục tiêu nhiệm vụ tối mật.",
+    nextQuestion: "Lệnh tiếp theo: Tiến vào kho dữ liệu tổng để thu thập thông tin và các mảnh ghép hành động.",
+    teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 3 ====================
+  // STAGE-03: GIAI ĐOẠN 3
   {
     id: "STAGE-03",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 3",
-    title: "THU THẬP THÔNG TIN",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 3</h3>`
+    title: "QUÉT TRƯỜNG DỮ LIỆU & THU THẬP THÔNG TIN",
+    teacherNotes: `<h3>Quét trường dữ liệu (0.5 phút)</h3>`
   },
   {
     id: "STAGE-03-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "GIẢI MÃ CÁCH HỌC",
-    goal: "Giúp học sinh nhận diện, phân loại và quan sát các hành động khác nhau khi sử dụng AI để thấy được bản chất của từng cách học.",
-    icon: "fa-solid fa-radar",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 3</h3>`
+    title: "GIẢI MÃ KHỐI LỆNH HÀNH ĐỘNG",
+    goal: "Các khối lập phương dữ liệu chứa từ khóa hành động bay lơ lửng, chờ kỹ sư phân loại vào đúng cổng quy trình.",
+    icon: "fa-solid fa-cubes",
+    teacherNotes: `<h3>Giới thiệu hoạt động</h3>`
   },
   {
     id: "STAGE-03-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "1 bảng sơ đồ quy trình, 1 bộ 'Thẻ hành động rời' (7 thẻ), keo dán.",
-    format: "Nhóm 4 học sinh",
-    icon: "fa-solid fa-users-viewfinder",
-    teacherNotes: `<h3>Chuẩn bị nhóm (1 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chia nhóm 4 học sinh, phát bảng sơ đồ và bộ thẻ hành động rời.</p>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Bộ chip hành động (Bộ thẻ do Giáo viên cấp).",
+    format: "Nhóm 4 Kỹ sư.",
+    icon: "fa-solid fa-users",
+    teacherNotes: `<h3>Chuẩn bị chip hành động (1 phút)</h3>`
   },
   {
     id: "STAGE-03-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Mỗi nhóm nhận một bộ thẻ hành động từ Giáo viên.",
-      "Đọc kỹ nội dung ghi trên từng thẻ hành động.",
-      "Thảo luận và phân loại các thẻ vào hai nhóm quy trình trên sơ đồ. Dán cố định các thẻ.",
-      "Đại diện nhóm trình bày kết quả và giải thích lựa chọn của nhóm."
+      "Bước 1: Nhận bộ chip hành động từ Tổng chỉ huy (Giáo viên).",
+      "Bước 2: Đọc và giải mã ý nghĩa của từng chip lệnh.",
+      "Bước 3: Thảo luận, phân loại và cắm các chip này vào đúng 2 cổng quy trình trên sơ đồ hệ thống.",
+      "Bước 4: Báo cáo thuật toán phân loại trước Hội đồng."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
+    teacherNotes: `<h3>Hướng dẫn thực hiện</h3>`
   },
   {
     id: "STAGE-03-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "PHÂN LOẠI THẺ HÀNH ĐỘNG",
-    duration: 420, // 7 mins
+    title: "PHÂN MẠCH KHỐI LỆNH HÀNH ĐỘNG",
+    duration: 480, // 8 mins
     workspaceType: "card-sorting",
     cards: [
       "Đọc đề bài", "Tự suy nghĩ", "Hỏi AI", 
       "Kiểm tra câu trả lời", "Tự làm lại", 
       "Chép đáp án", "Nộp bài ngay"
     ],
-    instructions: "Hãy phân tích và sắp xếp các thẻ hành động vào 2 cột: 'Quy trình học hiệu quả' và 'Quy trình chỉ hoàn thành nhiệm vụ'.",
-    teacherNotes: `<h3>Tiến hành phân loại (7 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 7 phút. Giáo viên đi quan sát, nhắc nhở các nhóm thảo luận kỹ vì sao xếp thẻ như vậy.</p>`
+    instructions: "Nhiệm vụ phân loại: Hãy lập trình, đưa các chip hành động về đúng cổng quy trình của nó:",
+    teacherNotes: `<h3>Thảo luận và dán chip (8 phút)</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Bật đồng hồ 8 phút. Học sinh thảo luận phân loại các chip vào hai cổng quy trình.</p>`
   },
   {
     id: "STAGE-03-ACT-04",
     period: 1,
     type: "act-report",
-    title: "BÁO CÁO & TỔNG HỢP KẾT QUẢ",
+    title: "THUẬT TOÁN CHUẨN TỪ HỌC VIỆN",
     results: [
-      "Quy trình học hiệu quả: Đọc đề bài → Tự suy nghĩ → Hỏi AI → Kiểm tra câu trả lời → Tự làm lại.",
-      "Quy trình chỉ hoàn thành nhiệm vụ (Đi tắt): Chép đáp án → Nộp bài ngay."
+      "CỔNG XANH (Học hiệu quả): Đọc đề → Tự suy nghĩ → Hỏi AI → Kiểm tra câu trả lời → Tự làm lại.",
+      "CỔNG ĐỎ (Đối phó): Chép đáp án → Nộp bài ngay (Hệ thống gặp lỗi \"Rỗng kiến thức\")."
     ],
-    message: "Học thực sự đòi hỏi một chuỗi hành động tư duy liên tục chứ không phải sự sao chép.",
-    teacherNotes: `<h3>Tổng hợp kết quả (2 phút)</h3>`
+    message: "Thông điệp cốt lõi: Tư duy thực sự là một chuỗi thuật toán liên tục, cắt xén hành động nghĩa là Kỹ sư tự phá hủy hệ thống của mình.",
+    teacherNotes: `<h3>Tổng kết cổng quy trình (2 phút)</h3>`
   },
   {
     id: "STAGE-03-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Sự khác biệt giữa một quy trình học thông minh và một quy trình đối phó.",
-    nextQuestion: "Nhưng tại sao các bước trong quy trình học hiệu quả lại quan trọng đến thế? Nếu lỡ bỏ qua một bước thì hệ quả sẽ ra sao?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã phân loại thành công các khối lệnh hành động.",
+    nextQuestion: "Lệnh tiếp theo: Kích hoạt máy quét cấu trúc để phân tích sâu từng mảnh ghép vi mạch.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 4 ====================
+  // STAGE-04: GIAI ĐOẠN 4
   {
     id: "STAGE-04",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 4",
-    title: "PHÂN TÍCH PHẢN HỒI AI",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 4</h3>`
+    title: "MA TRẬN PHÂN TÍCH LOGIC HỆ THỐNG",
+    teacherNotes: `<h3>Kích hoạt ma trận phân tích (0.5 phút)</h3>`
   },
   {
     id: "STAGE-04-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "MỖI BƯỚC GIÚP GÌ?",
-    goal: "Giúp học sinh thấu hiểu sâu sắc vai trò, giá trị cốt lõi của từng bước tư duy và hệ quả tiêu cực nếu đốt cháy giai đoạn.",
-    icon: "fa-solid fa-chart-simple",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 4</h3>`
+    title: "THẨM ĐỊNH: MỖI BƯỚC GIÚP GÌ?",
+    goal: "Mô phỏng máy quét X-quang kỹ thuật số đang rọi vào từng vi mạch cấu tạo của quy trình học tập.",
+    icon: "fa-solid fa-chart-line",
+    teacherNotes: `<h3>Giới thiệu hoạt động</h3>`
   },
   {
     id: "STAGE-04-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Giấy viết nhóm, bút.",
-    format: "Nhóm 4 học sinh",
-    icon: "fa-solid fa-clipboard-list",
-    teacherNotes: `<h3>Chuẩn bị hoạt động</h3>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Nhật ký phân tích (Giấy, bút).",
+    format: "Duy trì nhóm 4 Kỹ sư.",
+    icon: "fa-solid fa-table-cells",
+    teacherNotes: `<h3>Chuẩn bị phân tích</h3>`
   },
   {
     id: "STAGE-04-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Duy trì đội hình nhóm, quan sát bảng phân tích hệ quả trên màn hình.",
-      "Thảo luận về 'Vai trò' và dự đoán tình huống 'Nếu bỏ qua' của 4 bước cốt lõi.",
-      "Điền kết quả vào phiếu học tập của nhóm.",
-      "Đại diện nhóm trình bày kết quả."
+      "Bước 1: Quan sát bảng ma trận hệ quả hiển thị trên màn hình lớn.",
+      "Bước 2: Thảo luận nhóm để tìm ra 'Chức năng' và hệ quả 'Nếu ngắt mạch' (bỏ qua bước) của 4 vi mạch cốt lõi.",
+      "Bước 3: Ghi nhận thông số vào Phiếu dữ liệu của nhóm.",
+      "Bước 4: Trình bày báo cáo thẩm định."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
+    teacherNotes: `<h3>Hướng dẫn logic phân tích</h3>`
   },
   {
     id: "STAGE-04-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "MA TRẬN PHÂN TÍCH VAI TRÒ",
-    duration: 480, // 8 mins
+    title: "THẨM ĐỊNH MA TRẬN VI MẠCH",
+    duration: 360, // 6 mins
     workspaceType: "matrix-table-blank",
-    stepsList: ["Nghĩ", "Hỏi", "Kiểm tra", "Làm lại"],
-    teacherNotes: `<h3>Tiến hành thảo luận nhóm (8 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 8 phút. Học sinh điền ma trận vai trò và thảo luận xem bước nào giúp hiểu hơn, tránh sai sót, nhớ lâu hơn.</p>`
+    stepsList: ["Mạch NGHĨ", "Mạch HỎI", "Mạch KIỂM TRA", "Mạch LÀM LẠI"],
+    teacherNotes: `<h3>Hoạt động thẩm định (6 phút)</h3>
+                   <p><strong>Định hướng tư duy:</strong> Vi mạch nào kích hoạt độ hiểu sâu? Vi mạch nào chặn virus ảo tưởng? Vi mạch nào khóa dữ liệu lâu dài?</p>`
   },
   {
     id: "STAGE-04-ACT-04",
     period: 1,
     type: "act-report",
-    title: "KẾT QUẢ PHÂN TÍCH MA TRẬN",
+    title: "BẢNG THÔNG SỐ THẨM ĐỊNH CHUẨN",
     workspaceType: "matrix-table-results",
     matrixResults: [
-      { step: "Nghĩ", role: "Kích hoạt não bộ, định hướng vấn đề", skip: "Não bộ lười biếng, thụ động" },
-      { step: "Hỏi", role: "Giải quyết vấn đề, mở rộng góc nhìn", skip: "Bị tắc nghẽn thông tin, mất thời gian" },
-      { step: "Kiểm tra", role: "Tránh sai sót, chọn lọc thông tin của AI", skip: "Chép cả lỗi sai (do AI bịa thông tin)" },
-      { step: "Làm lại", role: "Giúp nhớ lâu hơn, chuyển kiến thức thành của mình", skip: "Quên ngay kiến thức sau khi học" }
+      { step: "Mạch NGHĨ", role: "Kích hoạt não bộ, định hướng vấn đề", skip: "Não bộ đóng băng, rơi vào thụ động." },
+      { step: "Mạch HỎI", role: "Giải quyết nút thắt, mở rộng góc nhìn", skip: "Đi vào ngõ cụt, lãng phí thời gian." },
+      { step: "Mạch KIỂM TRA", role: "Bộ lọc thông tin, tránh sai sót", skip: "Nhiễm dữ liệu rác, lỗi kiến thức do AI 'ảo tưởng' bịa thông tin." },
+      { step: "Mạch LÀM LẠI", role: "Khóa kiến thức vững chắc, biến thành năng lực tự thân", skip: "Dữ liệu bốc hơi ngay lập tức (Quên bài)." }
     ],
-    message: "Mỗi một bước trong ma trận đều có một sứ mệnh không thể thay thế; bớt đi một bước, việc học sẽ sụp đổ.",
-    teacherNotes: `<h3>Tổng hợp kết quả ma trận (3 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Gọi đại diện học sinh phát biểu, click hiện đáp án cho từng bước và nhấn mạnh sứ mệnh của từng bước.</p>`
+    message: "Thông điệp cốt lõi: Bất kỳ vi mạch nào bị ngắt, toàn bộ hệ thống 'Học tập hiệu quả' sẽ sụp đổ hoàn toàn.",
+    teacherNotes: `<h3>Công bố kết quả chuẩn hóa (3 phút)</h3>`
   },
   {
     id: "STAGE-04-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Bản chất, vai trò kỹ thuật và lỗ hổng tư duy khi thiếu hụt các bước phản hồi.",
-    nextQuestion: "Tổng hợp lại tất cả những điều này, đâu là nguyên tắc tối cao mà một Chuyên gia AI cần phải khắc cốt ghi tâm?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã làm rõ chức năng kỹ thuật và các lỗ hổng khi thiếu hụt các bước trong quy trình.",
+    nextQuestion: "Lệnh tiếp theo: Triệu tập Hội đồng tối cao để chuẩn hóa và đóng gói Nguyên tắc vàng.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 5 ====================
+  // STAGE-05: GIAI ĐOẠN 5
   {
     id: "STAGE-05",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 5",
-    title: "RÚT RA INSIGHT",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 5</h3>`
+    title: "ĐÓNG GÓI THUẬT TOÁN TỐI ƯU",
+    teacherNotes: `<h3>Kích hoạt năng lượng đóng gói (0.5 phút)</h3>`
   },
   {
     id: "STAGE-05-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "HỘI ĐỒNG CHUYÊN GIA AI",
-    goal: "Đúc kết nguyên tắc cốt lõi, thống nhất quy trình chuẩn hóa cuối cùng và định vị lại mối quan hệ giữa người học và công nghệ.",
-    icon: "fa-solid fa-scale-balanced",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 5</h3>`
+    title: "ĐẠI HỘI ĐỒNG KỸ SƯ AI NOVASTARS",
+    goal: "Robot Trợ lý AI Hologram xuất hiện để hỗ trợ đúc kết quy trình vàng.",
+    icon: "fa-solid fa-user-gear",
+    teacherNotes: `<h3>Giới thiệu Đại hội đồng</h3>`
   },
   {
     id: "STAGE-05-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Giấy viết cá nhân, bút vẽ sơ đồ.",
-    format: "Cá nhân",
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Giấy, bút.",
+    format: "Cá nhân.",
     icon: "fa-solid fa-pen-nib",
-    teacherNotes: `<h3>Chuẩn bị hoạt động</h3>`
+    teacherNotes: `<h3>Chuẩn bị (0.5 phút)</h3>`
+  },
+  {
+    id: "STAGE-05-ACT-02",
+    period: 1,
+    type: "act-howto",
+    title: "MÃ LỆNH VẬN HÀNH",
+    steps: [
+      "Bước 1: Tổng hợp dữ liệu, thiết kế sơ đồ tư duy quy trình học thông minh với AI.",
+      "Bước 2: Các đại diện lên thuyết minh và trình bày sơ đồ thuật toán của nhóm mình."
+    ],
+    teacherNotes: `<h3>Hướng dẫn cách vẽ sơ đồ</h3>`
   },
   {
     id: "STAGE-05-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "VẼ SƠ ĐỒ QUY TRÌNH HỌC HIỆU QUẢ CÙNG AI",
+    title: "SƠ ĐỒ QUY TRÌNH HỌC HIỆU QUẢ",
     duration: 300, // 5 mins
     workspaceType: "drawing-board",
-    instructions: "Hội đồng chuyên gia AI tổng hợp và vẽ sơ đồ quy trình học hiệu quả với AI để ghi nhớ vào vở/giấy.",
-    teacherNotes: `<h3>Hoạt động cá nhân/nhóm vẽ sơ đồ (5 phút)</h3>`
+    instructions: "Đề bài Hội nghị: Tổng hợp, vẽ lại và trình bày Sơ đồ quy trình chuẩn hóa: \"ĐIỀU KHIỂN AI HỌC TẬP\".",
+    teacherNotes: `<h3>Vẽ sơ đồ tư duy (5 phút)</h3>`
   },
   {
     id: "STAGE-05-ACT-04",
     period: 1,
     type: "act-report",
-    title: "QUY TRÌNH CHUẨN HOÁ CỦA CHUYÊN GIA",
+    title: "THUẬT TOÁN CHUẨN HÓA QUỐC TẾ NOVASTARS",
     workspaceType: "golden-flow",
-    flow: ["NGHĨ (Não tự động)", "HỎI (Tương tác)", "KIỂM TRA (Phản biện)", "LÀM LẠI (Tự giải)"],
-    message: "AI hỗ trợ việc học. AI không thay thế việc học.",
-    teacherNotes: `<h3>Chốt Insight (2 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Đây chính là Insight cốt lõi của bài học hôm nay. Hãy ghi nhớ: AI hỗ trợ chứ không thay thế việc học."</p>`
+    flow: ["NGHĨ", "HỎI", "KIỂM TRA", "LÀM LẠI"],
+    message: "Mã lệnh cốt lõi (Thông điệp chính): \"AI LÀ TRỢ LÝ HỖ TRỢ VIỆC HỌC. AI KHÔNG THAY THẾ VIỆC HỌC.\"",
+    teacherNotes: `<h3>Đúc kết Insight (2 phút)</h3>`
   },
   {
     id: "STAGE-05-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Công thức lõi của một Chuyên gia AI thực thụ khi đứng trước bài học mới.",
-    nextQuestion: "Làm sao để biến công thức mang tính lý thuyết này thành một công cụ thực chiến cho từng môn học cụ thể trên lớp?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã khóa Thuật toán vàng thành công.",
+    nextQuestion: "Lệnh tiếp theo: Ứng dụng thuật toán này để thiết lập và tùy biến cấu hình cho các hệ thống môn học thực tế.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 6 ====================
+  // STAGE-06: GIAI ĐOẠN 6
   {
     id: "STAGE-06",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 6",
-    title: "TẠO SẢN PHẨM AI",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 6</h3>`
+    title: "PHÒNG THỬ NGHIỆM VÀ CHẾ TẠO QUY TRÌNH",
+    teacherNotes: `<h3>Kích hoạt phòng thử nghiệm (0.5 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "THIẾT KẾ QUY TRÌNH HỌC",
-    goal: "Học sinh chuyển hóa lý thuyết thành công cụ thực tiễn, cụ thể hóa hành động học tập cho từng bộ môn học đường cụ thể.",
-    icon: "fa-solid fa-cubes",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 6</h3>`
+    title: "CHẾ TẠO PHIẾU CẤU HÌNH MÔN HỌC",
+    goal: "Hiển thị 4 lõi năng lượng tương ứng với 4 môn học (Toán, Văn, Anh, Khoa học tự nhiên) dạng khối 3D Neon.",
+    icon: "fa-solid fa-atom",
+    teacherNotes: `<h3>Giới thiệu hoạt động chế tạo</h3>`
   },
   {
     id: "STAGE-06-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Phiếu thiết kế quy trình học theo môn (giáo viên phát), bút lông.",
-    format: "Nhóm 4 học sinh (bốc thăm chọn môn)",
-    icon: "fa-solid fa-gifts",
-    teacherNotes: `<h3>Chuẩn bị hoạt động nhóm</h3>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "nhận Phiếu cấu hình môn học từ Giáo viên.",
+    format: "4 Nhóm Kỹ sư tác chiến.",
+    icon: "fa-solid fa-screwdriver-wrench",
+    teacherNotes: `<h3>Chuẩn bị phiếu và bốc thăm</h3>`
   },
   {
     id: "STAGE-06-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Mỗi nhóm tiến hành bốc thăm hoặc lựa chọn 1 trong 4 môn học: Toán, Ngữ văn, Tiếng Anh, Khoa học.",
-      "Suy nghĩ về các dạng bài tập đặc trưng của môn học đó khi tương tác với AI.",
-      "Điền cụ thể các hành động vào phiếu thiết kế quy trình học của nhóm mình.",
-      "Đại diện nhóm trình bày trước lớp."
+      "Bước 1: Đại diện bốc thăm nhận lõi năng lượng môn học (Toán, Văn, Anh, Khoa học).",
+      "Bước 2: Phân tích đặc tính dữ liệu bài tập đặc trưng của môn học đó khi quét qua AI.",
+      "Bước 3: Lập trình chi tiết hành động cho 4 bước (Nghĩ - Hỏi - Kiểm tra - Làm lại) vào Phiếu cấu hình môn học của nhóm.",
+      "Bước 4: Chia sẻ ý tưởng trước Hội đồng."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
+    teacherNotes: `<h3>Hướng dẫn lập trình môn học</h3>`
   },
   {
     id: "STAGE-06-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "THIẾT KẾ QUY TRÌNH HỌC THEO MÔN",
+    title: "THIẾT LẬP THUẬT TOÁN THỰC CHIẾN",
     duration: 600, // 10 mins
     workspaceType: "form-filling-blank",
-    instructions: "Hãy hoàn thiện phiếu thiết kế quy trình học với AI cho môn học của nhóm bạn.",
-    teacherNotes: `<h3>Tiến hành hoàn thiện phiếu (10 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 10 phút. Hỗ trợ các nhóm viết chi tiết các câu lệnh (prompt) và các cách thức kiểm tra chéo kiến thức.</p>`
+    instructions: "Nhiệm vụ Chế tạo: Hoàn thiện Phiếu thiết lập thuật toán: “Khi tối ưu hóa môn [Tên môn học] cùng AI, Kỹ sư chúng tôi sẽ hành động…”",
+    teacherNotes: `<h3>Lập trình phiếu môn học (10 phút)</h3>`
   },
-  
-  // 4 Slides for ACT-04 subject reports
   {
     id: "STAGE-06-ACT-04-1",
     period: 1,
     type: "act-report-subject",
     subject: "MÔN TOÁN",
-    nghi: "Đọc kỹ đề bài, xác định dạng toán, tự nhớ lại công thức và lấy giấy nháp tự giải thử đến chỗ bị bí.",
-    hoi: '"Tôi đang gặp khó khăn ở bài toán [nhập đề bài]. Hãy gợi ý cho tôi 2 bước đầu tiên để giải hoặc đưa ra công thức cần dùng, tuyệt đối không đưa ra đáp án cuối cùng."',
-    kiemtra: "Lật sách giáo khoa xem lại công thức AI đưa ra có chuẩn không, đối chiếu các bước giải xem có hợp lý với thầy cô dạy trên lớp không.",
-    lamlai: "Tắt màn hình thiết bị. Tự viết lại toàn bộ lời giải từ đầu đến cuối vào vở bằng chính sự hiểu biết của mình.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Toán (2 phút)</h3>`
+    nghi: "Đọc kỹ đề bài, phân tích dạng toán, tự gọi lại công thức từ bộ nhớ và nháp lời giải đến khi gặp phân đoạn nghẽn.",
+    hoi: "Tôi là Kỹ sư điều khiển. Tôi đang giải quyết bài toán [nhập đề bài]. Hãy cung cấp cho tôi 2 bước gợi ý tư duy đầu tiên hoặc công thức cốt lõi. Tuyệt đối không được xuất ra đáp án cuối cùng.",
+    kiemtra: "Đối chiếu công thức AI đưa ra với cơ sở dữ liệu Sách giáo khoa, thẩm định tính logic của các bước giải xem có khớp với thuật toán giảng dạy của thầy cô không.",
+    lamlai: "Ngắt kết nối màn hình thiết bị. Tự giải lại toàn bộ bài toán vào vở bằng chính năng lực tư duy đã mở khóa của mình.",
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Toán (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-04-2",
     period: 1,
     type: "act-report-subject",
     subject: "MÔN NGỮ VĂN",
-    nghi: "Tự gạch đầu dòng các ý chính muốn viết (lập dàn ý sơ bộ) và xác định cảm xúc, góc nhìn cá nhân của mình trước khi hỏi.",
-    hoi: '"Hãy gợi ý cho tôi một dàn ý chi tiết 3 phần cho đề văn [nhập đề bài], và cung cấp cho tôi 5 từ vựng hoặc hình ảnh miêu tả hay có thể sử dụng."',
-    kiemtra: "Đọc kỹ xem văn phong của AI có bị 'máy móc', thiếu cảm xúc chân thật, hay có bị lạc đề không.",
-    lamlai: "Cất gợi ý của AI. Tự viết lại thành một bài văn hoàn chỉnh bằng giọng văn và tình cảm thật của mình.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Ngữ văn (2 phút)</h3>`
+    nghi: "Tự gạch đầu dòng các luận điểm cốt lõi (Lập cấu trúc dàn ý sơ bộ) và định hình cảm xúc, quan điểm cá nhân về đề bài.",
+    hoi: "Hãy cung cấp cho tôi một bộ khung dàn ý 3 phần cho đề văn [nhập đề bài], kèm theo gợi ý 5 từ vựng đắt giá hoặc hình ảnh ẩn dụ độc đáo để tôi tham khảo phát triển bài viết.",
+    kiemtra: "Thẩm định văn phong của AI để lọc bỏ các đoạn văn rập khuôn, thiếu cảm xúc tự nhiên hoặc bị đi chệch hướng tiêu chuẩn.",
+    lamlai: "Ẩn toàn bộ phần gợi ý của AI. Tự chắp bút viết nên một tác phẩm văn học hoàn chỉnh bằng ngôn ngữ cá nhân và cảm xúc chân thật của chính mình.",
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Ngữ văn (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-04-3",
     period: 1,
     type: "act-report-subject",
     subject: "MÔN TIẾNG ANH",
-    nghi: "Tự viết câu tiếng Anh bằng vốn từ và ngữ pháp của mình, hoặc tự dịch đoạn văn trong đầu trước.",
-    hoi: '"Hãy kiểm tra xem câu tiếng Anh này của tôi có lỗi sai ngữ pháp hay từ vựng nào không: [nhập câu]. Nếu có, hãy giải thích lý do sai thật dễ hiểu."',
-    kiemtra: "Tra cứu lại các từ mới AI gợi ý trên từ điển chuẩn (Cambridge/Oxford), đối chiếu cấu trúc ngữ pháp với sách học tập.",
+    nghi: "Tự viết câu hoặc dịch đoạn văn bằng vốn từ vựng và cấu trúc ngữ pháp hiện tại trong não bộ trước khi tìm trợ giúp.",
+    hoi: "Hãy đóng vai Chuyên gia ngôn ngữ, kiểm tra và quét toàn bộ lỗi ngữ pháp, từ vựng trong câu sau: [nhập câu của học sinh]. Hãy giải thích lý do tại sao sai và đề xuất cách sửa dễ hiểu nhất.",
+    kiemtra: "Tra cứu ngược lại từ vựng AI gợi ý bằng các hệ từ điển chuẩn quốc tế (Cambridge/Oxford) để xác thực ngữ cảnh và cách phát âm chuẩn.",
     lamlai: "Không xem gợi ý nữa, tự viết lại câu đúng và thực hành phát âm to rõ ràng.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Tiếng Anh (2 phút)</h3>`
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Tiếng Anh (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-04-4",
     period: 1,
     type: "act-report-subject",
-    subject: "MÔN KHOA HỌC",
-    nghi: "Tự quan sát, nhớ lại các hiện tượng thực tế và đặt ra giả thuyết của riêng mình (ví dụ đoán do hơi nước bốc lên thành mây...).",
-    hoi: '"Hãy đóng vai một giáo viên Khoa học, giải thích hiện tượng [tên hiện tượng] cho học sinh lớp [khối lớp] hiểu đơn giản, có ví dụ thực tế."',
-    kiemtra: "Đối chiếu thông tin AI cung cấp với kiến thức trong sách giáo khoa Khoa học tự nhiên để đảm bảo chính xác khoa học.",
-    lamlai: "Tự vẽ lại một sơ đồ tư duy (mindmap) hoặc sơ đồ vòng tuần hoàn của hiện tượng đó ra giấy, điền chú thích bằng ngôn ngữ của mình.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Khoa học (2 phút)</h3>`
+    subject: "MÔN KHOA HỌC TỰ NHIÊN",
+    nghi: "Tự quan sát các hiện tượng thực tiễn, truy xuất kiến thức nền tảng và đặt ra giả thuyết khoa học của riêng mình.",
+    hoi: "Hãy đóng vai một Giáo sư Khoa học, giải thích nguyên lý vận hành của hiện tượng [tên hiện tượng] cho học sinh trung học hiểu một cách trực quan, sinh động nhất kèm ví dụ thực tế.",
+    kiemtra: "Đối chiếu nghiêm ngặt thông tin AI cung cấp với các định luật, kiến thức chính thống trong Sách giáo khoa để loại bỏ thông tin sai lệch.",
+    lamlai: "Tự mã hóa lại kiến thức bằng cách vẽ một sơ đồ tư duy (Mindmap) hoặc sơ đồ vòng tuần hoàn của hiện tượng ra giấy bằng ngôn ngữ của riêng mình.",
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Khoa học (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Cách cá nhân hóa quy trình 4 bước học với AI với các môn học cụ thể.",
-    nextQuestion: "Nhìn lại hành trình từ đầu tiết học đến giờ, bản thân mỗi chuyên gia đã nhận ra điều gì cho riêng mình?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã cá nhân hóa và cấu hình hóa quy trình 4 bước học tập cho từng môn học cụ thể.",
+    nextQuestion: "Lệnh tiếp theo: Kích hoạt chức năng Tự phản ánh để ghi lại Nhật ký cá nhân của Kỹ sư.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 7 ====================
+  // STAGE-07: GIAI ĐOẠN 7
   {
     id: "STAGE-07",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 7",
-    title: "NHẬT KÝ CHUYÊN GIA AI",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 7</h3>`
+    title: "NHẬT KÝ ĐIỆN TỬ TỐI MẬT",
+    teacherNotes: `<h3>Kích hoạt nhật ký điện tử (0.5 phút)</h3>`
   },
   {
     id: "STAGE-07-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "NHẬT KÝ PHẢN TƯ",
-    goal: "Tạo không gian tĩnh để học sinh thực hiện hoạt động Reflection (Phản tư), tự đánh giá thói quen cũ và định hình mong muốn thay đổi.",
-    icon: "fa-solid fa-pen-to-square",
-    teacherNotes: `<h3>Giới thiệu hoạt động Phản tư</h3>`
+    title: "GHI NHẬT KÝ ĐẶC VỤ",
+    goal: "Hiển thị một cuốn sổ da điện tử mở rộng giữa màn hình có quét dấu vân tay bảo mật.",
+    icon: "fa-solid fa-fingerprint",
+    teacherNotes: `<h3>Giới thiệu nhật ký</h3>`
   },
   {
     id: "STAGE-07-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Bút, vở ghi cá nhân (Nhật ký học tập).",
-    format: "Cá nhân",
-    icon: "fa-solid fa-fingerprint",
-    teacherNotes: `<h3>Chuẩn bị phản tư cá nhân</h3>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Bút và giấy nhật ký.",
+    format: "Cá nhân.",
+    icon: "fa-solid fa-key",
+    teacherNotes: `<h3>Chuẩn bị (0.5 phút)</h3>`
+  },
+  {
+    id: "STAGE-07-ACT-02",
+    period: 1,
+    type: "act-howto",
+    title: "MÃ LỆNH VẬN HÀNH",
+    steps: [
+      "Bước 1: Quay ngược thời gian, quét và rà soát lại toàn bộ hành vi sử dụng AI của bản thân trong quá khứ.",
+      "Bước 2: Điền các thông số tự đánh giá vào Phiếu nhật ký cá nhân.",
+      "Bước 3: Chia sẻ dũng cảm trước toàn Hội đồng lớp học."
+    ],
+    teacherNotes: `<h3>Hướng dẫn tự phản tư</h3>`
   },
   {
     id: "STAGE-07-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "NHẬT KÝ CHUYÊN GIA AI",
+    title: "GÕ MÃ LỆNH TƯ DUY",
     duration: 180, // 3 mins
     workspaceType: "reflection-inputs",
     prompts: [
-      "Điều em học được hôm nay là…",
-      "Bước em thường bỏ qua là…",
-      "Điều em muốn thay đổi là…"
+      "Điều em học được hôm nay là….",
+      "Bước em thường bỏ qua là….",
+      "Điều em muốn thay đổi là…."
     ],
-    teacherNotes: `<h3>Thực hiện phản tư (3 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 3 phút. Lớp học giữ yên lặng để các em tự nhìn nhận lại bản thân.</p>`
+    teacherNotes: `<h3>Ghi nhận phản tư (3 phút)</h3>`
   },
   {
     id: "STAGE-07-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Những suy nghĩ sâu kín và bài học tự thân của từng cá nhân.",
-    nextQuestion: "Từ nhận thức đến hành động là một khoảng cách, làm thế nào để duy trì lời hứa thay đổi này trong suốt một tuần sắp tới?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã lưu trữ và đồng bộ hóa Nhật ký tư duy cá nhân.",
+    nextQuestion: "Lệnh tiếp theo: Kích hoạt Thử thách thực địa bên ngoài phòng thí nghiệm.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 8 ====================
+  // STAGE-08: GIAI ĐOẠN 8
   {
     id: "STAGE-08",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 8",
-    title: "SỬ DỤNG AI THÔNG MINH",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 8</h3>`
+    title: "KHỞI CHẠY THỬ THÁCH THỰC ĐỊA",
+    teacherNotes: `<h3>Khởi chạy thử thách (0.5 phút)</h3>`
   },
   {
     id: "STAGE-08-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "THỬ THÁCH 1 TUẦN",
-    goal: "Áp dụng kiến thức bài học vào đời sống thực tế, thiết lập cam kết hành động dài hạn để hình thành thói quen học tập thông minh.",
-    icon: "fa-solid fa-clock-rotate-left",
-    teacherNotes: `<h3>Giới thiệu thử thách cam kết</h3>`
-  },
-  {
-    id: "STAGE-08-ACT-01B",
-    period: 1,
-    type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Phiếu cam kết hành động tuần (giáo viên phát).",
-    format: "Cá nhân",
-    icon: "fa-solid fa-calendar-check",
-    teacherNotes: `<h3>Chuẩn bị phiếu cam kết</h3>`
+    title: "CHIẾN DỊCH 7 NGÀY THỰC CHIẾN",
+    goal: "Hiển thị đồng hồ đếm ngược neon 7 ngày.",
+    icon: "fa-solid fa-clock",
+    teacherNotes: `<h3>Giới thiệu chiến dịch 7 ngày</h3>`
   },
   {
     id: "STAGE-08-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "BẢNG CAM KẾT HÀNH ĐỘNG TUẦN",
+    title: "BẢNG CHECKLIST KỸ SƯ",
     workspaceType: "commitment-checklist",
     checklist: [
-      "Nghĩ trước khi hỏi AI",
-      "Kiểm tra lại câu trả lời AI",
-      "Tự làm lại sau khi được AI hỗ trợ",
-      "Ghi lại điều mình học được"
+      "Đã kích hoạt mạch NGHĨ trước khi nạp dữ liệu hỏi AI.",
+      "Đã thẩm định và KIỂM TRA lại câu trả lời để lọc thông tin rác.",
+      "Đã ngắt thiết bị và TỰ LÀM LẠI bài tập bằng bộ não của mình.",
+      "Đã ghi nhận kiến thức mới vào bộ nhớ dài hạn."
     ],
-    teacherNotes: `<h3>Ký cam kết thử thách tuần (2 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên hướng dẫn học sinh đọc to các cam kết và tích chọn ký tên vào phiếu của mình.</p>`
+    teacherNotes: `<h3>Cam kết thực thi (2 phút)</h3>`
   },
   {
     id: "STAGE-08-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Bản khế ước hành động thực tế của những nhà thông thái công nghệ tương lai.",
-    nextQuestion: "Hãy cùng nhìn lại toàn bộ bức tranh kiến thức của ngày hôm nay để đóng gói trọn vẹn hành trình khám phá này!",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã giao nhiệm vụ thành công.",
+    nextQuestion: "Lệnh tiếp theo: Đóng gói toàn bộ hành trình, đóng khóa bài học để lưu trữ vào máy chủ trung tâm.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
@@ -3440,50 +5407,50 @@ const slidesData = [
     id: "END-01-1",
     period: 1,
     type: "key-takeaway-single",
-    title: "TỔNG KẾT: KIẾN THỨC 1",
-    label: "HỌC THỰC SỰ VS ĐỐI PHÓ",
+    title: "CỐT LÕI HỆ THỐNG: BẢN CHẤT",
+    label: "BẢN CHẤT",
     points: [
-      "<strong>Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu sâu sắc kiến thức.",
-      "<strong>Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI để nộp bài; bài tập hoàn thành nhưng bộ não không đọng lại kiến thức."
+      "<strong>Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu kiến thức.",
+      "<strong>Hành vi lỗi/Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI; bài tập hoàn thành trên vỏ bọc nhưng não bộ rơi vào trạng thái rỗng."
     ],
-    teacherNotes: `<h3>Tổng kết kiến thức 1 (1 phút)</h3>`
+    teacherNotes: `<h3>Đóng gói cốt lõi 1 (1 phút)</h3>`
   },
   {
     id: "END-01-2",
     period: 1,
     type: "key-takeaway-single",
-    title: "TỔNG KẾT: KIẾN THỨC 2",
-    label: "QUY TRÌNH HỌC VỚI AI HIỆU QUẢ",
+    title: "CỐT LÕI HỆ THỐNG: THUẬT TOÁN VÀNG",
+    label: "THUẬT TOÁN VÀNG",
     flow: ["NGHĨ", "HỎI", "KIỂM TRA", "LÀM LẠI"],
-    teacherNotes: `<h3>Tổng kết kiến thức 2 (1 phút)</h3>`
+    teacherNotes: `<h3>Đóng gói cốt lõi 2 (1 phút)</h3>`
   },
   {
     id: "END-01-3",
     period: 1,
     type: "key-takeaway-single",
-    title: "TỔNG KẾT: KIẾN THỨC 3",
-    label: "MỐI QUAN HỆ VỚI CÔNG NGHỆ",
-    quote: "AI hỗ trợ việc học, AI không thay thế việc học.",
+    title: "CỐT LÕI HỆ THỐNG: CHÂM NGÔN ĐẶC VỤ",
+    label: "CHÂM NGÔN ĐẶC VỤ",
+    quote: "AI hỗ trợ việc học. AI không thay thế việc học.",
     message: "Hãy biến AI thành bệ phóng cho trí tuệ của bạn, đừng biến mình thành cái bóng thụ động của công nghệ!",
-    teacherNotes: `<h3>Tổng kết kiến thức 3 (1 phút)</h3>`
+    teacherNotes: `<h3>Đóng gói cốt lõi 3 (1 phút)</h3>`
   },
   {
     id: "END-03",
     period: 1,
     type: "bq-revisit",
-    title: "QUAY LẠI CÂU HỎI LỚN",
-    question: "Làm thế nào để học cùng AI mà vẫn thực sự hiểu bài?",
-    answer: "Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, ta bắt buộc phải làm chủ cuộc chơi tư duy bằng cách tuân thủ nghiêm ngặt quy trình: Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình.",
-    teacherNotes: `<h3>Trả lời câu hỏi lớn (1 phút)</h3>`
+    title: "MÃ KHÓA LỜI GIẢI SAU CHIẾN DỊCH",
+    question: "Làm thế nào để điều khiển AI hỗ trợ học tập mà không làm suy giảm tư duy của chính mình?",
+    answer: "Để làm chủ cuộc chơi tư duy trước Siêu trí tuệ nhân tạo, Kỹ sư Novastars bắt buộc phải tuân thủ kỷ luật thuật toán:<br><br><strong>Chủ động NGHĨ độc lập → Khôn ngoan khi HỎI AI → Tỉnh táo KIỂM TRA chéo dữ liệu → Kiên trì LÀM LẠI bằng chính năng lực tự thân.</strong>",
+    teacherNotes: `<h3>Giải quyết câu hỏi lớn (1 phút)</h3>`
   },
   {
     id: "END-04",
     period: 1,
     type: "reflection-end",
-    title: "SUY NGẪM CUỐI BÀI HỌC",
+    title: "PHIẾU TƯ DUY LƯU TRỮ CUỐI BÀI",
     prompts: [
-      "Điều em bất ngờ nhất là…",
-      "Trước đây em nghĩ…",
+      "Điều em bất ngờ nhất là….",
+      "Trước đây em nghĩ….",
       "Bây giờ em hiểu rằng…"
     ],
     teacherNotes: `<h3>Phản tư cuối bài (1 phút)</h3>`
@@ -3492,21 +5459,20 @@ const slidesData = [
     id: "END-05",
     period: 1,
     type: "action-commitment-end",
-    title: "BẢN CAM KẾT CHUYÊN GIA AI",
+    title: "TUYÊN NGÔN HÀNH ĐỘNG CỦA KỸ SƯ",
     commitments: [
-      "Luôn tự suy nghĩ độc lập trước khi hỏi AI.",
-      "Hỏi AI có chọn lọc bằng câu lệnh thông minh gợi mở.",
-      "Kiểm tra chéo và phản biện lại thông tin AI cung cấp.",
-      "Tự mình làm lại bài tập để chuyển hóa kiến thức."
+      "NGHĨ: Luôn tự suy nghĩ và nháp bài trước khi tìm AI.",
+      "HỎI: Chỉ hỏi gợi ý cách làm, tuyệt đối không xin đáp án.",
+      "KIỂM TRA: Luôn đối chiếu lời giải của AI với Sách giáo khoa.",
+      "LÀM LẠI: Tắt thiết bị, tự tay giải lại bài bằng năng lực của mình."
     ],
-    teacherNotes: `<h3>Ký cam kết tốt nghiệp (2 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Bấm nút Ký tên & Tốt nghiệp để chúc mừng các chuyên gia AI tốt nghiệp khóa huấn luyện.</p>`
+    teacherNotes: `<h3>Ký cam kết & Đăng xuất (2 phút)</h3>`
   }
 ];
 
     </script>
     <script>
-      const serverSavedState = {"slideObjectOffsets":{"P0-01":{".welcome-title_0":{"width":742.6843706845353,"height":174.38752937081128},".welcome-subject_0":{"width":651.7305088868394,"height":82.82813790112696}},"P0-02":{},"P0-03":{".role-info-card_0":{"dx":427.9728059332509,"dy":-252.93943139678615,"width":332.671875,"height":170},".role-info-card_1":{"dx":-192,"dy":36,"width":429.703125,"height":205},".role-info-card_2":{"dx":-185,"dy":41,"width":399.625,"height":199}},"STAGE-01":{".stage-title_0":{"width":862.8344334247528,"height":102.53279300496371}},"STAGE-01-ACT-01":{".act-intro-goal_0":{"width":501.625,"height":78},".act-intro-card_0":{"width":783.9346377604971,"height":461.39099913268217}},"STAGE-01-ACT-01B":{},"STAGE-01-ACT-02":{},"STAGE-01-ACT-03":{".workspace-timer-widget_0":{"width":232,"height":164,"dx":65,"dy":11}},"STAGE-01-ACT-04":{},"STAGE-01-ACT-05":{".transition-wrapper_0":{"width":839,"height":463},".transition-card_0":{"width":798.1161676319626,"height":342.4660257120215}},"STAGE-02":{".stage-title_0":{"dx":5,"dy":1}},"STAGE-02-ACT-01":{".act-intro-card_0":{"width":743.625,"height":510}},"STAGE-02-ACT-01B":{},"STAGE-02-ACT-03":{".mission-envelope-container_0":{"dx":-3,"dy":111},".workspace-timer-widget_0":{"dx":-4,"dy":106},".slide-heading_0":{"dx":-6,"dy":76}},"STAGE-02-ACT-05":{".transition-wrapper_0":{"width":830,"height":448},".transition-card_0":{"width":757,"height":326,"dx":24,"dy":-1}},"STAGE-03":{".stage-title_0":{"width":807,"height":230,"dx":-10,"dy":8}},"STAGE-03-ACT-01":{".act-intro-title_0":{"width":613.2937739010353,"height":99.62548160435094,"dx":0,"dy":14.184177997527811},".act-intro-goal_0":{"dx":1.6687268232385661,"dy":35.04326328800989},".act-intro-card_0":{"width":695.2812845538956,"height":437.66824559611354}},"STAGE-03-ACT-01B":{},"STAGE-03-ACT-02":{},"STAGE-03-ACT-03":{},"STAGE-03-ACT-04":{},"STAGE-03-ACT-05":{},"STAGE-04":{},"STAGE-04-ACT-01":{".act-intro-card_0":{"width":699.6250261040346,"height":458.6081751197466},".act-intro-goal_0":{"dx":-3,"dy":18},".act-intro-title_0":{"dx":-1,"dy":1,"width":599.9874496931493,"height":90.67491736488671}},"STAGE-04-ACT-01B":{},"STAGE-04-ACT-02":{},"STAGE-04-ACT-03":{".matrix-grid_0":{"dx":-19,"dy":36},".workspace-timer-widget_0":{"dx":-1,"dy":45}},"STAGE-04-ACT-04":{},"STAGE-04-ACT-05":{".transition-wrapper_0":{"width":854,"height":515}},"STAGE-05":{},"STAGE-05-ACT-01":{".act-intro-title_0":{"width":890.625,"height":119,"dx":1,"dy":2},".act-intro-goal_0":{"dx":-3,"dy":33}},"STAGE-05-ACT-01B":{},"STAGE-05-ACT-03":{".drawing-placeholder_0":{"width":763,"height":512}},"STAGE-05-ACT-04":{},"STAGE-05-ACT-05":{},"STAGE-06":{".stage-title_0":{"width":743.453125,"height":118}},"STAGE-06-ACT-01":{".act-intro-title_0":{"width":869.625,"height":51,"dx":-2,"dy":36},".act-intro-goal_0":{"dx":0,"dy":85},".act-intro-card_0":{"width":838,"height":505}},"STAGE-06-ACT-01B":{},"STAGE-06-ACT-02":{},"STAGE-06-ACT-03":{},"STAGE-06-ACT-04-1":{},"STAGE-06-ACT-04-2":{},"STAGE-06-ACT-04-3":{},"STAGE-06-ACT-04-4":{},"STAGE-06-ACT-05":{},"STAGE-07":{},"STAGE-07-ACT-01":{".act-intro-title_0":{"width":583.625,"height":88},".act-intro-card_0":{"width":729.625,"height":543},".act-intro-goal_0":{"dx":3,"dy":100}},"STAGE-07-ACT-01B":{},"STAGE-07-ACT-03":{},"STAGE-07-ACT-05":{},"STAGE-08":{},"STAGE-08-ACT-01":{".act-intro-goal_0":{"width":605.625,"height":91,"dx":0,"dy":68},".act-intro-card_0":{"width":690,"height":527},".act-intro-title_0":{"dx":0,"dy":38}},"STAGE-08-ACT-01B":{},"STAGE-08-ACT-03":{},"STAGE-08-ACT-05":{},"END-01-1":{},"END-01-2":{},"END-01-3":{".takeaway-quote-box_0":{"dx":0,"dy":-17},".takeaway-large-card_0":{"width":897.8666666666667,"height":406.9927083333333}},"END-03":{},"END-04":{},"END-05":{}},"slideTextEdits":{"P0-01":{"edit_4":"Học sinh hiểu và xây dựng được quy trình học tập hiệu quả, chủ động cùng trí tuệ nhân tạo.","edit_1":"THỰC HÀNH DÙNG AI ĐỂ HỌC<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"P0-03":{"edit_0":"<br>"},"STAGE-01-ACT-01":{"edit_2":"Nhận ra sự khác biệt giữa việc \"dùng AI để học thật\" và \"dùng AI để&nbsp;<div>đối phó\".<div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div></div>"},"STAGE-01-ACT-01B":{"edit_2":"- Vở ghi chép<div><br><div>- Bút</div></div>","edit_4":"Cá nhân"},"STAGE-01-ACT-03":{"edit_2":"&nbsp; &nbsp;Đọc đề bài","edit_3":"&nbsp; Tự suy nghĩ","edit_4":"&nbsp; Hỏi AI khi gặp khó khăn","edit_5":"&nbsp; Kiểm tra lời giải của AI","edit_6":"&nbsp; Tự làm lại vào vở","edit_8":"&nbsp; Chụp đề bài","edit_9":"&nbsp; Gửi cho AI","edit_10":"&nbsp; Chép đáp án","edit_0":"AI GIÚP HAY AI THAY?","timer-display-STAGE-01-ACT-03":"03:57"},"STAGE-01-ACT-05":{"edit_3":"Một quy trình chuẩn để học với AI gồm những bước nào và từ đâu&nbsp;<span style=\"font-size: 1.3rem;\">mà có?</span>"},"STAGE-02":{"edit_1":"NHẬN YÊU CẦU TỪ&nbsp;<div>KHÁCH HÀNG<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-02-ACT-01":{"edit_2":"Giúp học sinh hiểu rõ nhiệm vụ học tập và xác định được các vấn đề cốt lõi cần điều tra.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>","edit_1":"NHIỆM VỤ&nbsp;<span style=\"font-size: 2.8rem;\">TỪ&nbsp;</span><div><span style=\"font-size: 2.8rem;\">HỌC VIỆN AI</span><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div></div>"},"STAGE-02-ACT-01B":{"edit_2":"- Giấy<div><br><div>- Bút</div></div>"},"STAGE-02-ACT-05":{"edit_3":"Làm sao để 'giải mã' và sắp xếp các hành động rời rạc thành&nbsp;<span style=\"font-size: 1.3rem;\">một&nbsp;</span><span style=\"font-size: 1.3rem;\">quy trình học tập tối ưu?</span>"},"STAGE-03-ACT-01B":{"edit_2":"Nhận bộ thẻ hành động từ giáo viên"},"STAGE-03-ACT-02":{"edit_3":"Thảo luận và phân loại các thẻ vào hai nhóm quy trình."},"STAGE-03-ACT-05":{"edit_3":"Nhưng tại sao các bước trong quy trình học hiệu quả lại quan trọng? Nếu lỡ bỏ qua một bước thì hệ quả sẽ ra sao?","edit_1":"Sự khác biệt giữa một quy trình học thông minh và một quy trình&nbsp;<span style=\"font-size: 1.3rem;\">đối phó.</span>"},"STAGE-04-ACT-01B":{"edit_2":"- Giấy viết<div><br>- Bút</div>"},"STAGE-04-ACT-04":{"edit_13":"Mỗi một bước trong ma trận đều có một sứ mệnh không thể thay thế."},"STAGE-04-ACT-05":{"edit_1":"Bản chất, vai trò kỹ thuật và lỗ hổng tư duy khi thiếu hụt các bước&nbsp;<span style=\"font-size: 1.3rem;\">phản hồi.</span>"},"STAGE-05-ACT-01B":{"edit_2":"- Giấy viết<div><br>- Bút</div>"},"STAGE-05-ACT-04":{"edit_1":"NGHĨ&nbsp;<div>(Não tự động)</div>","edit_2":"HỎI&nbsp;<div>(Tương tác)</div>","edit_4":"LÀM LẠI&nbsp;<div>(Tự giải)</div>"},"STAGE-05-ACT-05":{"edit_1":"Công thức vàng của một Chuyên gia AI thực thụ khi đứng trước&nbsp;<span style=\"font-size: 1.3rem;\">bài học mới.</span>","edit_3":"Làm sao để biến công thức này thành một công cụ thực chiến cho từng môn học&nbsp;<div>cụ thể trên lớp?</div>"},"STAGE-06-ACT-01B":{"edit_2":"- Nhận phiếu thiết kế quy trình<div><br>- Bút</div>","edit_4":"Nhóm 4 học sinh"},"STAGE-07-ACT-01":{"edit_1":"NHẬT KÝ&nbsp;<div>CHUYÊN GIA AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>","edit_2":"Tạo không gian tĩnh để học sinh thực hiện hoạt động tự đánh giá thói quen cũ và định hình mong muốn thay đổi.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-07-ACT-01B":{"edit_2":"- Bút<div><br><div>- Phiếu nhật ký</div></div>"},"STAGE-08-ACT-01":{"edit_2":"Áp dụng kiến thức bài học vào đời sống thực tế, thiết lập cam kết hành động dài hạn để hình thành thói quen học tập&nbsp;<span style=\"font-size: 1.2rem;\">thông minh.</span><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-08-ACT-01B":{"edit_2":"Phiếu cam kết hành động tuần"},"STAGE-08-ACT-05":{"edit_1":"Bản cam kết hành động thực tế của những nhà thông thái công nghệ tương lai."},"END-01-1":{"edit_2":"<strong>&nbsp; &nbsp; &nbsp;Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu sâu sắc kiến thức.","edit_3":"<strong>&nbsp; &nbsp; &nbsp;Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI để nộp bài; bài tập hoàn thành nhưng bộ não không đọng lại kiến thức.","edit_0":"TỔNG KẾT","edit_1":"HỌC THỰC SỰ VÀ HỌC ĐỐI PHÓ"},"END-01-2":{"edit_0":"TỔNG KẾT"},"END-01-3":{"edit_0":"TỔNG KẾT","edit_1":"<br>","edit_3":"Hãy biến AI thành bệ phóng cho trí tuệ của bạn, đừng biến mình thành cái bóng thụ động của&nbsp;<div>công nghệ!<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"END-03":{"edit_1":"Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, ta bắt buộc phải làm chủ cuộc chơi tư duy bằng cách tuân thủ nghiêm ngặt quy trình: Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình.","bq-revisit-answer":"Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, hãy tuân thủ nghiêm ngặt quy trình:&nbsp;<div><b><i>Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình.</i></b></div>"},"STAGE-06-ACT-01":{"edit_2":"Học sinh chuyển hóa lý thuyết thành công cụ thực tiễn, cụ thể hóa hành động học tập cho từng môn học cụ thể.<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><span class=\"fa-solid fa-arrows-up-down-left-right\"></span></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>"},"STAGE-04-ACT-03":{"edit_0":"MA TRẬN PHÂN TÍCH VAI TRÒ<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","timer-display-STAGE-04-ACT-03":"06:00"},"P0-02":{"edit_0":"<i class=\"fa-solid fa-circle-question\"></i> CÂU HỎI LỚN&nbsp;<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-03":{"edit_1":"THU THẬP&nbsp;<div>THÔNG TIN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-04":{"edit_1":"PHÂN TÍCH&nbsp;<div>PHẢN HỒI AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-06-ACT-03":{"edit_3":"(Chúng tôi sẽ tự suy nghĩ điều gì trước?)<br><br>&nbsp;_______________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">_______________________</span>","edit_4":"(Chúng tôi sẽ nhập câu lệnh/prompt gì để hỏi AI?)<br><br>&nbsp;___________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">____________________________</span>","edit_5":"(Chúng tôi kiểm tra tính đúng đắn bằng cách nào?)<br><br>&nbsp;______________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">__________</span>","edit_6":"(Chúng tôi tự luyện tập lại ra sao?)<br><br>&nbsp;__________________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">____________________</span>","edit_2":"Khi học môn ____________ với AI, chúng tôi sẽ:<div><br></div>"},"STAGE-07":{"edit_1":"NHẬT KÝ&nbsp;<div>CHUYÊN GIA AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-02-ACT-03":{"timer-display-STAGE-02-ACT-03":"04:00"},"STAGE-03-ACT-03":{"timer-display-STAGE-03-ACT-03":"08:00"},"STAGE-07-ACT-03":{"timer-display-STAGE-07-ACT-03":"04:00"},"STAGE-06-ACT-05":{"edit_3":"Nhìn lại hành trình từ đầu tiết học, bản thân mỗi chuyên gia đã nhận ra điều gì cho riêng mình?"}},"slideSortingState":{"STAGE-03-ACT-03":{"tag-STAGE-03-ACT-03-3":"sorting-pool","tag-STAGE-03-ACT-03-6":"sorting-pool","tag-STAGE-03-ACT-03-5":"sorting-pool","tag-STAGE-03-ACT-03-0":"sorting-pool","tag-STAGE-03-ACT-03-4":"sorting-pool","tag-STAGE-03-ACT-03-1":"sorting-pool","tag-STAGE-03-ACT-03-2":"sorting-pool"}},"slideCheckboxStates":{},"slideHiddenElements":{"P0-02":[".bq-sub_0"]},"slideTimerDurations":{"STAGE-01-ACT-03":240,"STAGE-02-ACT-03":240,"STAGE-03-ACT-03":480,"STAGE-04-ACT-03":360,"STAGE-07-ACT-03":240}};
+      const serverSavedState = {"slideObjectOffsets":{"P0-01":{".welcome-title_0":{"width":742.6843706845353,"height":174.38752937081128},".welcome-subject_0":{"width":651.7305088868394,"height":82.82813790112696}},"P0-02":{},"P0-03":{".role-info-card_0":{"dx":427.9728059332509,"dy":-252.93943139678615,"width":332.671875,"height":170},".role-info-card_1":{"dx":-192,"dy":36,"width":429.703125,"height":205},".role-info-card_2":{"dx":-185,"dy":41,"width":399.625,"height":199}},"STAGE-01":{".stage-title_0":{"width":862.8344334247528,"height":102.53279300496371}},"STAGE-01-ACT-01":{".act-intro-goal_0":{"width":501.625,"height":78},".act-intro-card_0":{"width":783.9346377604971,"height":461.39099913268217}},"STAGE-01-ACT-01B":{},"STAGE-01-ACT-02":{},"STAGE-01-ACT-03":{".workspace-timer-widget_0":{"width":232,"height":164,"dx":65,"dy":11}},"STAGE-01-ACT-04":{},"STAGE-01-ACT-05":{".transition-wrapper_0":{"width":839,"height":463},".transition-card_0":{"width":798.1161676319626,"height":342.4660257120215}},"STAGE-02":{".stage-title_0":{"dx":5,"dy":1}},"STAGE-02-ACT-01":{".act-intro-card_0":{"width":743.625,"height":510}},"STAGE-02-ACT-01B":{},"STAGE-02-ACT-03":{".mission-envelope-container_0":{"dx":-3,"dy":111},".workspace-timer-widget_0":{"dx":-4,"dy":106},".slide-heading_0":{"dx":-6,"dy":76}},"STAGE-02-ACT-05":{".transition-wrapper_0":{"width":830,"height":448},".transition-card_0":{"width":757,"height":326,"dx":24,"dy":-1}},"STAGE-03":{".stage-title_0":{"width":807,"height":230,"dx":-10,"dy":8},".radar-hud-circle_0":{"dx":-5.006180469715698,"dy":-90.11124845488257}},"STAGE-03-ACT-01":{".act-intro-title_0":{"width":613.2937739010353,"height":99.62548160435094,"dx":0,"dy":14.184177997527811},".act-intro-goal_0":{"dx":1.6687268232385661,"dy":35.04326328800989},".act-intro-card_0":{"width":695.2812845538956,"height":437.66824559611354}},"STAGE-03-ACT-01B":{},"STAGE-03-ACT-02":{},"STAGE-03-ACT-03":{},"STAGE-03-ACT-04":{},"STAGE-03-ACT-05":{},"STAGE-04":{},"STAGE-04-ACT-01":{".act-intro-card_0":{"width":699.6250261040346,"height":458.6081751197466},".act-intro-goal_0":{"dx":-3,"dy":18},".act-intro-title_0":{"dx":-1,"dy":1,"width":599.9874496931493,"height":90.67491736488671}},"STAGE-04-ACT-01B":{},"STAGE-04-ACT-02":{},"STAGE-04-ACT-03":{".matrix-grid_0":{"dx":-19,"dy":36},".workspace-timer-widget_0":{"dx":-1,"dy":45}},"STAGE-04-ACT-04":{},"STAGE-04-ACT-05":{".transition-wrapper_0":{"width":854,"height":515}},"STAGE-05":{},"STAGE-05-ACT-01":{".act-intro-title_0":{"width":890.625,"height":119,"dx":1,"dy":2},".act-intro-goal_0":{"dx":-3,"dy":33}},"STAGE-05-ACT-01B":{},"STAGE-05-ACT-03":{".drawing-placeholder_0":{"width":763,"height":512}},"STAGE-05-ACT-04":{},"STAGE-05-ACT-05":{},"STAGE-06":{".stage-title_0":{"width":743.453125,"height":118}},"STAGE-06-ACT-01":{".act-intro-title_0":{"width":869.625,"height":51,"dx":-2,"dy":36},".act-intro-goal_0":{"dx":0,"dy":85},".act-intro-card_0":{"width":838,"height":505}},"STAGE-06-ACT-01B":{},"STAGE-06-ACT-02":{},"STAGE-06-ACT-03":{},"STAGE-06-ACT-04-1":{},"STAGE-06-ACT-04-2":{},"STAGE-06-ACT-04-3":{},"STAGE-06-ACT-04-4":{},"STAGE-06-ACT-05":{},"STAGE-07":{},"STAGE-07-ACT-01":{".act-intro-title_0":{"width":583.625,"height":88},".act-intro-card_0":{"width":729.625,"height":543},".act-intro-goal_0":{"dx":3,"dy":100}},"STAGE-07-ACT-01B":{},"STAGE-07-ACT-03":{},"STAGE-07-ACT-05":{},"STAGE-08":{},"STAGE-08-ACT-01":{".act-intro-goal_0":{"width":605.625,"height":91,"dx":0,"dy":68},".act-intro-card_0":{"width":690,"height":527},".act-intro-title_0":{"dx":0,"dy":38}},"STAGE-08-ACT-01B":{},"STAGE-08-ACT-03":{},"STAGE-08-ACT-05":{},"END-01-1":{},"END-01-2":{},"END-01-3":{".takeaway-quote-box_0":{"dx":0,"dy":-17},".takeaway-large-card_0":{"width":897.8666666666667,"height":406.9927083333333}},"END-03":{},"END-04":{},"STAGE-02-ACT-02":{},"STAGE-05-ACT-02":{},"STAGE-07-ACT-02":{},"END-05":{}},"slideTextEdits":{"P0-01":{"edit_4":"Học sinh hiểu và xây dựng được quy trình học tập hiệu quả, chủ động cùng trí tuệ nhân tạo.","edit_1":"THỰC HÀNH DÙNG AI ĐỂ HỌC<div><br><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div><div>TIẾT 1: KHÁM PHÁ CÙNG AI</div></div>","edit_3":"<i class=\"fa-solid fa-building-columns\"></i> Học viện AI Novastars<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"P0-03":{"edit_0":"kỸ SƯ AI TẬP SỰ","edit_1":"Vai trò"},"STAGE-01-ACT-01":{"edit_2":"<br><div><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_1":"PHÂN TÍCH NHẬT KÝ: AI GIÚP HAY AI THAY?<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-01-ACT-01B":{"edit_2":"- Vở ghi chép<div><br><div>- Bút</div></div>","edit_4":"Cá nhân"},"STAGE-01-ACT-03":{"edit_2":"&nbsp; &nbsp;Đọc đề bài","edit_3":"&nbsp; Tự suy nghĩ","edit_4":"&nbsp; Hỏi AI khi gặp khó khăn","edit_5":"&nbsp; Kiểm tra lời giải của AI","edit_6":"&nbsp; Tự làm lại vào vở","edit_8":"&nbsp; Chụp đề bài","edit_9":"&nbsp; Gửi cho AI","edit_10":"&nbsp; Chép đáp án","edit_0":"AI GIÚP HAY AI THAY?","timer-display-STAGE-01-ACT-03":"03:57"},"STAGE-01-ACT-05":{"edit_3":"Một quy trình chuẩn để học với AI gồm những bước nào và từ đâu&nbsp;<span style=\"font-size: 1.3rem;\">mà có?</span>","edit_0":"<br>","edit_1":"Đã giải mã xong sự khác biệt giữa&nbsp;<div>\"Dùng AI để học\" và \"Để AI học hộ\".</div>"},"STAGE-02":{"edit_1":"NHẬN YÊU CẦU TỪ&nbsp;<div>KHÁCH HÀNG<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>"},"STAGE-02-ACT-01":{"edit_2":"<br><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>","edit_1":"NHIỆM VỤ&nbsp;<span style=\"font-size: 2.8rem;\">TỪ&nbsp;</span><div><span style=\"font-size: 2.8rem;\">HỌC VIỆN AI</span><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-02-ACT-01B":{"edit_2":"- Giấy<div><div>- Bút</div></div>","edit_4":"Tổ hợp 4 Kỹ sư (Nhóm 4 học sinh)"},"STAGE-02-ACT-05":{"edit_3":"Làm sao để 'giải mã' và sắp xếp các hành động rời rạc thành&nbsp;<span style=\"font-size: 1.3rem;\">một&nbsp;</span><span style=\"font-size: 1.3rem;\">quy trình học tập tối ưu?</span>","edit_0":"<br>"},"STAGE-03-ACT-01B":{"edit_2":"Nhận bộ thẻ hành động từ giáo viên","edit_4":"Nhóm 4 Kỹ sư"},"STAGE-03-ACT-02":{"edit_3":"Bước 3: Thảo luận và phân loại các thẻ vào hai nhóm quy trình."},"STAGE-03-ACT-05":{"edit_3":"Nhưng tại sao các bước trong quy trình học hiệu quả lại quan trọng? Nếu lỡ bỏ qua một bước thì hệ quả sẽ ra sao?","edit_1":"Sự khác biệt giữa một quy trình học thông minh và một quy trình&nbsp;<span style=\"font-size: 1.3rem;\">đối phó.</span>"},"STAGE-04-ACT-01B":{"edit_2":"- Giấy viết<div>- Bút</div>","edit_4":"Duy trì nhóm 4 Kỹ sư"},"STAGE-04-ACT-04":{"edit_13":"Mỗi một bước trong ma trận đều có một vai trò không thể thay thế."},"STAGE-04-ACT-05":{"edit_1":"Bản chất, vai trò kỹ thuật và lỗ hổng tư duy khi thiếu hụt các bước&nbsp;<span style=\"font-size: 1.3rem;\">phản hồi.</span>","edit_2":"LỆNH TIẾP THEO","edit_3":"Triệu tập Hội đồng tối cao để chuẩn hóa và đóng gói Nguyên tắc vàng."},"STAGE-05-ACT-01B":{"edit_2":"- Giấy viết<div>- Bút</div>","edit_4":"Cá nhân"},"STAGE-05-ACT-04":{"edit_1":"NGHĨ&nbsp;<div>(Não tự động)</div>","edit_2":"HỎI&nbsp;<div>(Tương tác)</div>","edit_4":"LÀM LẠI&nbsp;<div>(Tự giải)</div>","edit_0":"THUẬT TOÁN CHUẨN HÓA QUỐC TẾ NOVASTARS<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_5":"\"AI LÀ TRỢ LÝ HỖ TRỢ VIỆC HỌC. AI KHÔNG THAY THẾ VIỆC HỌC.\""},"STAGE-05-ACT-05":{"edit_1":"Công thức vàng của một Chuyên gia AI thực thụ khi đứng trước&nbsp;<span style=\"font-size: 1.3rem;\">bài học mới.</span>","edit_3":"Làm sao để biến công thức này thành một công cụ thực chiến cho từng môn học cụ thể<span style=\"font-size: 1.3rem;\">?</span>"},"STAGE-06-ACT-01B":{"edit_2":"- Nhận phiếu thiết kế quy trình<div>- Bút</div>","edit_4":"Nhóm 4 Kỹ sư"},"STAGE-07-ACT-01":{"edit_1":"NHẬT KÝ&nbsp;<div>CHUYÊN GIA AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>","edit_2":"<br><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-07-ACT-01B":{"edit_2":"- Bút<div><div>- Phiếu nhật ký</div></div>","edit_4":"Cá nhân"},"STAGE-08-ACT-01":{"edit_2":"<br><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-08-ACT-01B":{"edit_2":"Phiếu cam kết hành động tuần"},"STAGE-08-ACT-05":{"edit_1":"<br>","edit_0":"<br>","edit_2":"LỆNH TIẾP THEO","edit_3":"Đóng gói toàn bộ hành trình, đóng khóa bài học để lưu trữ vào máy chủ trung tâm."},"END-01-1":{"edit_2":"<strong>&nbsp; &nbsp; &nbsp;Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu sâu sắc kiến thức.","edit_3":"<strong>&nbsp; &nbsp; &nbsp;Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI để nộp bài; bài tập hoàn thành nhưng bộ não không đọng lại kiến thức.","edit_0":"TỔNG KẾT","edit_1":"HỌC THỰC SỰ VÀ HỌC ĐỐI PHÓ"},"END-01-2":{"edit_0":"TỔNG KẾT"},"END-01-3":{"edit_0":"TỔNG KẾT","edit_1":"<br>","edit_3":"<br><div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"END-03":{"edit_1":"Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, ta bắt buộc phải làm chủ cuộc chơi tư duy bằng cách tuân thủ nghiêm ngặt quy trình: Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình.","bq-revisit-answer":"Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, hãy tuân thủ nghiêm ngặt quy trình:&nbsp;<div><b><i>Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình.</i></b></div>","bq-revisit-question":"Làm&nbsp;<span style=\"font-size: 1.8rem;\">thế nào để học cùng AI mà vẫn thực sự hiểu\n     bài?&nbsp;</span><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-06-ACT-01":{"edit_2":"<br><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><span class=\"fa-solid fa-arrows-up-down-left-right\"></span></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-04-ACT-03":{"edit_0":"MA TRẬN PHÂN TÍCH VAI TRÒ<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","timer-display-STAGE-04-ACT-03":"06:00"},"P0-02":{"edit_0":"<i class=\"fa-solid fa-circle-question\"></i> MẬT MÃ TỐI CAO<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_1":"<div><h2 class=\"bq-text text-glow-green draggable-object\" id=\"bq-revisit-question\" data-el-key=\"bq-revisit-question\" style=\"padding: 0.1em 6px 0.12em; transition: 0.25s; font-family: Outfit, Inter, sans-serif; font-size: 1.8rem; line-height: 1.45; outline: rgb(6, 182, 212) dashed 2px; outline-offset: 6px; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 6px; box-shadow: rgba(6, 182, 212, 0.1) 0px 0px 15px;\">Làm <span style=\"font-size: 1.8rem;\">thế nào để học cùng AI mà vẫn thực sự hiểu bài?&nbsp;</span></h2></div><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-03":{"edit_1":"THU THẬP&nbsp;<div>THÔNG TIN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-04":{"edit_1":"PHÂN TÍCH&nbsp;<div>PHẢN HỒI AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-06-ACT-03":{"edit_3":"(Chúng tôi sẽ tự suy nghĩ điều gì trước?)<br><br>&nbsp;_______________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">_______________________</span>","edit_4":"(Chúng tôi sẽ nhập câu lệnh/prompt gì để hỏi AI?)<br><br>&nbsp;___________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">____________________________</span>","edit_5":"(Chúng tôi kiểm tra tính đúng đắn bằng cách nào?)<br><br>&nbsp;______________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">__________</span>","edit_6":"(Chúng tôi tự luyện tập lại ra sao?)<br><br>&nbsp;__________________________<span style=\"font-size: 20.9px;\">_______________________</span><span style=\"font-size: 20.9px;\">____________________</span>","edit_2":"Khi học môn ____________ với AI, chúng tôi sẽ:<div><br></div>"},"STAGE-07":{"edit_1":"NHẬT KÝ&nbsp;<div>CHUYÊN GIA AI<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-02-ACT-03":{"timer-display-STAGE-02-ACT-03":"04:00"},"STAGE-03-ACT-03":{"timer-display-STAGE-03-ACT-03":"08:00","edit_2":"CỔNG 01: <br>Quy trình Học tập Hiệu quả (Hệ thống Xanh)","edit_6":"CỔNG 02: <br>Quy trình Đối phó/Lười biếng (Hệ thống Lỗi)","edit_1":"Nhiệm vụ phân loại: Hãy lập trình, đưa các chip hành động về đúng cổng quy trình:","edit_0":"PHÂN MẠCH HÀNH ĐỘNG<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-07-ACT-03":{"timer-display-STAGE-07-ACT-03":"04:00"},"STAGE-06-ACT-05":{"edit_3":"Nhìn lại hành trình từ đầu tiết học, bản thân mỗi chuyên gia đã nhận ra điều gì cho riêng mình?","edit_0":"<br>"},"STAGE-01-ACT-04":{"edit_3":"Sự khác biệt nằm ở Quy trình tương tác: CHỦ ĐỘNG ĐIỀU KHIỂN (Nam) và THỤ ĐỘNG PHỤ THUỘC (Lan)."},"STAGE-03-ACT-01":{"edit_2":"<br><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-04-ACT-01":{"edit_2":"<br><div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_1":"THẨM ĐỊNH:&nbsp;<div>MỖI BƯỚC GIÚP GÌ?<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div></div>"},"STAGE-04-ACT-02":{"edit_1":"Bước 1: Quan sát bảng hiển thị trên màn hình.","edit_2":"Bước 2: Thảo luận nhóm để tìm ra 'Chức năng' và hệ quả 'Nếu ngắt mạch' (Bỏ qua bước) của 4 vi mạch (bước) cốt lõi."},"STAGE-05-ACT-01":{"edit_1":"ĐẠI HỘI ĐỒNG KỸ SƯ AI NOVASTARS<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>","edit_0":"HOẠT ĐỘNG HUẤN LUYỆN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-05-ACT-02":{"edit_2":"Bước 2: Các đại diện lên thuyết minh và trình bày sơ đồ quy trình của nhóm mình."},"STAGE-05-ACT-03":{"edit_1":"Đề bài Hội nghị: Tổng hợp, vẽ lại và trình bày Sơ đồ quy trình chuẩn hóa:<div>\"ĐIỀU KHIỂN AI HỌC TẬP\".</div>"},"STAGE-06-ACT-02":{"edit_1":"Bước 1: Đại diện bốc thăm nhận môn học (Toán, Văn, Anh, Khoa học).","edit_2":"Bước 2: Phân tích đặc tính dữ liệu bài tập đặc trưng của môn học đó."},"STAGE-06-ACT-04-1":{"edit_0":"<i class=\"fa-solid fa-calculator\"></i> CẤU HÌNH: MÔN TOÁN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-06-ACT-04-2":{"edit_0":"<i class=\"fa-solid fa-pen-nib\"></i> CẤU HÌNH: MÔN NGỮ VĂN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-06-ACT-04-3":{"edit_0":"<i class=\"fa-solid fa-language\"></i> CẤU HÌNH: MÔN TIẾNG ANH<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-06-ACT-04-4":{"edit_0":"<i class=\"fa-solid fa-flask\"></i> CẤU HÌNH: MÔN KHOA HỌC TỰ NHIÊN<div class=\"drag-handle\" title=\"Kéo để di chuyển\"><i class=\"fa-solid fa-arrows-up-down-left-right\"></i></div><div class=\"resize-handle\" title=\"Kéo để co giãn\"><i class=\"fa-solid fa-up-right-and-down-left-from-center\"></i></div><div class=\"delete-handle\" title=\"Xóa phần tử khỏi slide\"><i class=\"fa-solid fa-trash\"></i></div>"},"STAGE-07-ACT-02":{"edit_3":"Bước 3: Chia sẻ trước toàn Hội đồng lớp học."},"STAGE-07-ACT-05":{"edit_0":"<br>","edit_2":"LỆNH TIẾP THEO","edit_3":"Kích hoạt Thử thách thực địa bên ngoài phòng&nbsp;<div>thí nghiệm.</div>"},"END-05":{"edit_1":"<b>NGHĨ</b>: Luôn tự suy nghĩ và nháp bài trước khi tìm AI.","edit_2":"<b>HỎI</b>: Chỉ hỏi gợi ý cách làm, tuyệt đối không xin đáp án.","edit_3":"<b>KIỂM TRA</b>: Luôn đối chiếu lời giải của AI với Sách giáo khoa.","edit_4":"<b>LÀM LẠI</b>: Tắt thiết bị, tự tay giải lại bài bằng năng lực của mình."}},"slideSortingState":{"STAGE-03-ACT-03":{"tag-STAGE-03-ACT-03-5":"sorting-pool","tag-STAGE-03-ACT-03-2":"sorting-pool","tag-STAGE-03-ACT-03-0":"sorting-pool","tag-STAGE-03-ACT-03-6":"sorting-pool","tag-STAGE-03-ACT-03-4":"sorting-pool","tag-STAGE-03-ACT-03-1":"sorting-pool","tag-STAGE-03-ACT-03-3":"sorting-pool"}},"slideCheckboxStates":{},"slideHiddenElements":{"P0-02":[".bq-sub_0"],"STAGE-05-ACT-01":[".act-intro-goal_0"]},"slideTimerDurations":{"STAGE-01-ACT-03":240,"STAGE-02-ACT-03":240,"STAGE-03-ACT-03":480,"STAGE-04-ACT-03":360,"STAGE-07-ACT-03":240}};
     </script>
     <script>
 // ==========================================
@@ -3515,6 +5481,7 @@ const slidesData = [
 let currentSlideIndex = 0;
 const totalSlides = slidesData.length;
 const timerStates = {}; // Stores { remainingTime: number, intervalId: null/interval } by slideId
+let matrixIntervalId = null; // Tracks the welcome slide Matrix rain animation interval
 
 // DOM Elements
 const slideViewer = document.getElementById('slide-viewer');
@@ -3582,21 +5549,28 @@ function renderSlide(index) {
     switch (slide.type) {
         case 'welcome':
             slideHtml = `
-                <div class="slide-content layout-welcome">
-                    <div class="particles-bg"></div>
+                <div class="slide-content layout-welcome login-portal">
+                    <canvas class="matrix-rain-canvas" id="matrix-canvas"></canvas>
                     <div class="welcome-grid">
                         <div class="welcome-text-side">
-                            <div class="welcome-badge" contenteditable="true">${slide.role}</div>
+                            <div class="welcome-badge" contenteditable="true"><i class="fa-solid fa-user-shield"></i> ${slide.role}</div>
                             <h1 class="welcome-title text-glow" contenteditable="true">${slide.title}</h1>
-                            <p class="welcome-subtitle" contenteditable="true">${slide.subtitle}</p>
-                            <p class="welcome-subject" contenteditable="true">${slide.subject}</p>
+                            <p class="welcome-subtitle" contenteditable="true"><i class="fa-solid fa-code"></i> ${slide.subtitle}</p>
+                            <p class="welcome-subject" contenteditable="true"><i class="fa-solid fa-building-columns"></i> ${slide.subject}</p>
                             <div class="welcome-objectives">
-                                <strong style="color:var(--color-teal);">Mục tiêu bài học:</strong> 
+                                <strong style="color:var(--color-teal);"><i class="fa-solid fa-bullseye"></i> Mục tiêu chiến dịch:</strong> 
                                 <span contenteditable="true">${slide.objectives}</span>
                             </div>
                         </div>
                         <div class="welcome-visual-side draggable-object">
-                            <img src="welcome_ai_classroom.png" class="welcome-cartoon-img" alt="AI Classroom">
+                            <div class="scanner-portal-widget">
+                                <div class="scanner-header"><i class="fa-solid fa-circle-notch fa-spin"></i> HỆ THỐNG ĐANG QUÉT...</div>
+                                <div class="fingerprint-scan-container">
+                                    <div class="fingerprint-laser-line"></div>
+                                    <i class="fa-solid fa-fingerprint fingerprint-icon"></i>
+                                </div>
+                                <div class="scanner-footer">TRUY CẬP BẢO MẬT NOVASTARS</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3608,20 +5582,21 @@ function renderSlide(index) {
                 <div class="slide-content layout-big-question">
                     <div class="bq-glow-bg"></div>
                     <div class="bq-wrapper draggable-object">
-                        <div class="bq-visual-graphic">
-                            <svg class="bq-svg" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(249,115,22,0.12)" stroke-width="0.8"/>
-                                <circle cx="50" cy="50" r="44" fill="none" stroke="var(--color-orange)" stroke-width="0.8" stroke-dasharray="12 28" class="rotate-circuit-cw"/>
-                                <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(6,182,212,0.08)" stroke-width="0.8"/>
-                                <circle cx="50" cy="50" r="36" fill="none" stroke="var(--color-teal)" stroke-width="0.6" stroke-dasharray="16 34" class="rotate-circuit-ccw"/>
-                                <circle cx="50" cy="6" r="2.5" fill="var(--color-orange)" filter="drop-shadow(0 0 4px var(--color-orange))"/>
-                                <circle cx="50" cy="94" r="2.5" fill="var(--color-orange)" filter="drop-shadow(0 0 4px var(--color-orange))"/>
-                                <circle cx="94" cy="50" r="2.5" fill="var(--color-teal)" filter="drop-shadow(0 0 4px var(--color-teal))"/>
-                                <circle cx="6" cy="50" r="2.5" fill="var(--color-teal)" filter="drop-shadow(0 0 4px var(--color-teal))"/>
-                                <text x="50%" y="62%" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="36" fill="var(--color-orange)" filter="drop-shadow(0 0 6px var(--color-orange-glow))" class="pulse-element">?</text>
-                            </svg>
+                        <div class="circuits-brain-vs-ai">
+                            <div class="circuit-brain-container">
+                                <i class="fa-solid fa-brain brain-neon-icon"></i>
+                                <div class="brain-circuit-line line1"></div>
+                                <div class="brain-circuit-line line2"></div>
+                            </div>
+                            <div class="electric-question-mark">
+                                <span class="eq-text text-glow pulse-element">?</span>
+                            </div>
+                            <div class="ai-energy-core-container">
+                                <div class="ai-core-energy volt-lime-glow"></div>
+                                <i class="fa-solid fa-atom ai-neon-icon"></i>
+                            </div>
                         </div>
-                        <span class="bq-tag" contenteditable="true"><i class="fa-solid fa-circle-question"></i> ${slide.title}</span>
+                        <span class="bq-tag" contenteditable="true"><i class="fa-solid fa-key"></i> ${slide.title}</span>
                         <h2 class="bq-text text-glow" contenteditable="true">${slide.question}</h2>
                         <p class="bq-sub" contenteditable="true">${slide.subtext}</p>
                     </div>
@@ -3631,20 +5606,38 @@ function renderSlide(index) {
             
         case 'role-intro':
             slideHtml = `
-                <div class="slide-content layout-role-intro">
-                    <h2 class="slide-heading" contenteditable="true">${slide.title}</h2>
-                    <div class="role-cards-container">
-                        <div class="role-info-card card-role-name">
-                            <div class="role-icon-box"><i class="fa-solid fa-laptop-code"></i></div>
-                            <span class="role-badge-text" contenteditable="true">${slide.roleName}</span>
+                <div class="slide-content layout-role-intro dashboard-theme">
+                    <h2 class="slide-heading" contenteditable="true"><i class="fa-solid fa-chart-line"></i> ${slide.title}</h2>
+                    <div class="dashboard-grid">
+                        <div class="db-panel db-left-panel draggable-object">
+                            <div class="panel-header">ĐỊNH DANH KỸ SƯ AI</div>
+                            <div class="hologram-avatar-container">
+                                <div class="hologram-glitch-layer"></div>
+                                <i class="fa-solid fa-user-astronaut engineer-avatar-icon"></i>
+                                <div class="avatar-hud-ring"></div>
+                            </div>
+                            <div class="hud-parameters">
+                                <div class="hud-param-row">
+                                    <span>NĂNG LỰC TƯ DUY</span>
+                                    <span class="param-value text-glow-cyan">100%</span>
+                                </div>
+                                <div class="hud-progress"><div class="hud-progress-bar" style="width: 100%;"></div></div>
+                                <div class="hud-param-row" style="margin-top: 8px;">
+                                    <span>TỶ LỆ ĐỒNG BỘ AI</span>
+                                    <span class="param-value text-glow-orange">0%</span>
+                                </div>
+                                <div class="hud-progress"><div class="hud-progress-bar warning-bar" style="width: 0%;"></div></div>
+                            </div>
                         </div>
-                        <div class="role-info-card card-role-desc">
-                            <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-users-gear text-orange"></i> <span contenteditable="true">Vai trò học sinh</span></h3>
-                            <p class="card-content-text" contenteditable="true">${slide.roleDesc}</p>
-                        </div>
-                        <div class="role-info-card card-role-mission">
-                            <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check text-green"></i> <span contenteditable="true">Nhiệm vụ chính</span></h3>
-                            <p class="card-content-text" contenteditable="true">${slide.roleMission}</p>
+                        <div class="db-panels-right">
+                            <div class="db-panel panel-desc">
+                                <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-user-gear text-teal"></i> <span contenteditable="true">${slide.roleName}</span></h3>
+                                <p class="card-content-text" contenteditable="true">${slide.roleDesc}</p>
+                            </div>
+                            <div class="db-panel panel-mission" style="margin-top: 20px;">
+                                <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-crosshairs text-orange"></i> <span contenteditable="true">Nhiệm vụ chính</span></h3>
+                                <p class="card-content-text" contenteditable="true">${slide.roleMission}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3652,36 +5645,232 @@ function renderSlide(index) {
             break;
             
         case 'stage-intro':
-            slideHtml = `
-                <div class="slide-content layout-stage-intro">
-                    <div class="stage-intro-wrapper draggable-object">
-                        <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
-                        <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
-                        <div class="stage-lock-wrapper">
-                            <svg class="stage-lock-svg" viewBox="0 0 100 100">
-                                <path d="M32 45 V 30 A 18 18 0 0 1 68 30 V 45" fill="none" stroke="var(--color-teal)" stroke-width="7" stroke-linecap="round" class="lock-shackle"/>
-                                <rect x="22" y="45" width="56" height="40" rx="8" fill="#0d1527" stroke="var(--color-teal)" stroke-width="3" filter="drop-shadow(0 0 6px var(--color-teal-glow))"/>
-                                <circle cx="50" cy="62" r="5" fill="#080c14"/>
-                                <path d="M48 65 L 46 76 H 54 L 52 65 Z" fill="#080c14"/>
-                            </svg>
+            if (slide.id === 'STAGE-02') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro video-call-incoming">
+                        <div class="glitch-overlay"></div>
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="video-call-screen">
+                                <div class="call-static-noise"></div>
+                                <div class="call-overlay-hud">
+                                    <div class="blink-rec"><i class="fa-solid fa-circle text-danger"></i> ĐANG CÓ CUỘC GỌI...</div>
+                                    <div class="caller-id">HỌC VIỆN AI NOVASTARS</div>
+                                </div>
+                                <i class="fa-solid fa-user-tie caller-avatar-icon"></i>
+                            </div>
+                            <div class="beep-notification-indicator" style="margin-top: 20px;">
+                                <i class="fa-solid fa-bell fa-bounce text-orange"></i>
+                                <span class="blink-text text-orange" style="font-weight:700; margin-left: 8px;">TÍN HIỆU NHIỄU SÓNG - TIN NHẮN MẬT</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            } else if (slide.id === 'STAGE-03') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro radar-scanning-field">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="radar-hud-circle">
+                                <div class="radar-line-sweep"></div>
+                                <div class="barcode-streams-container">
+                                    <div class="barcode-stream-line l1"></div>
+                                    <div class="barcode-stream-line l2"></div>
+                                    <div class="barcode-stream-line l3"></div>
+                                </div>
+                                <i class="fa-solid fa-radar radar-core-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-04') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro brainwave-dashboard">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="wave-dashboard-hud">
+                                <div class="brainwave-graph">
+                                    <svg viewBox="0 0 200 40" class="brainwave-svg">
+                                        <path d="M0,20 Q10,5 20,20 T40,20 T60,20 T80,20 T100,20 T120,20 T140,20 T160,20 T180,20 T200,20" fill="none" stroke="var(--color-teal)" stroke-width="1.5" class="wave-path"></path>
+                                    </svg>
+                                </div>
+                                <div class="dashboard-stats-readout">
+                                    <div>MA TRẬN LOGIC: HOẠT ĐỘNG</div>
+                                    <div>CPU: 42%</div>
+                                    <div>RAM: 12GB</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-05') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro energy-core-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="energy-core-glowing-widget">
+                                <div class="core-orbit">
+                                    <div class="core-nucleus"></div>
+                                </div>
+                                <i class="fa-solid fa-lightbulb core-bulb"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-06') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro mechanical-gears-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="gears-hud-assembly">
+                                <i class="fa-solid fa-gear gear-big fa-spin"></i>
+                                <i class="fa-solid fa-gear gear-small fa-spin-reverse"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-07') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro coder-terminal-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="coder-terminal-hud">
+                                <div class="terminal-text-line">C:\\SYSTEM\\DIARY> ĐANG KHỞI TẠO PHẢN TƯ...</div>
+                                <div class="terminal-text-line">TRẠNG THÁI: KHÓA</div>
+                                <div class="terminal-text-line">ĐANG TRUY CẬP CẢM BIẾN SINH TRẮC HỌC_</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-08') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro mission-activation-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="mission-activation-grid">
+                                <div class="tick-box active"><i class="fa-solid fa-square-check text-glow-lime"></i> ĐANG QUÉT HOẠT ĐỘNG</div>
+                                <div class="tick-box active"><i class="fa-solid fa-square-check text-glow-lime"></i> KHỞI TẠO GIAO THỨC</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="stage-lock-wrapper">
+                                <div class="laser-scanner-line cyan-laser"></div>
+                                <svg class="stage-lock-svg" viewBox="0 0 100 100">
+                                    <path d="M32 45 V 30 A 18 18 0 0 1 68 30 V 45" fill="none" stroke="var(--color-teal)" stroke-width="7" stroke-linecap="round" class="lock-shackle"/>
+                                    <rect x="22" y="45" width="56" height="40" rx="8" fill="#0d1527" stroke="var(--color-teal)" stroke-width="3" filter="drop-shadow(0 0 6px var(--color-teal-glow))"/>
+                                    <circle cx="50" cy="62" r="5" fill="#080c14"/>
+                                    <path d="M48 65 L 46 76 H 54 L 52 65 Z" fill="#080c14"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
             break;
             
         case 'act-intro':
+            let visualSideHtml = `<img src="learning_path.png" class="act-cartoon-img" alt="Learning Path">`;
+            if (slide.id === 'STAGE-01-ACT-01') {
+                visualSideHtml = `
+                    <div class="data-split-screen-loader">
+                        <div class="loader-header"><i class="fa-solid fa-spinner fa-spin"></i> LUỒNG DỮ LIỆU ĐANG NẠP...</div>
+                        <div class="loader-status text-glow-cyan">Đang tải Nhật ký người dùng Nam & Lan...</div>
+                        <div class="stream-console">
+                            <div class="console-line">> ĐANG KẾT NỐI CƠ SỞ DỮ LIỆU... THÀNH CÔNG</div>
+                            <div class="console-line">> TẢI NHẬT KÝ_NAM_CHỦ ĐỘNG... 100%</div>
+                            <div class="console-line">> TẢI NHẬT KÝ_LAN_THỤ ĐỘNG... 100%</div>
+                            <div class="console-line">> ĐANG KHỞI TẠO KHÔNG GIAN PHÂN TÍCH... SẴN SÀNG</div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-02-ACT-01') {
+                visualSideHtml = `
+                    <div class="secure-envelope-hologram pulse-glow-red">
+                        <i class="fa-solid fa-envelope-open-text envelope-icon"></i>
+                        <div class="digital-seal"><i class="fa-solid fa-shield-halved"></i> AN TOÀN</div>
+                        <div class="envelope-hud">HỌC VIỆN AI NOVASTARS</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-03-ACT-01') {
+                visualSideHtml = `
+                    <div class="floating-data-cubes">
+                        <div class="cube cube-nghi text-glow-cyan">NGHĨ</div>
+                        <div class="cube cube-hoi text-glow-orange">HỎI</div>
+                        <div class="cube cube-kiemtra text-glow-lime">KIỂM TRA</div>
+                        <div class="cube cube-lamlai text-glow-pink">LÀM LẠI</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-04-ACT-01') {
+                visualSideHtml = `
+                    <div class="xray-brain-scanner">
+                        <div class="scanner-sweep-bar"></div>
+                        <i class="fa-solid fa-brain scan-brain-icon"></i>
+                        <div class="scanner-hud-grid">
+                            <span>CẢM BIẾN: BẬT</span>
+                            <span>ĐANG QUÉT CẤU TRÚC LOGIC</span>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-05-ACT-01') {
+                visualSideHtml = `
+                    <div class="hologram-assistant-robot">
+                        <i class="fa-solid fa-robot robot-glow-icon"></i>
+                        <div class="robot-glow-ring"></div>
+                        <div class="hud-caption">TRỢ LÝ AI V1.0</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-06-ACT-01') {
+                visualSideHtml = `
+                    <div class="cores-preview-grid">
+                        <div class="core-preview math-core"><i class="fa-solid fa-calculator"></i><span>TOÁN</span></div>
+                        <div class="core-preview lit-core"><i class="fa-solid fa-pen-nib"></i><span>VĂN</span></div>
+                        <div class="core-preview eng-core"><i class="fa-solid fa-language"></i><span>ANH</span></div>
+                        <div class="core-preview sci-core"><i class="fa-solid fa-flask"></i><span>KHOA HỌC</span></div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-07-ACT-01') {
+                visualSideHtml = `
+                    <div class="biometric-diary">
+                        <i class="fa-solid fa-book-bookmark diary-icon"></i>
+                        <div class="diary-fingerprint"><i class="fa-solid fa-fingerprint fa-pulse"></i></div>
+                        <div class="hud-status">NHẬT KÝ ĐÃ KHÓA - CHẠM CẢM BIẾN</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-08-ACT-01') {
+                visualSideHtml = `
+                    <div class="mission-countdown-hud">
+                        <div class="hud-title">NHIỆM VỤ ĐANG HOẠT ĐỘNG</div>
+                        <div class="countdown-digits">07:00:00</div>
+                        <div class="hud-subtitle">NGÀY : GIỜ : PHÚT</div>
+                    </div>
+                `;
+            }
+            
             slideHtml = `
                 <div class="slide-content layout-act-intro">
                     <div class="act-intro-grid">
                         <div class="act-intro-card">
                             <i class="${slide.icon} act-intro-icon"></i>
-                            <span class="act-intro-badge" contenteditable="true">HOẠT ĐỘNG KHÁM PHÁ</span>
+                            <span class="act-intro-badge" contenteditable="true">HOẠT ĐỘNG HUÂN LUYỆN</span>
                             <h1 class="act-intro-title" contenteditable="true">${slide.title}</h1>
                             <p class="act-intro-goal" contenteditable="true">${slide.goal}</p>
                         </div>
                         <div class="act-intro-visual draggable-object">
-                            <img src="learning_path.png" class="act-cartoon-img" alt="Learning Path">
+                            ${visualSideHtml}
                         </div>
                     </div>
                 </div>
@@ -3689,17 +5878,82 @@ function renderSlide(index) {
             break;
             
         case 'act-prep':
+            let prepVisualHtml = `<img src="prep_supplies.png" style="width:100%; max-height:220px; object-fit:contain;" alt="Supplies">`;
+            if (slide.id === 'STAGE-01-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="cyber-toolkit-box">
+                        <div class="box-lid"></div>
+                        <i class="fa-solid fa-briefcase toolkit-icon"></i>
+                        <div class="tools-inside">
+                            <i class="fa-solid fa-pen-fancy pen-digital"></i>
+                            <i class="fa-solid fa-book-journal-whills logbook-secured"></i>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-02-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="radar-scan-container">
+                        <div class="radar-sweep"></div>
+                        <i class="fa-solid fa-magnifying-glass radar-magnifier"></i>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-03-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="engineers-squad-chips">
+                        <i class="fa-solid fa-users squad-icon"></i>
+                        <div class="chips-row">
+                            <span class="nano-chip color-blue"></span>
+                            <span class="nano-chip color-orange"></span>
+                            <span class="nano-chip color-lime"></span>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-04-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="matrix-empty-glow">
+                        <div class="blinking-led"></div>
+                        <i class="fa-solid fa-table-cells matrix-led-icon"></i>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-05-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="concentration-beam-scanner">
+                        <i class="fa-solid fa-robot robot-beam-icon"></i>
+                        <div class="scanning-laser-cone"></div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-06-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="blueprint-assembly">
+                        <i class="fa-solid fa-diagram-project assembly-icon"></i>
+                        <i class="fa-solid fa-gears gears-assembly"></i>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-07-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="biometric-unlocked">
+                        <i class="fa-solid fa-lock-open unlocked-lock"></i>
+                        <i class="fa-solid fa-id-card unlocked-badge"></i>
+                    </div>
+                `;
+            }
+            
             slideHtml = `
                 <div class="slide-content layout-act-prep">
                     <h2 class="slide-heading" contenteditable="true">${slide.title}</h2>
-                    <div class="prep-cards-container">
-                        <div class="prep-box glass-card theme-teal">
-                            <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-screwdriver-wrench text-teal"></i> <span contenteditable="true">Đồ dùng cần chuẩn bị:</span></h3>
-                            <div class="prep-text" contenteditable="true">${slide.prep}</div>
+                    <div class="prep-grid-cols">
+                        <div class="prep-text-side">
+                            <div class="prep-box glass-card theme-teal">
+                                <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-suitcase-rolling text-teal"></i> <span contenteditable="true">Trang bị chuyên gia:</span></h3>
+                                <div class="prep-text" contenteditable="true">${slide.prep}</div>
+                            </div>
+                            <div class="prep-box glass-card theme-orange" style="margin-top:20px;">
+                                <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-sitemap text-orange"></i> <span contenteditable="true">Đội hình tác chiến:</span></h3>
+                                <div class="prep-text" contenteditable="true">${slide.format}</div>
+                            </div>
                         </div>
-                        <div class="prep-box glass-card theme-orange">
-                            <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-users text-orange"></i> <span contenteditable="true">Hình thức tổ chức:</span></h3>
-                            <div class="prep-text" contenteditable="true">${slide.format}</div>
+                        <div class="prep-visual-side draggable-object">
+                            ${prepVisualHtml}
                         </div>
                     </div>
                 </div>
@@ -3734,7 +5988,6 @@ function renderSlide(index) {
             if (slide.workspaceType === 'matrix-table-results') {
                 reportContentHtml = `<div class="matrix-grid draggable-object"></div>`;
             } else if (slide.workspaceType === 'golden-flow' || slide.flow) {
-                // Sơ đồ quy trình liên kết tuần hoàn dạng mạch điện neon
                 reportContentHtml = `
                     <div class="golden-flow-wrapper draggable-object">
                         ${slide.flow.map((node, i) => `
@@ -3747,11 +6000,10 @@ function renderSlide(index) {
                     </div>
                 `;
             } else if (slide.id === 'STAGE-03-ACT-04') {
-                // Sơ đồ hóa 2 quy trình song song (Active vs Passive)
                 reportContentHtml = `
                     <div class="flowchart-container draggable-object">
                         <div class="flowchart-path path-active">
-                            <h4 contenteditable="true"><i class="fa-solid fa-graduation-cap"></i> Quy trình Học thực sự (Chủ động):</h4>
+                            <h4 contenteditable="true" style="color:var(--color-teal);"><i class="fa-solid fa-graduation-cap"></i> Quy trình Học tập Hiệu quả (Hệ thống Xanh):</h4>
                             <div class="flowchart-steps">
                                 <div class="fc-step step-teal">
                                     <i class="fa-solid fa-book-open"></i>
@@ -3764,12 +6016,12 @@ function renderSlide(index) {
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
                                 <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-laptop-code"></i>
+                                    <i class="fa-solid fa-circle-question"></i>
                                     <span contenteditable="true">Hỏi AI</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
                                 <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <i class="fa-solid fa-shield-halved"></i>
                                     <span contenteditable="true">Kiểm tra</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
@@ -3779,8 +6031,8 @@ function renderSlide(index) {
                                 </div>
                             </div>
                         </div>
-                        <div class="flowchart-path path-passive" style="margin-top: 20px;">
-                            <h4 contenteditable="true"><i class="fa-solid fa-circle-exclamation"></i> Quy trình Đối phó (Thụ động):</h4>
+                        <div class="flowchart-path path-passive" style="margin-top: 25px;">
+                            <h4 contenteditable="true" style="color:var(--color-orange);"><i class="fa-solid fa-circle-exclamation"></i> Quy trình Đối phó (Hệ thống Lỗi):</h4>
                             <div class="flowchart-steps">
                                 <div class="fc-step step-orange">
                                     <i class="fa-solid fa-copy"></i>
@@ -3819,9 +6071,25 @@ function renderSlide(index) {
             break;
             
         case 'act-report-subject':
+            let subjectClass = '';
+            let subjectIcon = '';
+            if (slide.subject.includes('TOÁN')) {
+                subjectClass = 'core-blue';
+                subjectIcon = 'fa-calculator';
+            } else if (slide.subject.includes('VĂN')) {
+                subjectClass = 'core-pink';
+                subjectIcon = 'fa-pen-nib';
+            } else if (slide.subject.includes('ANH')) {
+                subjectClass = 'core-volt';
+                subjectIcon = 'fa-language';
+            } else if (slide.subject.includes('KHOA HỌC')) {
+                subjectClass = 'core-green';
+                subjectIcon = 'fa-flask';
+            }
+            
             slideHtml = `
-                <div class="slide-content layout-subject-report">
-                    <h2 class="slide-heading" contenteditable="true">KẾT QUẢ PHIẾU MẪU: ${slide.subject}</h2>
+                <div class="slide-content layout-subject-report ${subjectClass}">
+                    <h2 class="slide-heading" contenteditable="true"><i class="fa-solid ${subjectIcon}"></i> CẤU HÌNH CHUẨN: ${slide.subject}</h2>
                     <div class="subject-report-grid">
                         <div class="subject-step-box box-nghi">
                             <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-lightbulb"></i> <span contenteditable="true">NGHĨ</span></h4>
@@ -3840,14 +6108,14 @@ function renderSlide(index) {
                             <p class="subject-step-text" contenteditable="true">${slide.lamlai}</p>
                         </div>
                     </div>
-                    <div class="report-highlight-banner" style="margin-top: 25px;">
-                        <div class="report-highlight-icon"><i class="fa-solid fa-circle-nodes text-orange"></i></div>
+                    <div class="report-highlight-banner" style="margin-top: 20px;">
+                        <div class="report-highlight-icon"><i class="fa-solid fa-circle-nodes"></i></div>
                         <div class="report-highlight-text" contenteditable="true">${slide.message}</div>
                     </div>
                 </div>
             `;
             break;
-            
+
         case 'act-transition':
             slideHtml = `
                 <div class="slide-content layout-act-transition">
@@ -3873,7 +6141,7 @@ function renderSlide(index) {
             let innerTakeawayHtml = '';
             if (slide.points) {
                 innerTakeawayHtml = `
-                    <div class="takeaway-large-card glass-card">
+                    <div class="takeaway-large-card glass-card master-data-card">
                         <div class="takeaway-label" contenteditable="true">${slide.label}</div>
                         <div class="takeaway-points-flex">
                             ${slide.points.map(pt => `<p class="takeaway-point-item" contenteditable="true">${pt}</p>`).join('')}
@@ -3882,7 +6150,7 @@ function renderSlide(index) {
                 `;
             } else if (slide.flow) {
                 innerTakeawayHtml = `
-                    <div class="takeaway-large-card glass-card" style="align-items:center;">
+                    <div class="takeaway-large-card glass-card master-data-card" style="align-items:center;">
                         <div class="takeaway-label" contenteditable="true">${slide.label}</div>
                         <div class="golden-flow-wrapper">
                             ${slide.flow.map((node, i) => `
@@ -3897,7 +6165,7 @@ function renderSlide(index) {
                 `;
             } else if (slide.quote) {
                 innerTakeawayHtml = `
-                    <div class="takeaway-large-card glass-card" style="border-color: var(--color-orange);">
+                    <div class="takeaway-large-card glass-card master-data-card" style="border-color: var(--color-orange);">
                         <div class="takeaway-label" style="color:var(--color-orange); background:rgba(249,115,22,0.08); border-color:rgba(249,115,22,0.15);" contenteditable="true">${slide.label}</div>
                         <div class="takeaway-quote-box text-glow" contenteditable="true">"${slide.quote}"</div>
                         <p class="takeaway-message-text" contenteditable="true">${slide.message}</p>
@@ -3937,12 +6205,12 @@ function renderSlide(index) {
             
         case 'bq-revisit':
             slideHtml = `
-                <div class="slide-content layout-big-question">
+                <div class="slide-content layout-big-question bq-revisit-solved">
                     <div class="bq-glow-bg"></div>
-                    <div class="bq-wrapper" style="border-color: var(--color-teal);">
-                        <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-teal); filter:drop-shadow(0 0 10px rgba(6,182,212,0.4));"></i>
-                        <span class="bq-tag" style="color:var(--color-teal);" contenteditable="true" id="bq-revisit-tag"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
-                        <h2 class="bq-text text-glow" style="font-size:2.1rem; padding-top:0.1em; line-height:1.45;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
+                    <div class="bq-wrapper" style="border-color: var(--color-green);">
+                        <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-green); filter:drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));"></i>
+                        <span class="bq-tag" style="color:var(--color-green); background:rgba(16,185,129,0.08); border-color:rgba(16,185,129,0.15);" contenteditable="true" id="bq-revisit-tag"><i class="fa-solid fa-circle-check"></i> MÃ KHÓA THÀNH CÔNG</span>
+                        <h2 class="bq-text text-glow-green" style="font-size:1.8rem; padding-top:0.1em; line-height:1.45;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
                         <div style="width: 100%; height: 1px; background: var(--border-glass); margin: 20px 0;"></div>
                         <p class="card-content-text" style="font-size:1.15rem; text-align:left; line-height:1.7; color: #f1f5f9;" contenteditable="true" id="bq-revisit-answer">${slide.answer}</p>
                     </div>
@@ -3978,8 +6246,8 @@ function renderSlide(index) {
                                 <p class="commitment-item-row"><i class="fa-solid fa-square-check"></i> <span contenteditable="true">${commit}</span></p>
                             `).join('')}
                         </div>
-                        <button class="btn-cert-sign" id="btn-sign-cert">
-                            <i class="fa-solid fa-signature"></i> KÝ TÊN & TỐT NGHIỆP
+                        <button class="btn-cert-sign pulse-warning-glow" id="btn-sign-cert">
+                            <i class="fa-solid fa-signature"></i> CAM KẾT & ĐĂNG XUẤT HỆ THỐNG
                         </button>
                     </div>
                 </div>
@@ -4090,7 +6358,7 @@ function renderWorkspaceLayout(slide) {
                     </div>
                     <p class="mission-text" style="font-size:1.25rem; padding:10px 20px; margin-bottom:20px;" contenteditable="true">${slide.missionText}</p>
                     <div class="investigation-questions">
-                        <h4 style="color:var(--color-orange);" contenteditable="true">Hồ sơ điều tra:</h4>
+                        <h4 style="color:var(--color-orange);" contenteditable="true">Tọa độ mục tiêu cần bám sát:</h4>
                         <ul>
                             ${slide.investigations.map(inv => `<li style="color:#e2e8f0;" contenteditable="true">${inv}</li>`).join('')}
                         </ul>
@@ -4110,10 +6378,10 @@ function renderWorkspaceLayout(slide) {
                     </div>
                     <div class="sorting-drop-zones">
                         <div class="sorting-column drop-zone teal-theme" id="drop-teal" ondragover="allowDrop(event)" ondrop="dropTag(event)">
-                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-graduation-cap"></i> <span contenteditable="true">Quy trình học hiệu quả</span></h4>
+                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-graduation-cap"></i> <span contenteditable="true">CỔNG 01: Quy trình Học tập Hiệu quả (Hệ thống Xanh)</span></h4>
                         </div>
                         <div class="sorting-column drop-zone orange-theme" id="drop-orange" ondragover="allowDrop(event)" ondrop="dropTag(event)">
-                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-exclamation"></i> <span contenteditable="true">Quy trình chỉ hoàn thành nhiệm vụ</span></h4>
+                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-exclamation"></i> <span contenteditable="true">CỔNG 02: Quy trình Đối phó/Lười biếng (Hệ thống Lỗi)</span></h4>
                         </div>
                     </div>
                 </div>
@@ -4124,15 +6392,15 @@ function renderWorkspaceLayout(slide) {
             workspaceContentHtml = `
                 <div class="matrix-grid">
                     <div class="matrix-row hdr">
-                        <div>Bước cốt lõi</div>
-                        <div>Vai trò / Giá trị học tập</div>
-                        <div>Hậu quả nếu bỏ qua</div>
+                        <div>Vi mạch cốt lõi</div>
+                        <div>Chức năng</div>
+                        <div>Nếu ngắt mạch (bỏ qua bước)</div>
                     </div>
                     ${slide.stepsList.map(step => `
                         <div class="matrix-row">
                             <div class="matrix-cell-label" contenteditable="true">${step}</div>
-                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền vào phiếu...</div>
-                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền vào phiếu...</div>
+                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền chức năng...</div>
+                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền hệ quả...</div>
                         </div>
                     `).join('')}
                 </div>
@@ -4142,7 +6410,7 @@ function renderWorkspaceLayout(slide) {
         case 'drawing-board':
             workspaceContentHtml = `
                 <div class="drawing-placeholder">
-                    <i class="fa-solid fa-diagram-project"></i>
+                    <i class="fa-solid fa-diagram-project text-glow"></i>
                     <p contenteditable="true">${slide.instructions}</p>
                 </div>
             `;
@@ -4151,13 +6419,13 @@ function renderWorkspaceLayout(slide) {
         case 'form-filling-blank':
             workspaceContentHtml = `
                 <div class="glass-card" style="border-top:3px solid var(--color-teal); display:flex; flex-direction:column; gap:15px; padding:20px;">
-                    <p contenteditable="true" style="color:var(--color-teal); font-weight:700;">Học sinh chọn 1 môn học và hoàn thành mẫu sau:</p>
-                    <h3 contenteditable="true" style="font-size:1.3rem;">Khi học môn ____________ với AI, chúng tôi sẽ:</h3>
-                    <div style="display:flex; flex-direction:column; gap:10px; font-size: 0.95rem;">
-                        <p><strong>Nghĩ:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi sẽ tự suy nghĩ điều gì trước?) _______________________</span></p>
-                        <p><strong>Hỏi:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi sẽ nhập câu lệnh/prompt gì để hỏi AI?) ___________________</span></p>
-                        <p><strong>Kiểm tra:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi kiểm tra tính đúng đắn bằng cách nào?) ______________</span></p>
-                        <p><strong>Làm lại:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi tự luyện tập lại ra sao?) __________________________</span></p>
+                    <p contenteditable="true" style="color:var(--color-teal); font-weight:700; text-transform:uppercase; letter-spacing:0.5px;"><i class="fa-solid fa-code-branch"></i> CẤU HÌNH THUẬT TOÁN HỌC TẬP</p>
+                    <h3 contenteditable="true" style="font-size:1.2rem;">Khi tối ưu hóa môn <span style="border-bottom: 2px dashed var(--color-teal); padding: 0 10px;">[Tên môn học]</span> cùng AI, Kỹ sư chúng tôi sẽ hành động…</h3>
+                    <div style="display:flex; flex-direction:column; gap:15px; font-size: 0.95rem; margin-top:10px;">
+                        <p><strong><i class="fa-solid fa-lightbulb text-teal"></i> Nghĩ:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi sẽ tự kích hoạt tư duy điều gì trước?) ___________________________________</span></p>
+                        <p><strong><i class="fa-solid fa-circle-question text-orange"></i> Hỏi:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi sẽ nạp câu lệnh/prompt tối mật nào để điều khiển AI?) _________________________</span></p>
+                        <p><strong><i class="fa-solid fa-shield-halved text-green"></i> Kiểm tra:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi thẩm định tính đúng đắn bằng cách nào?) _____________________</span></p>
+                        <p><strong><i class="fa-solid fa-arrows-rotate text-pink"></i> Làm lại:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi tự chạy lại quy trình để ghi nhớ ra sao?) _________________________________</span></p>
                     </div>
                 </div>
             `;
@@ -4168,8 +6436,8 @@ function renderWorkspaceLayout(slide) {
                 <div class="reflection-grid-card" style="background:transparent; border:none; box-shadow:none; padding:0; gap:15px;">
                     ${slide.prompts.map(pr => `
                         <div class="reflection-prompt-item">
-                            <label contenteditable="true" style="font-size:1rem;">${pr}</label>
-                            <div class="reflection-textarea-mock" contenteditable="true" style="min-height:50px; padding:10px; font-size:0.95rem;" placeholder="Nhập câu trả lời phản tư..."></div>
+                            <label contenteditable="true" style="font-size:1.05rem;">${pr}</label>
+                            <div class="reflection-textarea-mock" contenteditable="true" style="min-height:60px; padding:10px; font-size:0.95rem;" placeholder="Nhập câu trả lời phản tư..."></div>
                         </div>
                     `).join('')}
                 </div>
@@ -4214,6 +6482,14 @@ function renderWorkspaceLayout(slide) {
                             <button class="btn-timer btn-reset" onclick="resetWorkspaceTimer('${slide.id}', ${slide.duration || 60})"><i class="fa-solid fa-rotate-left"></i></button>
                         </div>
                     </div>
+                    ${slide.workspaceType === 'card-sorting' ? `
+                    <div class="sorting-controls-side" style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
+                        <button class="btn-check-sorting" onclick="checkSortingAnswers()" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-square-check"></i> Kiểm tra đáp án
+                        </button>
+                        <div id="sorting-feedback" style="width: 100%; text-align: center; margin-top: 5px;"></div>
+                    </div>
+                    ` : ''}
                 </div>
             </div>
         </div>
@@ -4224,6 +6500,11 @@ function renderWorkspaceLayout(slide) {
 // INTERACTIVE COMPONENT HANDLERS
 // ==========================================
 function initSlideInteractions(slide) {
+    // Welcome Matrix rain check
+    if (slide.type === 'welcome') {
+        initMatrixRain();
+    }
+
     // 1. Initialize Workspace Timer if slide has one
     if (slide.type === 'act-workspace' && slide.duration) {
         initTimerState(slide.id, slide.duration);
@@ -4265,6 +6546,49 @@ function initSlideInteractions(slide) {
     if (slide.workspaceType === 'commitment-checklist') {
         restoreCheckboxState(slide.id);
     }
+}
+
+function initMatrixRain() {
+    const canvas = document.getElementById('matrix-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const parent = canvas.parentElement;
+    canvas.width = parent.clientWidth || 1200;
+    canvas.height = parent.clientHeight || 675;
+    
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const yPositions = Array(columns).fill(0);
+    
+    if (matrixIntervalId) {
+        clearInterval(matrixIntervalId);
+    }
+    
+    ctx.fillStyle = '#080c14';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    matrixIntervalId = setInterval(() => {
+        ctx.fillStyle = 'rgba(8, 12, 20, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.35)'; // Cyan Blue Matrix rain
+        ctx.font = `${fontSize}px monospace`;
+        
+        for (let i = 0; i < yPositions.length; i++) {
+            const text = String.fromCharCode(33 + Math.random() * 93);
+            const x = i * fontSize;
+            const y = yPositions[i];
+            
+            ctx.fillText(text, x, y);
+            
+            if (y > canvas.height && Math.random() > 0.975) {
+                yPositions[i] = 0;
+            } else {
+                yPositions[i] = y + fontSize;
+            }
+        }
+    }, 50);
 }
 
 // Timer sub-logic
@@ -4466,6 +6790,13 @@ slidesData.forEach((slide, idx) => {
 
 function goToSlide(index) {
     if (index < 0 || index >= totalSlides) return;
+    
+    // Clear matrix rain animation timer when leaving welcome slide
+    if (matrixIntervalId) {
+        clearInterval(matrixIntervalId);
+        matrixIntervalId = null;
+    }
+    
     currentSlideIndex = index;
     renderSlide(index);
     if (presSlideNum) {
@@ -4944,7 +7275,15 @@ function restoreAndSetupDraggables(slideId) {
         '.reflection-prompt-item',
         '.commitment-end-card',
         '.fc-step',
-        '.glass-card', '.slide-heading'
+        '.glass-card', '.slide-heading',
+        '.scanner-portal-widget', '.circuits-brain-vs-ai', '.dashboard-grid', '.db-panel', '.db-panels-right',
+        '.video-call-screen', '.beep-notification-indicator', '.radar-hud-circle', '.wave-dashboard-hud',
+        '.energy-core-glowing-widget', '.gears-hud-assembly', '.coder-terminal-hud', '.mission-activation-grid',
+        '.data-split-screen-loader', '.secure-envelope-hologram', '.floating-data-cubes', '.xray-brain-scanner',
+        '.hologram-assistant-robot', '.cores-preview-grid', '.biometric-diary', '.mission-countdown-hud',
+        '.cyber-toolkit-box', '.radar-scan-container', '.engineers-squad-chips', '.matrix-empty-glow',
+        '.concentration-beam-scanner', '.blueprint-assembly', '.biometric-unlocked', '.stories-columns',
+        '.prep-grid-cols', '.prep-text-side', '.prep-visual-side', '.subject-report-grid'
     ];
     
     if (!slideObjectOffsets[slideId]) {
@@ -5382,6 +7721,7 @@ window.dragTag = function(ev) {
     }
     const tag = ev.target.closest('.sorting-tag');
     if (tag) {
+        tag.classList.remove('tag-correct', 'tag-incorrect');
         ev.dataTransfer.setData("text", tag.id);
     }
 };
@@ -5393,8 +7733,63 @@ window.dropTag = function(ev) {
     const dropZone = ev.target.closest('.drop-zone');
     if (dropZone && tagElement) {
         dropZone.appendChild(tagElement);
+        tagElement.classList.remove('tag-correct', 'tag-incorrect');
+        // Hide feedback when a card is moved again
+        const feedbackBox = document.getElementById('sorting-feedback');
+        if (feedbackBox) {
+            feedbackBox.style.display = 'none';
+        }
         // Save sorting state after tag is dropped
         saveCardSortingState();
+    }
+};
+
+window.checkSortingAnswers = function() {
+    const tealItems = ["Đọc đề bài", "Tự suy nghĩ", "Hỏi AI", "Kiểm tra câu trả lời", "Tự làm lại"];
+    const orangeItems = ["Chép đáp án", "Nộp bài ngay"];
+    
+    const tags = document.querySelectorAll('.sorting-tag');
+    let correctCount = 0;
+    let incorrectCount = 0;
+    let unplacedCount = 0;
+    
+    tags.forEach(tag => {
+        const text = tag.textContent.trim();
+        const parent = tag.parentElement;
+        
+        tag.classList.remove('tag-correct', 'tag-incorrect');
+        
+        if (parent.id === 'drop-teal') {
+            if (tealItems.includes(text)) {
+                tag.classList.add('tag-correct');
+                correctCount++;
+            } else {
+                tag.classList.add('tag-incorrect');
+                incorrectCount++;
+            }
+        } else if (parent.id === 'drop-orange') {
+            if (orangeItems.includes(text)) {
+                tag.classList.add('tag-correct');
+                correctCount++;
+            } else {
+                tag.classList.add('tag-incorrect');
+                incorrectCount++;
+            }
+        } else if (parent.id === 'sorting-pool') {
+            unplacedCount++;
+        }
+    });
+    
+    const feedbackBox = document.getElementById('sorting-feedback');
+    if (feedbackBox) {
+        if (unplacedCount > 0) {
+            feedbackBox.innerHTML = `<span style="color: var(--color-orange); font-size: 0.85rem;"><i class="fa-solid fa-triangle-exclamation"></i> Vui lòng xếp tất cả các thẻ trước khi kiểm tra! (Còn ${unplacedCount} thẻ chưa xếp)</span>`;
+        } else if (incorrectCount > 0) {
+            feedbackBox.innerHTML = `<span style="color: var(--color-orange); font-size: 0.85rem;"><i class="fa-solid fa-circle-xmark"></i> Phát hiện ${incorrectCount} kết nối bị lỗi cổng! Hãy sắp xếp lại.</span>`;
+        } else {
+            feedbackBox.innerHTML = `<span style="color: var(--color-volt); font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Tuyệt vời! Thuật toán phân loại hoàn toàn chính xác.</span>`;
+        }
+        feedbackBox.style.display = 'block';
     }
 };
 

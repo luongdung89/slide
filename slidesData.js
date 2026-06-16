@@ -4,621 +4,636 @@ const slidesData = [
     id: "P0-01",
     period: 1,
     type: "welcome",
-    title: "THỰC HÀNH DÙNG AI ĐỂ HỌC",
-    subtitle: "TIẾT 1: KHÁM PHÁ CÙNG AI",
-    subject: "Kỹ năng công nghệ và Phương pháp học tập thời đại số",
-    role: "CHUYÊN GIA AI",
-    objectives: "Học sinh hiểu và xây dựng được quy trình học tập hiệu quả, chủ động cùng trí tuệ nhân tạo (Nghĩ → Hỏi → Kiểm tra → Làm lại).",
-    teacherNotes: `<h3>Mở đầu tiết học (1 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chào mừng các nhà nghiên cứu công nghệ đến với tiết học ngày hôm nay: <strong>Thực hành dùng AI để học</strong>. Hôm nay, chúng ta sẽ đóng vai là các <strong>Chuyên gia AI tập sự</strong> để đi giải mã bí mật của việc học hiệu quả."</p>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên trình chiếu slide welcome, giới thiệu ngắn gọn chủ đề và mục tiêu bài học.</p>`
+    title: "CHIẾN DỊCH: KHÁM PHÁ CÙNG AI",
+    subtitle: "MÃ LỆNH: NOVA-01",
+    subject: "Học viện AI Novastars",
+    role: "KỸ SƯ AI TẬP SỰ",
+    objectives: "Bẻ khóa thuật toán, xây dựng \"Quy trình Tương tác Thông minh\" để làm chủ các Siêu trí tuệ nhân tạo phục vụ học tập.",
+    teacherNotes: `<h3>Mở đầu chiến dịch (1 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Chào mừng các Kỹ sư tập sự đã đăng nhập vào hệ thống tối mật của Học viện AI Novastars! Hôm nay, các bạn chính thức bước vào Chiến dịch Nova-01 để làm chủ công nghệ mạnh mẽ nhất hành tinh."</p>
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên trình chiếu slide welcome, giới thiệu ngắn gọn chủ đề, vai trò kỹ sư tập sự và mục tiêu chiến dịch.</p>`
   },
   {
     id: "P0-02",
     period: 1,
     type: "big-question",
-    title: "CÂU HỎI LỚN (BIG QUESTION)",
-    question: "Làm thế nào để học cùng AI mà vẫn thực sự hiểu bài?",
+    title: "MẬT MÃ TỐI CAO",
+    question: "Làm thế nào để điều khiển AI hỗ trợ học tập mà không làm suy giảm tư duy của chính mình?",
     subtext: "Tư duy độc lập đối diện với Trí tuệ nhân tạo",
     teacherNotes: `<h3>Khơi gợi vấn đề (1 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Đây chính là câu hỏi lớn nhất mà chúng ta cần trả lời trong ngày hôm nay. Làm thế nào để khi dùng AI, bộ não của chúng ta vẫn thực sự hiểu bài và giỏi lên?"</p>`
+                   <p><strong>Lời thoại gợi ý:</strong> "Mật mã lớn nhất chúng ta cần giải đáp hôm nay: Làm sao để khối óc của Kỹ sư điều khiển được AI, chứ không bị AI thao túng và làm lười biếng bộ não?"</p>`
   },
   {
     id: "P0-03",
     period: 1,
     type: "role-intro",
-    title: "GIỚI THIỆU VAI TRÒ CHUYÊN GIA",
-    roleName: "CHUYÊN GIA AI",
-    roleDesc: "Trở thành các kỹ sư phân tích và tối ưu hóa cách thức con người tương tác với trí tuệ nhân tạo để phục vụ học tập.",
-    roleMission: "Giải mã các hành động, phân tích tác động và thiết kế ra một 'Quy trình học tập thông minh' tối ưu nhất.",
+    title: "GIỚI THIỆU VAI TRÒ NHẬP VAI",
+    roleName: "KỸ SƯ AI TẬP SỰ (AI ENGINEER)",
+    roleDesc: "Trở thành các kỹ sư phân tích dữ liệu hành vi và tối ưu hóa cách thức con người tương tác với AI.",
+    roleMission: "Giải mã nhật ký tương tác, phân tích tác động lỗi và thiết kế ra một \"Thuật toán học tập thông minh\" tối ưu nhất.",
     teacherNotes: `<h3>Giới thiệu vai trò (1 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Hôm nay các con sẽ đóng vai là Chuyên gia AI. Nhiệm vụ của các con là giải mã các cách dùng AI và thiết kế quy trình tối ưu."</p>`
+                   <p><strong>Lời thoại gợi ý:</strong> "Các Kỹ sư tập sự thân mến! Hôm nay, chúng ta có vai trò cực kỳ quan trọng là phân tích dữ liệu hành vi sử dụng AI và thiết kế quy trình tương tác chuẩn."</p>`
   },
 
-  // ==================== STAGE 1 ====================
+  // ==================== PART 2: STAGE & ACTIVITY FLOW ====================
+  // STAGE-01: GIAI ĐOẠN 1
   {
     id: "STAGE-01",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 1",
-    title: "MỞ KHÓA NHIỆM VỤ",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 1 (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta cùng mở khóa nhiệm vụ đầu tiên để tìm hiểu xem việc sử dụng AI hiện nay đang như thế nào nhé."</p>`
+    title: "BẬT NGUỒN & MỞ KHÓA NHIỆM VỤ",
+    teacherNotes: `<h3>Mở khóa nhiệm vụ (0.5 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Hệ thống đang khởi động... Chúng ta cùng bật nguồn và mở khóa nhiệm vụ đầu tiên."</p>`
   },
   {
     id: "STAGE-01-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "AI GIÚP HAY AI THAY?",
-    goal: "Khơi gợi vấn đề, tạo nhu cầu tìm hiểu về cách dùng AI đúng đắn thông qua việc so sánh hai trường hợp thực tế.",
+    title: "PHÂN TÍCH NHẬT KÝ KHÁM PHÁ: AI GIÚP HAY AI THAY?",
+    goal: "Màn hình mô phỏng một bảng so sánh dữ liệu (Data Split-Screen) đang tải nhật ký người dùng Nam & Lan.",
     icon: "fa-solid fa-bezier-curve",
     teacherNotes: `<h3>Giới thiệu Hoạt động 1</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Hoạt động đầu tiên có tên gọi: AI GIÚP HAY AI THAY? Chúng ta sẽ cùng xem câu chuyện của Nam và Lan."</p>`
+                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta sẽ tải nhật ký người dùng Nam và Lan để phân tích hành vi của họ."</p>`
   },
   {
     id: "STAGE-01-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Vở ghi chép cá nhân, bút mực.",
-    format: "Cả lớp",
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Nhật ký ghi chép (Giấy, bút).",
+    format: "Tổ hợp 4 Kỹ sư (Nhóm 4 học sinh).",
     icon: "fa-solid fa-book",
     teacherNotes: `<h3>Chuẩn bị hoạt động (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Các con hãy chuẩn bị sẵn vở ghi cá nhân và bút trên bàn nhé."</p>`
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên yêu cầu học sinh chuẩn bị giấy, bút và ổn định nhóm 4 kỹ sư.</p>`
   },
   {
     id: "STAGE-01-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Đọc 2 cách học của bạn Nam và bạn Lan trên màn hình.",
-      "Thảo luận nhanh và trả lời câu hỏi nhiệm vụ.",
-      "Đại diện phát biểu ý kiến trước lớp về câu trả lời."
+      "Bước 1: Quét và quan sát tình huống dữ liệu trên màn hình.",
+      "Bước 2: Đối chiếu dữ liệu, đưa ra nhận định và lập luận giải thích.",
+      "Bước 3: Trưởng nhóm kỹ sư đại diện phát biểu báo cáo trước toàn bộ Hội đồng."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước (0.5 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên đọc nhanh 3 bước thực hiện để học sinh nắm rõ tiến trình.</p>`
+    teacherNotes: `<h3>Hướng dẫn vận hành</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên đọc nhanh 3 mã lệnh vận hành để học sinh bắt đầu thực thi.</p>`
   },
   {
     id: "STAGE-01-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "KHÔNG GIAN HOẠT ĐỘNG: AI GIÚP HAY AI THAY?",
+    title: "PHÂN TÍCH NHẬT KÝ NGƯỜI DÙNG",
     duration: 300, // 5 mins
     workspaceType: "split-stories",
     storyNam: [
       "Đọc đề bài",
-      "Tự suy nghĩ",
-      "Hỏi AI khi gặp khó khăn",
-      "Kiểm tra lời giải của AI",
-      "Tự làm lại vào vở"
+      "Tự kích hoạt tư duy",
+      "Hỏi AI khi gặp vùng nghẽn",
+      "Kiểm tra thuật toán lời giải",
+      "Tự thực thi lại bài tập"
     ],
     storyLan: [
-      "Chụp đề bài",
-      "Gửi cho AI",
-      "Chép đáp án"
+      "Chụp ảnh đề bài",
+      "Đẩy dữ liệu vào AI",
+      "Sao chép nguyên văn đáp án"
     ],
     questions: [
-      "Bạn nào đang học?",
-      "Bạn nào đang hoàn thành bài tập?",
-      "Điều gì khác nhau giữa hai cách làm?"
+      "Hệ thống của Người dùng nào đang thực sự vận hành học tập?",
+      "Hệ thống của Người dùng nào chỉ đang chạy lệnh hoàn thành bài tập?",
+      "Điểm khác biệt giữa hai quy trình tương tác này là gì?"
     ],
-    teacherNotes: `<h3>Không gian làm việc (5 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên bấm chạy đồng hồ đếm ngược 5 phút. Yêu cầu học sinh đọc câu chuyện và suy nghĩ trả lời 3 câu hỏi trên màn hình.</p>`
+    teacherNotes: `<h3>Hoạt động phân tích (5 phút)</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên nhấn nút Play để đếm ngược 5 phút. Học sinh thảo luận nhóm để trả lời 3 câu hỏi trên màn hình.</p>`
   },
   {
     id: "STAGE-01-ACT-04",
     period: 1,
     type: "act-report",
-    title: "BÁO CÁO & TỔNG HỢP KẾT QUẢ",
+    title: "DỮ LIỆU PHÂN TÍCH CHUẨN HÓA",
     results: [
-      "Bạn Nam đang thực sự 'học' (não bộ được vận động và tiếp thu kiến thức).",
-      "Bạn Lan chỉ đang 'hoàn thành bài tập' một cách cơ học (não bộ thụ động, không có kiến thức đọng lại).",
-      "Sự khác biệt cốt lõi: Nằm ở Quy trình tương tác: Chủ động (Nam) so với Bị động/Phụ thuộc (Lan)."
+      "Kết quả 1 (Người dùng Nam): Não bộ được vận động tư duy và tiếp thu kiến thức ổn định (Hệ thống chạy tốt).",
+      "Kết quả 2 (Người dùng Lan): Não bộ rơi vào trạng thái thụ động, phụ thuộc hoàn toàn vào máy móc (Hệ thống gặp lỗi \"Rỗng kiến thức\").",
+      "Bản chất cốt lõi: Sự khác biệt nằm ở Quy trình tương tác: CHỦ ĐỘNG ĐIỀU KHIỂN (Nam) và THỤ ĐỘNG PHỤ THUỘC (Lan)."
     ],
-    message: "Nếu muốn học hiệu quả với AI, chúng ta cần biết quy trình sử dụng AI đúng cách.",
-    teacherNotes: `<h3>Tổng hợp kết quả (2 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Đúng vậy, sự chủ động của Nam giúp não bộ ghi nhớ kiến thức, còn cách làm của Lan chỉ giúp xong bài tập chứ không giúp học tập."</p>`
+    message: "Nguyên tắc kỹ sư: Muốn biến AI thành trợ thủ đắc lực, ta bắt buộc phải cài đặt một \"Quy trình Tương tác Đúng chuẩn\".",
+    teacherNotes: `<h3>Báo cáo kết quả (2 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Chính xác! Nam đã chủ động điều khiển AI làm trợ lý, còn Lan bị phụ thuộc thụ động. Ta cần quy trình tương tác chuẩn."</p>`
   },
   {
     id: "STAGE-01-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Sự khác biệt lớn giữa việc 'Dùng AI để học' và 'Để AI học hộ'.",
-    nextQuestion: "Một quy trình chuẩn để học với AI gồm những bước nào và từ đâu mà có?",
-    teacherNotes: `<h3>Chuyển giao giai đoạn (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta đã thấy sự khác biệt. Vậy quy trình chuẩn để học với AI gồm những bước cụ thể nào?"</p>`
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã giải mã xong Sự khác biệt giữa \"Dùng AI để học\" và \"Để AI học hộ\".",
+    nextQuestion: "Lệnh tiếp theo: Truy cập trung tâm dữ liệu để nhận Yêu cầu chính thức từ Khách hàng cao cấp.",
+    teacherNotes: `<h3>Chuyển giao (0.5 phút)</h3>`
   },
 
-  // ==================== STAGE 2 ====================
+  // STAGE-02: GIAI ĐOẠN 2
   {
     id: "STAGE-02",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 2",
-    title: "NHẬN YÊU CẦU TỪ KHÁCH HÀNG",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 2 (0.5 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Chúng ta cùng đến với Giai đoạn 2 để nhận nhiệm vụ chính thức từ Học viện AI."</p>`
+    title: "NHẬT LỆNH TỪ KHÁCH HÀNG CAO CẤP",
+    teacherNotes: `<h3>Nhận yêu cầu khách hàng (0.5 phút)</h3>
+                   <p><strong>Lời thoại gợi ý:</strong> "Một cuộc gọi video khẩn cấp từ Ban Giám đốc Học viện AI Novastars đang đến!"</p>`
   },
   {
     id: "STAGE-02-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "NHIỆM VỤ TỪ HỌC VIỆN AI",
-    goal: "Giúp học sinh hiểu rõ nhiệm vụ học tập và xác định được các vấn đề cốt lõi cần điều tra.",
+    title: "GIẢI MÃ NHIỆM VỤ TỪ HỌC VIỆN AI",
+    goal: "Bức thư bảo mật có gắn dấu niêm phong điện tử phát sáng đỏ hiển thị chính giữa màn hình.",
     icon: "fa-solid fa-envelope-open-text",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 2</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Học viện AI đã gửi một bức thư khẩn cấp giao nhiệm vụ cho chúng ta."</p>`
+    teacherNotes: `<h3>Giới thiệu Hoạt động 2</h3>`
   },
   {
     id: "STAGE-02-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Phiếu ghi chú điện tử, bút.",
-    format: "Cá nhân",
-    icon: "fa-solid fa-keyboard",
-    teacherNotes: `<h3>Chuẩn bị hoạt động (0.5 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Yêu cầu học sinh chuẩn bị phiếu ghi chú cá nhân.</p>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Nhật ký ghi chép (Giấy, bút).",
+    format: "Tổ hợp 4 Kỹ sư (Nhóm 4 học sinh).",
+    icon: "fa-solid fa-radar",
+    teacherNotes: `<h3>Chuẩn bị (0.5 phút)</h3>`
+  },
+  {
+    id: "STAGE-02-ACT-02",
+    period: 1,
+    type: "act-howto",
+    title: "MÃ LỆNH VẬN HÀNH",
+    steps: [
+      "Bước 1: Đọc và phân tích yêu cầu trong mật thư nhiệm vụ.",
+      "Bước 2: Xác định 2 tọa độ mục tiêu (2 câu hỏi điều tra) và thảo luận chiến thuật trả lời.",
+      "Bước 3: Trình bày kết quả điều tra sơ bộ."
+    ],
+    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
   },
   {
     id: "STAGE-02-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "NHIỆM VỤ TỪ HỌC VIỆN AI",
-    duration: 120, // 2 mins
+    title: "GIẢI MÃ NỘI DUNG MẬT THƯ",
+    duration: 240, // 4 mins
     workspaceType: "mission-document",
-    missionText: "“Hãy tìm ra cách sử dụng AI để học một bài mới mà vẫn hiểu bài và nhớ bài.”",
+    missionText: "“Gửi các Kỹ sư tập sự, thế giới đang bị bủa vây bởi việc dùng AI sai cách làm suy giảm trí tuệ. Hãy tìm ra thuật toán vàng để sử dụng AI học bài mới mà vẫn hiểu sâu và nhớ lâu!”",
     investigations: [
-      "Khi học với AI, chúng ta nên làm những bước nào?",
-      "Vì sao cần những bước đó?"
+      "Khi dùng AI để học, Kỹ sư cần thực hiện những bước nào?",
+      "Tại sao cần những bước đó?"
     ],
-    teacherNotes: `<h3>Không gian làm việc (2 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 2 phút. Học sinh đọc và thảo luận nhanh về 2 câu hỏi điều tra.</p>`
+    teacherNotes: `<h3>Giải mã mật thư (4 phút)</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 4 phút. Học sinh xác định 2 tọa độ mục tiêu cần bám sát.</p>`
   },
   {
     id: "STAGE-02-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Nhiệm vụ tối mật từ Học viện AI.",
-    nextQuestion: "Làm sao để 'giải mã' và sắp xếp các hành động rời rạc thành một quy trình học tập tối ưu?",
-    teacherNotes: `<h3>Chuyển giao (0.5 phút)</h3>`
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã xác lập xong Mục tiêu nhiệm vụ tối mật.",
+    nextQuestion: "Lệnh tiếp theo: Tiến vào kho dữ liệu tổng để thu thập thông tin và các mảnh ghép hành động.",
+    teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 3 ====================
+  // STAGE-03: GIAI ĐOẠN 3
   {
     id: "STAGE-03",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 3",
-    title: "THU THẬP THÔNG TIN",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 3</h3>`
+    title: "QUÉT TRƯỜNG DỮ LIỆU & THU THẬP THÔNG TIN",
+    teacherNotes: `<h3>Quét trường dữ liệu (0.5 phút)</h3>`
   },
   {
     id: "STAGE-03-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "GIẢI MÃ CÁCH HỌC",
-    goal: "Giúp học sinh nhận diện, phân loại và quan sát các hành động khác nhau khi sử dụng AI để thấy được bản chất của từng cách học.",
-    icon: "fa-solid fa-radar",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 3</h3>`
+    title: "GIẢI MÃ KHỐI LỆNH HÀNH ĐỘNG",
+    goal: "Các khối lập phương dữ liệu chứa từ khóa hành động bay lơ lửng, chờ kỹ sư phân loại vào đúng cổng quy trình.",
+    icon: "fa-solid fa-cubes",
+    teacherNotes: `<h3>Giới thiệu hoạt động</h3>`
   },
   {
     id: "STAGE-03-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "1 bảng sơ đồ quy trình, 1 bộ 'Thẻ hành động rời' (7 thẻ), keo dán.",
-    format: "Nhóm 4 học sinh",
-    icon: "fa-solid fa-users-viewfinder",
-    teacherNotes: `<h3>Chuẩn bị nhóm (1 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chia nhóm 4 học sinh, phát bảng sơ đồ và bộ thẻ hành động rời.</p>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Bộ chip hành động (Bộ thẻ do Giáo viên cấp).",
+    format: "Nhóm 4 Kỹ sư.",
+    icon: "fa-solid fa-users",
+    teacherNotes: `<h3>Chuẩn bị chip hành động (1 phút)</h3>`
   },
   {
     id: "STAGE-03-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Mỗi nhóm nhận một bộ thẻ hành động từ Giáo viên.",
-      "Đọc kỹ nội dung ghi trên từng thẻ hành động.",
-      "Thảo luận và phân loại các thẻ vào hai nhóm quy trình trên sơ đồ. Dán cố định các thẻ.",
-      "Đại diện nhóm trình bày kết quả và giải thích lựa chọn của nhóm."
+      "Bước 1: Nhận bộ chip hành động từ Tổng chỉ huy (Giáo viên).",
+      "Bước 2: Đọc và giải mã ý nghĩa của từng chip lệnh.",
+      "Bước 3: Thảo luận, phân loại và cắm các chip này vào đúng 2 cổng quy trình trên sơ đồ hệ thống.",
+      "Bước 4: Báo cáo thuật toán phân loại trước Hội đồng."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
+    teacherNotes: `<h3>Hướng dẫn thực hiện</h3>`
   },
   {
     id: "STAGE-03-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "PHÂN LOẠI THẺ HÀNH ĐỘNG",
-    duration: 420, // 7 mins
+    title: "PHÂN MẠCH KHỐI LỆNH HÀNH ĐỘNG",
+    duration: 480, // 8 mins
     workspaceType: "card-sorting",
     cards: [
       "Đọc đề bài", "Tự suy nghĩ", "Hỏi AI", 
       "Kiểm tra câu trả lời", "Tự làm lại", 
       "Chép đáp án", "Nộp bài ngay"
     ],
-    instructions: "Hãy phân tích và sắp xếp các thẻ hành động vào 2 cột: 'Quy trình học hiệu quả' và 'Quy trình chỉ hoàn thành nhiệm vụ'.",
-    teacherNotes: `<h3>Tiến hành phân loại (7 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 7 phút. Giáo viên đi quan sát, nhắc nhở các nhóm thảo luận kỹ vì sao xếp thẻ như vậy.</p>`
+    instructions: "Nhiệm vụ phân loại: Hãy lập trình, đưa các chip hành động về đúng cổng quy trình của nó:",
+    teacherNotes: `<h3>Thảo luận và dán chip (8 phút)</h3>
+                   <p><strong>Hướng dẫn hành động:</strong> Bật đồng hồ 8 phút. Học sinh thảo luận phân loại các chip vào hai cổng quy trình.</p>`
   },
   {
     id: "STAGE-03-ACT-04",
     period: 1,
     type: "act-report",
-    title: "BÁO CÁO & TỔNG HỢP KẾT QUẢ",
+    title: "THUẬT TOÁN CHUẨN TỪ HỌC VIỆN",
     results: [
-      "Quy trình học hiệu quả: Đọc đề bài → Tự suy nghĩ → Hỏi AI → Kiểm tra câu trả lời → Tự làm lại.",
-      "Quy trình chỉ hoàn thành nhiệm vụ (Đi tắt): Chép đáp án → Nộp bài ngay."
+      "CỔNG XANH (Học hiệu quả): Đọc đề → Tự suy nghĩ → Hỏi AI → Kiểm tra câu trả lời → Tự làm lại.",
+      "CỔNG ĐỎ (Đối phó): Chép đáp án → Nộp bài ngay (Hệ thống gặp lỗi \"Rỗng kiến thức\")."
     ],
-    message: "Học thực sự đòi hỏi một chuỗi hành động tư duy liên tục chứ không phải sự sao chép.",
-    teacherNotes: `<h3>Tổng hợp kết quả (2 phút)</h3>`
+    message: "Thông điệp cốt lõi: Tư duy thực sự là một chuỗi thuật toán liên tục, cắt xén hành động nghĩa là Kỹ sư tự phá hủy hệ thống của mình.",
+    teacherNotes: `<h3>Tổng kết cổng quy trình (2 phút)</h3>`
   },
   {
     id: "STAGE-03-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Sự khác biệt giữa một quy trình học thông minh và một quy trình đối phó.",
-    nextQuestion: "Nhưng tại sao các bước trong quy trình học hiệu quả lại quan trọng đến thế? Nếu lỡ bỏ qua một bước thì hệ quả sẽ ra sao?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã phân loại thành công các khối lệnh hành động.",
+    nextQuestion: "Lệnh tiếp theo: Kích hoạt máy quét cấu trúc để phân tích sâu từng mảnh ghép vi mạch.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 4 ====================
+  // STAGE-04: GIAI ĐOẠN 4
   {
     id: "STAGE-04",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 4",
-    title: "PHÂN TÍCH PHẢN HỒI AI",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 4</h3>`
+    title: "MA TRẬN PHÂN TÍCH LOGIC HỆ THỐNG",
+    teacherNotes: `<h3>Kích hoạt ma trận phân tích (0.5 phút)</h3>`
   },
   {
     id: "STAGE-04-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "MỖI BƯỚC GIÚP GÌ?",
-    goal: "Giúp học sinh thấu hiểu sâu sắc vai trò, giá trị cốt lõi của từng bước tư duy và hệ quả tiêu cực nếu đốt cháy giai đoạn.",
-    icon: "fa-solid fa-chart-simple",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 4</h3>`
+    title: "THẨM ĐỊNH: MỖI BƯỚC GIÚP GÌ?",
+    goal: "Mô phỏng máy quét X-quang kỹ thuật số đang rọi vào từng vi mạch cấu tạo của quy trình học tập.",
+    icon: "fa-solid fa-chart-line",
+    teacherNotes: `<h3>Giới thiệu hoạt động</h3>`
   },
   {
     id: "STAGE-04-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Giấy viết nhóm, bút.",
-    format: "Nhóm 4 học sinh",
-    icon: "fa-solid fa-clipboard-list",
-    teacherNotes: `<h3>Chuẩn bị hoạt động</h3>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Nhật ký phân tích (Giấy, bút).",
+    format: "Duy trì nhóm 4 Kỹ sư.",
+    icon: "fa-solid fa-table-cells",
+    teacherNotes: `<h3>Chuẩn bị phân tích</h3>`
   },
   {
     id: "STAGE-04-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Duy trì đội hình nhóm, quan sát bảng phân tích hệ quả trên màn hình.",
-      "Thảo luận về 'Vai trò' và dự đoán tình huống 'Nếu bỏ qua' của 4 bước cốt lõi.",
-      "Điền kết quả vào phiếu học tập của nhóm.",
-      "Đại diện nhóm trình bày kết quả."
+      "Bước 1: Quan sát bảng ma trận hệ quả hiển thị trên màn hình lớn.",
+      "Bước 2: Thảo luận nhóm để tìm ra 'Chức năng' và hệ quả 'Nếu ngắt mạch' (bỏ qua bước) của 4 vi mạch cốt lõi.",
+      "Bước 3: Ghi nhận thông số vào Phiếu dữ liệu của nhóm.",
+      "Bước 4: Trình bày báo cáo thẩm định."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
+    teacherNotes: `<h3>Hướng dẫn logic phân tích</h3>`
   },
   {
     id: "STAGE-04-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "MA TRẬN PHÂN TÍCH VAI TRÒ",
-    duration: 480, // 8 mins
+    title: "THẨM ĐỊNH MA TRẬN VI MẠCH",
+    duration: 360, // 6 mins
     workspaceType: "matrix-table-blank",
-    stepsList: ["Nghĩ", "Hỏi", "Kiểm tra", "Làm lại"],
-    teacherNotes: `<h3>Tiến hành thảo luận nhóm (8 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 8 phút. Học sinh điền ma trận vai trò và thảo luận xem bước nào giúp hiểu hơn, tránh sai sót, nhớ lâu hơn.</p>`
+    stepsList: ["Mạch NGHĨ", "Mạch HỎI", "Mạch KIỂM TRA", "Mạch LÀM LẠI"],
+    teacherNotes: `<h3>Hoạt động thẩm định (6 phút)</h3>
+                   <p><strong>Định hướng tư duy:</strong> Vi mạch nào kích hoạt độ hiểu sâu? Vi mạch nào chặn virus ảo tưởng? Vi mạch nào khóa dữ liệu lâu dài?</p>`
   },
   {
     id: "STAGE-04-ACT-04",
     period: 1,
     type: "act-report",
-    title: "KẾT QUẢ PHÂN TÍCH MA TRẬN",
+    title: "BẢNG THÔNG SỐ THẨM ĐỊNH CHUẨN",
     workspaceType: "matrix-table-results",
     matrixResults: [
-      { step: "Nghĩ", role: "Kích hoạt não bộ, định hướng vấn đề", skip: "Não bộ lười biếng, thụ động" },
-      { step: "Hỏi", role: "Giải quyết vấn đề, mở rộng góc nhìn", skip: "Bị tắc nghẽn thông tin, mất thời gian" },
-      { step: "Kiểm tra", role: "Tránh sai sót, chọn lọc thông tin của AI", skip: "Chép cả lỗi sai (do AI bịa thông tin)" },
-      { step: "Làm lại", role: "Giúp nhớ lâu hơn, chuyển kiến thức thành của mình", skip: "Quên ngay kiến thức sau khi học" }
+      { step: "Mạch NGHĨ", role: "Kích hoạt não bộ, định hướng vấn đề", skip: "Não bộ đóng băng, rơi vào thụ động." },
+      { step: "Mạch HỎI", role: "Giải quyết nút thắt, mở rộng góc nhìn", skip: "Đi vào ngõ cụt, lãng phí thời gian." },
+      { step: "Mạch KIỂM TRA", role: "Bộ lọc thông tin, tránh sai sót", skip: "Nhiễm dữ liệu rác, lỗi kiến thức do AI 'ảo tưởng' bịa thông tin." },
+      { step: "Mạch LÀM LẠI", role: "Khóa kiến thức vững chắc, biến thành năng lực tự thân", skip: "Dữ liệu bốc hơi ngay lập tức (Quên bài)." }
     ],
-    message: "Mỗi một bước trong ma trận đều có một sứ mệnh không thể thay thế; bớt đi một bước, việc học sẽ sụp đổ.",
-    teacherNotes: `<h3>Tổng hợp kết quả ma trận (3 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Gọi đại diện học sinh phát biểu, click hiện đáp án cho từng bước và nhấn mạnh sứ mệnh của từng bước.</p>`
+    message: "Thông điệp cốt lõi: Bất kỳ vi mạch nào bị ngắt, toàn bộ hệ thống 'Học tập hiệu quả' sẽ sụp đổ hoàn toàn.",
+    teacherNotes: `<h3>Công bố kết quả chuẩn hóa (3 phút)</h3>`
   },
   {
     id: "STAGE-04-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Bản chất, vai trò kỹ thuật và lỗ hổng tư duy khi thiếu hụt các bước phản hồi.",
-    nextQuestion: "Tổng hợp lại tất cả những điều này, đâu là nguyên tắc tối cao mà một Chuyên gia AI cần phải khắc cốt ghi tâm?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã làm rõ chức năng kỹ thuật và các lỗ hổng khi thiếu hụt các bước trong quy trình.",
+    nextQuestion: "Lệnh tiếp theo: Triệu tập Hội đồng tối cao để chuẩn hóa và đóng gói Nguyên tắc vàng.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 5 ====================
+  // STAGE-05: GIAI ĐOẠN 5
   {
     id: "STAGE-05",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 5",
-    title: "RÚT RA INSIGHT",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 5</h3>`
+    title: "ĐÓNG GÓI THUẬT TOÁN TỐI ƯU",
+    teacherNotes: `<h3>Kích hoạt năng lượng đóng gói (0.5 phút)</h3>`
   },
   {
     id: "STAGE-05-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "HỘI ĐỒNG CHUYÊN GIA AI",
-    goal: "Đúc kết nguyên tắc cốt lõi, thống nhất quy trình chuẩn hóa cuối cùng và định vị lại mối quan hệ giữa người học và công nghệ.",
-    icon: "fa-solid fa-scale-balanced",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 5</h3>`
+    title: "ĐẠI HỘI ĐỒNG KỸ SƯ AI NOVASTARS",
+    goal: "Robot Trợ lý AI Hologram xuất hiện để hỗ trợ đúc kết quy trình vàng.",
+    icon: "fa-solid fa-user-gear",
+    teacherNotes: `<h3>Giới thiệu Đại hội đồng</h3>`
   },
   {
     id: "STAGE-05-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Giấy viết cá nhân, bút vẽ sơ đồ.",
-    format: "Cá nhân",
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Giấy, bút.",
+    format: "Cá nhân.",
     icon: "fa-solid fa-pen-nib",
-    teacherNotes: `<h3>Chuẩn bị hoạt động</h3>`
+    teacherNotes: `<h3>Chuẩn bị (0.5 phút)</h3>`
+  },
+  {
+    id: "STAGE-05-ACT-02",
+    period: 1,
+    type: "act-howto",
+    title: "MÃ LỆNH VẬN HÀNH",
+    steps: [
+      "Bước 1: Tổng hợp dữ liệu, thiết kế sơ đồ tư duy quy trình học thông minh với AI.",
+      "Bước 2: Các đại diện lên thuyết minh và trình bày sơ đồ thuật toán của nhóm mình."
+    ],
+    teacherNotes: `<h3>Hướng dẫn cách vẽ sơ đồ</h3>`
   },
   {
     id: "STAGE-05-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "VẼ SƠ ĐỒ QUY TRÌNH HỌC HIỆU QUẢ CÙNG AI",
+    title: "SƠ ĐỒ QUY TRÌNH HỌC HIỆU QUẢ",
     duration: 300, // 5 mins
     workspaceType: "drawing-board",
-    instructions: "Hội đồng chuyên gia AI tổng hợp và vẽ sơ đồ quy trình học hiệu quả với AI để ghi nhớ vào vở/giấy.",
-    teacherNotes: `<h3>Hoạt động cá nhân/nhóm vẽ sơ đồ (5 phút)</h3>`
+    instructions: "Đề bài Hội nghị: Tổng hợp, vẽ lại và trình bày Sơ đồ quy trình chuẩn hóa: \"ĐIỀU KHIỂN AI HỌC TẬP\".",
+    teacherNotes: `<h3>Vẽ sơ đồ tư duy (5 phút)</h3>`
   },
   {
     id: "STAGE-05-ACT-04",
     period: 1,
     type: "act-report",
-    title: "QUY TRÌNH CHUẨN HOÁ CỦA CHUYÊN GIA",
+    title: "THUẬT TOÁN CHUẨN HÓA QUỐC TẾ NOVASTARS",
     workspaceType: "golden-flow",
-    flow: ["NGHĨ (Não tự động)", "HỎI (Tương tác)", "KIỂM TRA (Phản biện)", "LÀM LẠI (Tự giải)"],
-    message: "AI hỗ trợ việc học. AI không thay thế việc học.",
-    teacherNotes: `<h3>Chốt Insight (2 phút)</h3>
-                   <p><strong>Lời thoại gợi ý:</strong> "Đây chính là Insight cốt lõi của bài học hôm nay. Hãy ghi nhớ: AI hỗ trợ chứ không thay thế việc học."</p>`
+    flow: ["NGHĨ", "HỎI", "KIỂM TRA", "LÀM LẠI"],
+    message: "Mã lệnh cốt lõi (Thông điệp chính): \"AI LÀ TRỢ LÝ HỖ TRỢ VIỆC HỌC. AI KHÔNG THAY THẾ VIỆC HỌC.\"",
+    teacherNotes: `<h3>Đúc kết Insight (2 phút)</h3>`
   },
   {
     id: "STAGE-05-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Công thức lõi của một Chuyên gia AI thực thụ khi đứng trước bài học mới.",
-    nextQuestion: "Làm sao để biến công thức mang tính lý thuyết này thành một công cụ thực chiến cho từng môn học cụ thể trên lớp?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã khóa Thuật toán vàng thành công.",
+    nextQuestion: "Lệnh tiếp theo: Ứng dụng thuật toán này để thiết lập và tùy biến cấu hình cho các hệ thống môn học thực tế.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 6 ====================
+  // STAGE-06: GIAI ĐOẠN 6
   {
     id: "STAGE-06",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 6",
-    title: "TẠO SẢN PHẨM AI",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 6</h3>`
+    title: "PHÒNG THỬ NGHIỆM VÀ CHẾ TẠO QUY TRÌNH",
+    teacherNotes: `<h3>Kích hoạt phòng thử nghiệm (0.5 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "THIẾT KẾ QUY TRÌNH HỌC",
-    goal: "Học sinh chuyển hóa lý thuyết thành công cụ thực tiễn, cụ thể hóa hành động học tập cho từng bộ môn học đường cụ thể.",
-    icon: "fa-solid fa-cubes",
-    teacherNotes: `<h3>Giới thiệu Hoạt động 6</h3>`
+    title: "CHẾ TẠO PHIẾU CẤU HÌNH MÔN HỌC",
+    goal: "Hiển thị 4 lõi năng lượng tương ứng với 4 môn học (Toán, Văn, Anh, Khoa học tự nhiên) dạng khối 3D Neon.",
+    icon: "fa-solid fa-atom",
+    teacherNotes: `<h3>Giới thiệu hoạt động chế tạo</h3>`
   },
   {
     id: "STAGE-06-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Phiếu thiết kế quy trình học theo môn (giáo viên phát), bút lông.",
-    format: "Nhóm 4 học sinh (bốc thăm chọn môn)",
-    icon: "fa-solid fa-gifts",
-    teacherNotes: `<h3>Chuẩn bị hoạt động nhóm</h3>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "nhận Phiếu cấu hình môn học từ Giáo viên.",
+    format: "4 Nhóm Kỹ sư tác chiến.",
+    icon: "fa-solid fa-screwdriver-wrench",
+    teacherNotes: `<h3>Chuẩn bị phiếu và bốc thăm</h3>`
   },
   {
     id: "STAGE-06-ACT-02",
     period: 1,
     type: "act-howto",
-    title: "CÁC BƯỚC THỰC HIỆN",
+    title: "MÃ LỆNH VẬN HÀNH",
     steps: [
-      "Mỗi nhóm tiến hành bốc thăm hoặc lựa chọn 1 trong 4 môn học: Toán, Ngữ văn, Tiếng Anh, Khoa học.",
-      "Suy nghĩ về các dạng bài tập đặc trưng của môn học đó khi tương tác với AI.",
-      "Điền cụ thể các hành động vào phiếu thiết kế quy trình học của nhóm mình.",
-      "Đại diện nhóm trình bày trước lớp."
+      "Bước 1: Đại diện bốc thăm nhận lõi năng lượng môn học (Toán, Văn, Anh, Khoa học).",
+      "Bước 2: Phân tích đặc tính dữ liệu bài tập đặc trưng của môn học đó khi quét qua AI.",
+      "Bước 3: Lập trình chi tiết hành động cho 4 bước (Nghĩ - Hỏi - Kiểm tra - Làm lại) vào Phiếu cấu hình môn học của nhóm.",
+      "Bước 4: Chia sẻ ý tưởng trước Hội đồng."
     ],
-    teacherNotes: `<h3>Hướng dẫn các bước</h3>`
+    teacherNotes: `<h3>Hướng dẫn lập trình môn học</h3>`
   },
   {
     id: "STAGE-06-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "THIẾT KẾ QUY TRÌNH HỌC THEO MÔN",
+    title: "THIẾT LẬP THUẬT TOÁN THỰC CHIẾN",
     duration: 600, // 10 mins
     workspaceType: "form-filling-blank",
-    instructions: "Hãy hoàn thiện phiếu thiết kế quy trình học với AI cho môn học của nhóm bạn.",
-    teacherNotes: `<h3>Tiến hành hoàn thiện phiếu (10 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 10 phút. Hỗ trợ các nhóm viết chi tiết các câu lệnh (prompt) và các cách thức kiểm tra chéo kiến thức.</p>`
+    instructions: "Nhiệm vụ Chế tạo: Hoàn thiện Phiếu thiết lập thuật toán: “Khi tối ưu hóa môn [Tên môn học] cùng AI, Kỹ sư chúng tôi sẽ hành động…”",
+    teacherNotes: `<h3>Lập trình phiếu môn học (10 phút)</h3>`
   },
-  
-  // 4 Slides for ACT-04 subject reports
   {
     id: "STAGE-06-ACT-04-1",
     period: 1,
     type: "act-report-subject",
     subject: "MÔN TOÁN",
-    nghi: "Đọc kỹ đề bài, xác định dạng toán, tự nhớ lại công thức và lấy giấy nháp tự giải thử đến chỗ bị bí.",
-    hoi: '"Tôi đang gặp khó khăn ở bài toán [nhập đề bài]. Hãy gợi ý cho tôi 2 bước đầu tiên để giải hoặc đưa ra công thức cần dùng, tuyệt đối không đưa ra đáp án cuối cùng."',
-    kiemtra: "Lật sách giáo khoa xem lại công thức AI đưa ra có chuẩn không, đối chiếu các bước giải xem có hợp lý với thầy cô dạy trên lớp không.",
-    lamlai: "Tắt màn hình thiết bị. Tự viết lại toàn bộ lời giải từ đầu đến cuối vào vở bằng chính sự hiểu biết của mình.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Toán (2 phút)</h3>`
+    nghi: "Đọc kỹ đề bài, phân tích dạng toán, tự gọi lại công thức từ bộ nhớ và nháp lời giải đến khi gặp phân đoạn nghẽn.",
+    hoi: "Tôi là Kỹ sư điều khiển. Tôi đang giải quyết bài toán [nhập đề bài]. Hãy cung cấp cho tôi 2 bước gợi ý tư duy đầu tiên hoặc công thức cốt lõi. Tuyệt đối không được xuất ra đáp án cuối cùng.",
+    kiemtra: "Đối chiếu công thức AI đưa ra với cơ sở dữ liệu Sách giáo khoa, thẩm định tính logic của các bước giải xem có khớp với thuật toán giảng dạy của thầy cô không.",
+    lamlai: "Ngắt kết nối màn hình thiết bị. Tự giải lại toàn bộ bài toán vào vở bằng chính năng lực tư duy đã mở khóa của mình.",
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Toán (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-04-2",
     period: 1,
     type: "act-report-subject",
     subject: "MÔN NGỮ VĂN",
-    nghi: "Tự gạch đầu dòng các ý chính muốn viết (lập dàn ý sơ bộ) và xác định cảm xúc, góc nhìn cá nhân của mình trước khi hỏi.",
-    hoi: '"Hãy gợi ý cho tôi một dàn ý chi tiết 3 phần cho đề văn [nhập đề bài], và cung cấp cho tôi 5 từ vựng hoặc hình ảnh miêu tả hay có thể sử dụng."',
-    kiemtra: "Đọc kỹ xem văn phong của AI có bị 'máy móc', thiếu cảm xúc chân thật, hay có bị lạc đề không.",
-    lamlai: "Cất gợi ý của AI. Tự viết lại thành một bài văn hoàn chỉnh bằng giọng văn và tình cảm thật của mình.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Ngữ văn (2 phút)</h3>`
+    nghi: "Tự gạch đầu dòng các luận điểm cốt lõi (Lập cấu trúc dàn ý sơ bộ) và định hình cảm xúc, quan điểm cá nhân về đề bài.",
+    hoi: "Hãy cung cấp cho tôi một bộ khung dàn ý 3 phần cho đề văn [nhập đề bài], kèm theo gợi ý 5 từ vựng đắt giá hoặc hình ảnh ẩn dụ độc đáo để tôi tham khảo phát triển bài viết.",
+    kiemtra: "Thẩm định văn phong của AI để lọc bỏ các đoạn văn rập khuôn, thiếu cảm xúc tự nhiên hoặc bị đi chệch hướng tiêu chuẩn.",
+    lamlai: "Ẩn toàn bộ phần gợi ý của AI. Tự chắp bút viết nên một tác phẩm văn học hoàn chỉnh bằng ngôn ngữ cá nhân và cảm xúc chân thật của chính mình.",
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Ngữ văn (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-04-3",
     period: 1,
     type: "act-report-subject",
     subject: "MÔN TIẾNG ANH",
-    nghi: "Tự viết câu tiếng Anh bằng vốn từ và ngữ pháp của mình, hoặc tự dịch đoạn văn trong đầu trước.",
-    hoi: '"Hãy kiểm tra xem câu tiếng Anh này của tôi có lỗi sai ngữ pháp hay từ vựng nào không: [nhập câu]. Nếu có, hãy giải thích lý do sai thật dễ hiểu."',
-    kiemtra: "Tra cứu lại các từ mới AI gợi ý trên từ điển chuẩn (Cambridge/Oxford), đối chiếu cấu trúc ngữ pháp với sách học tập.",
+    nghi: "Tự viết câu hoặc dịch đoạn văn bằng vốn từ vựng và cấu trúc ngữ pháp hiện tại trong não bộ trước khi tìm trợ giúp.",
+    hoi: "Hãy đóng vai Chuyên gia ngôn ngữ, kiểm tra và quét toàn bộ lỗi ngữ pháp, từ vựng trong câu sau: [nhập câu của học sinh]. Hãy giải thích lý do tại sao sai và đề xuất cách sửa dễ hiểu nhất.",
+    kiemtra: "Tra cứu ngược lại từ vựng AI gợi ý bằng các hệ từ điển chuẩn quốc tế (Cambridge/Oxford) để xác thực ngữ cảnh và cách phát âm chuẩn.",
     lamlai: "Không xem gợi ý nữa, tự viết lại câu đúng và thực hành phát âm to rõ ràng.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Tiếng Anh (2 phút)</h3>`
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Tiếng Anh (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-04-4",
     period: 1,
     type: "act-report-subject",
-    subject: "MÔN KHOA HỌC",
-    nghi: "Tự quan sát, nhớ lại các hiện tượng thực tế và đặt ra giả thuyết của riêng mình (ví dụ đoán do hơi nước bốc lên thành mây...).",
-    hoi: '"Hãy đóng vai một giáo viên Khoa học, giải thích hiện tượng [tên hiện tượng] cho học sinh lớp [khối lớp] hiểu đơn giản, có ví dụ thực tế."',
-    kiemtra: "Đối chiếu thông tin AI cung cấp với kiến thức trong sách giáo khoa Khoa học tự nhiên để đảm bảo chính xác khoa học.",
-    lamlai: "Tự vẽ lại một sơ đồ tư duy (mindmap) hoặc sơ đồ vòng tuần hoàn của hiện tượng đó ra giấy, điền chú thích bằng ngôn ngữ của mình.",
-    message: "Công nghệ chỉ phát huy sức mạnh tối đa khi được định hướng bởi một tư duy có chiến lược.",
-    teacherNotes: `<h3>Báo cáo sản phẩm môn Khoa học (2 phút)</h3>`
+    subject: "MÔN KHOA HỌC TỰ NHIÊN",
+    nghi: "Tự quan sát các hiện tượng thực tiễn, truy xuất kiến thức nền tảng và đặt ra giả thuyết khoa học của riêng mình.",
+    hoi: "Hãy đóng vai một Giáo sư Khoa học, giải thích nguyên lý vận hành của hiện tượng [tên hiện tượng] cho học sinh trung học hiểu một cách trực quan, sinh động nhất kèm ví dụ thực tế.",
+    kiemtra: "Đối chiếu nghiêm ngặt thông tin AI cung cấp với các định luật, kiến thức chính thống trong Sách giáo khoa để loại bỏ thông tin sai lệch.",
+    lamlai: "Tự mã hóa lại kiến thức bằng cách vẽ một sơ đồ tư duy (Mindmap) hoặc sơ đồ vòng tuần hoàn của hiện tượng ra giấy bằng ngôn ngữ của riêng mình.",
+    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
+    teacherNotes: `<h3>Cấu hình chuẩn môn Khoa học (2 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Cách cá nhân hóa quy trình 4 bước học với AI với các môn học cụ thể.",
-    nextQuestion: "Nhìn lại hành trình từ đầu tiết học đến giờ, bản thân mỗi chuyên gia đã nhận ra điều gì cho riêng mình?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã cá nhân hóa và cấu hình hóa quy trình 4 bước học tập cho từng môn học cụ thể.",
+    nextQuestion: "Lệnh tiếp theo: Kích hoạt chức năng Tự phản ánh để ghi lại Nhật ký cá nhân của Kỹ sư.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 7 ====================
+  // STAGE-07: GIAI ĐOẠN 7
   {
     id: "STAGE-07",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 7",
-    title: "NHẬT KÝ CHUYÊN GIA AI",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 7</h3>`
+    title: "NHẬT KÝ ĐIỆN TỬ TỐI MẬT",
+    teacherNotes: `<h3>Kích hoạt nhật ký điện tử (0.5 phút)</h3>`
   },
   {
     id: "STAGE-07-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "NHẬT KÝ PHẢN TƯ",
-    goal: "Tạo không gian tĩnh để học sinh thực hiện hoạt động Reflection (Phản tư), tự đánh giá thói quen cũ và định hình mong muốn thay đổi.",
-    icon: "fa-solid fa-pen-to-square",
-    teacherNotes: `<h3>Giới thiệu hoạt động Phản tư</h3>`
+    title: "GHI NHẬT KÝ ĐẶC VỤ",
+    goal: "Hiển thị một cuốn sổ da điện tử mở rộng giữa màn hình có quét dấu vân tay bảo mật.",
+    icon: "fa-solid fa-fingerprint",
+    teacherNotes: `<h3>Giới thiệu nhật ký</h3>`
   },
   {
     id: "STAGE-07-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Bút, vở ghi cá nhân (Nhật ký học tập).",
-    format: "Cá nhân",
-    icon: "fa-solid fa-fingerprint",
-    teacherNotes: `<h3>Chuẩn bị phản tư cá nhân</h3>`
+    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    prep: "Bút và giấy nhật ký.",
+    format: "Cá nhân.",
+    icon: "fa-solid fa-key",
+    teacherNotes: `<h3>Chuẩn bị (0.5 phút)</h3>`
+  },
+  {
+    id: "STAGE-07-ACT-02",
+    period: 1,
+    type: "act-howto",
+    title: "MÃ LỆNH VẬN HÀNH",
+    steps: [
+      "Bước 1: Quay ngược thời gian, quét và rà soát lại toàn bộ hành vi sử dụng AI của bản thân trong quá khứ.",
+      "Bước 2: Điền các thông số tự đánh giá vào Phiếu nhật ký cá nhân.",
+      "Bước 3: Chia sẻ dũng cảm trước toàn Hội đồng lớp học."
+    ],
+    teacherNotes: `<h3>Hướng dẫn tự phản tư</h3>`
   },
   {
     id: "STAGE-07-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "NHẬT KÝ CHUYÊN GIA AI",
+    title: "GÕ MÃ LỆNH TƯ DUY",
     duration: 180, // 3 mins
     workspaceType: "reflection-inputs",
     prompts: [
-      "Điều em học được hôm nay là…",
-      "Bước em thường bỏ qua là…",
-      "Điều em muốn thay đổi là…"
+      "Điều em học được hôm nay là….",
+      "Bước em thường bỏ qua là….",
+      "Điều em muốn thay đổi là…."
     ],
-    teacherNotes: `<h3>Thực hiện phản tư (3 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Chạy đồng hồ 3 phút. Lớp học giữ yên lặng để các em tự nhìn nhận lại bản thân.</p>`
+    teacherNotes: `<h3>Ghi nhận phản tư (3 phút)</h3>`
   },
   {
     id: "STAGE-07-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Những suy nghĩ sâu kín và bài học tự thân của từng cá nhân.",
-    nextQuestion: "Từ nhận thức đến hành động là một khoảng cách, làm thế nào để duy trì lời hứa thay đổi này trong suốt một tuần sắp tới?",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã lưu trữ và đồng bộ hóa Nhật ký tư duy cá nhân.",
+    nextQuestion: "Lệnh tiếp theo: Kích hoạt Thử thách thực địa bên ngoài phòng thí nghiệm.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
-  // ==================== STAGE 8 ====================
+  // STAGE-08: GIAI ĐOẠN 8
   {
     id: "STAGE-08",
     period: 1,
     type: "stage-intro",
     stageNum: "GIAI ĐOẠN 8",
-    title: "SỬ DỤNG AI THÔNG MINH",
-    teacherNotes: `<h3>Giới thiệu Giai đoạn 8</h3>`
+    title: "KHỞI CHẠY THỬ THÁCH THỰC ĐỊA",
+    teacherNotes: `<h3>Khởi chạy thử thách (0.5 phút)</h3>`
   },
   {
     id: "STAGE-08-ACT-01",
     period: 1,
     type: "act-intro",
-    title: "THỬ THÁCH 1 TUẦN",
-    goal: "Áp dụng kiến thức bài học vào đời sống thực tế, thiết lập cam kết hành động dài hạn để hình thành thói quen học tập thông minh.",
-    icon: "fa-solid fa-clock-rotate-left",
-    teacherNotes: `<h3>Giới thiệu thử thách cam kết</h3>`
-  },
-  {
-    id: "STAGE-08-ACT-01B",
-    period: 1,
-    type: "act-prep",
-    title: "CHUẨN BỊ HOẠT ĐỘNG",
-    prep: "Phiếu cam kết hành động tuần (giáo viên phát).",
-    format: "Cá nhân",
-    icon: "fa-solid fa-calendar-check",
-    teacherNotes: `<h3>Chuẩn bị phiếu cam kết</h3>`
+    title: "CHIẾN DỊCH 7 NGÀY THỰC CHIẾN",
+    goal: "Hiển thị đồng hồ đếm ngược neon 7 ngày.",
+    icon: "fa-solid fa-clock",
+    teacherNotes: `<h3>Giới thiệu chiến dịch 7 ngày</h3>`
   },
   {
     id: "STAGE-08-ACT-03",
     period: 1,
     type: "act-workspace",
-    title: "BẢNG CAM KẾT HÀNH ĐỘNG TUẦN",
+    title: "BẢNG CHECKLIST KỸ SƯ",
     workspaceType: "commitment-checklist",
     checklist: [
-      "Nghĩ trước khi hỏi AI",
-      "Kiểm tra lại câu trả lời AI",
-      "Tự làm lại sau khi được AI hỗ trợ",
-      "Ghi lại điều mình học được"
+      "Đã kích hoạt mạch NGHĨ trước khi nạp dữ liệu hỏi AI.",
+      "Đã thẩm định và KIỂM TRA lại câu trả lời để lọc thông tin rác.",
+      "Đã ngắt thiết bị và TỰ LÀM LẠI bài tập bằng bộ não của mình.",
+      "Đã ghi nhận kiến thức mới vào bộ nhớ dài hạn."
     ],
-    teacherNotes: `<h3>Ký cam kết thử thách tuần (2 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Giáo viên hướng dẫn học sinh đọc to các cam kết và tích chọn ký tên vào phiếu của mình.</p>`
+    teacherNotes: `<h3>Cam kết thực thi (2 phút)</h3>`
   },
   {
     id: "STAGE-08-ACT-05",
     period: 1,
     type: "act-transition",
-    title: "CHUYỂN GIAO TIẾN TRÌNH",
-    explored: "Bản khế ước hành động thực tế của những nhà thông thái công nghệ tương lai.",
-    nextQuestion: "Hãy cùng nhìn lại toàn bộ bức tranh kiến thức của ngày hôm nay để đóng gói trọn vẹn hành trình khám phá này!",
+    title: "BÁO CÁO HỆ THỐNG",
+    explored: "Đã giao nhiệm vụ thành công.",
+    nextQuestion: "Lệnh tiếp theo: Đóng gói toàn bộ hành trình, đóng khóa bài học để lưu trữ vào máy chủ trung tâm.",
     teacherNotes: `<h3>Chuyển giao</h3>`
   },
 
@@ -627,50 +642,50 @@ const slidesData = [
     id: "END-01-1",
     period: 1,
     type: "key-takeaway-single",
-    title: "TỔNG KẾT: KIẾN THỨC 1",
-    label: "HỌC THỰC SỰ VS ĐỐI PHÓ",
+    title: "CỐT LÕI HỆ THỐNG: BẢN CHẤT",
+    label: "BẢN CHẤT",
     points: [
-      "<strong>Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu sâu sắc kiến thức.",
-      "<strong>Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI để nộp bài; bài tập hoàn thành nhưng bộ não không đọng lại kiến thức."
+      "<strong>Học thực sự (Chủ động):</strong> Dùng AI làm trợ lý kích hoạt tư duy; tự suy nghĩ, phản biện và tự thực hành để thấu hiểu kiến thức.",
+      "<strong>Hành vi lỗi/Đối phó (Thụ động):</strong> Sao chép nguyên văn đáp án từ AI; bài tập hoàn thành trên vỏ bọc nhưng não bộ rơi vào trạng thái rỗng."
     ],
-    teacherNotes: `<h3>Tổng kết kiến thức 1 (1 phút)</h3>`
+    teacherNotes: `<h3>Đóng gói cốt lõi 1 (1 phút)</h3>`
   },
   {
     id: "END-01-2",
     period: 1,
     type: "key-takeaway-single",
-    title: "TỔNG KẾT: KIẾN THỨC 2",
-    label: "QUY TRÌNH HỌC VỚI AI HIỆU QUẢ",
+    title: "CỐT LÕI HỆ THỐNG: THUẬT TOÁN VÀNG",
+    label: "THUẬT TOÁN VÀNG",
     flow: ["NGHĨ", "HỎI", "KIỂM TRA", "LÀM LẠI"],
-    teacherNotes: `<h3>Tổng kết kiến thức 2 (1 phút)</h3>`
+    teacherNotes: `<h3>Đóng gói cốt lõi 2 (1 phút)</h3>`
   },
   {
     id: "END-01-3",
     period: 1,
     type: "key-takeaway-single",
-    title: "TỔNG KẾT: KIẾN THỨC 3",
-    label: "MỐI QUAN HỆ VỚI CÔNG NGHỆ",
-    quote: "AI hỗ trợ việc học, AI không thay thế việc học.",
+    title: "CỐT LÕI HỆ THỐNG: CHÂM NGÔN ĐẶC VỤ",
+    label: "CHÂM NGÔN ĐẶC VỤ",
+    quote: "AI hỗ trợ việc học. AI không thay thế việc học.",
     message: "Hãy biến AI thành bệ phóng cho trí tuệ của bạn, đừng biến mình thành cái bóng thụ động của công nghệ!",
-    teacherNotes: `<h3>Tổng kết kiến thức 3 (1 phút)</h3>`
+    teacherNotes: `<h3>Đóng gói cốt lõi 3 (1 phút)</h3>`
   },
   {
     id: "END-03",
     period: 1,
     type: "bq-revisit",
-    title: "QUAY LẠI CÂU HỎI LỚN",
-    question: "Làm thế nào để học cùng AI mà vẫn thực sự hiểu bài?",
-    answer: "Để học cùng AI mà vẫn hiểu bài sâu và nhớ bài lâu, ta bắt buộc phải làm chủ cuộc chơi tư duy bằng cách tuân thủ nghiêm ngặt quy trình: Chủ động Nghĩ độc lập → Khôn ngoan khi Hỏi AI → Tỉnh táo Kiểm tra chéo thông tin → Kiên trì Làm lại bằng chính năng lực của mình.",
-    teacherNotes: `<h3>Trả lời câu hỏi lớn (1 phút)</h3>`
+    title: "MÃ KHÓA LỜI GIẢI SAU CHIẾN DỊCH",
+    question: "Làm thế nào để điều khiển AI hỗ trợ học tập mà không làm suy giảm tư duy của chính mình?",
+    answer: "Để làm chủ cuộc chơi tư duy trước Siêu trí tuệ nhân tạo, Kỹ sư Novastars bắt buộc phải tuân thủ kỷ luật thuật toán:<br><br><strong>Chủ động NGHĨ độc lập → Khôn ngoan khi HỎI AI → Tỉnh táo KIỂM TRA chéo dữ liệu → Kiên trì LÀM LẠI bằng chính năng lực tự thân.</strong>",
+    teacherNotes: `<h3>Giải quyết câu hỏi lớn (1 phút)</h3>`
   },
   {
     id: "END-04",
     period: 1,
     type: "reflection-end",
-    title: "SUY NGẪM CUỐI BÀI HỌC",
+    title: "PHIẾU TƯ DUY LƯU TRỮ CUỐI BÀI",
     prompts: [
-      "Điều em bất ngờ nhất là…",
-      "Trước đây em nghĩ…",
+      "Điều em bất ngờ nhất là….",
+      "Trước đây em nghĩ….",
       "Bây giờ em hiểu rằng…"
     ],
     teacherNotes: `<h3>Phản tư cuối bài (1 phút)</h3>`
@@ -679,14 +694,13 @@ const slidesData = [
     id: "END-05",
     period: 1,
     type: "action-commitment-end",
-    title: "BẢN CAM KẾT CHUYÊN GIA AI",
+    title: "TUYÊN NGÔN HÀNH ĐỘNG CỦA KỸ SƯ",
     commitments: [
-      "Luôn tự suy nghĩ độc lập trước khi hỏi AI.",
-      "Hỏi AI có chọn lọc bằng câu lệnh thông minh gợi mở.",
-      "Kiểm tra chéo và phản biện lại thông tin AI cung cấp.",
-      "Tự mình làm lại bài tập để chuyển hóa kiến thức."
+      "NGHĨ: Luôn tự suy nghĩ và nháp bài trước khi tìm AI.",
+      "HỎI: Chỉ hỏi gợi ý cách làm, tuyệt đối không xin đáp án.",
+      "KIỂM TRA: Luôn đối chiếu lời giải của AI với Sách giáo khoa.",
+      "LÀM LẠI: Tắt thiết bị, tự tay giải lại bài bằng năng lực của mình."
     ],
-    teacherNotes: `<h3>Ký cam kết tốt nghiệp (2 phút)</h3>
-                   <p><strong>Hướng dẫn hành động:</strong> Bấm nút Ký tên & Tốt nghiệp để chúc mừng các chuyên gia AI tốt nghiệp khóa huấn luyện.</p>`
+    teacherNotes: `<h3>Ký cam kết & Đăng xuất (2 phút)</h3>`
   }
 ];

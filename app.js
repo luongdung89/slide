@@ -4,6 +4,7 @@
 let currentSlideIndex = 0;
 const totalSlides = slidesData.length;
 const timerStates = {}; // Stores { remainingTime: number, intervalId: null/interval } by slideId
+let matrixIntervalId = null; // Tracks the welcome slide Matrix rain animation interval
 
 // DOM Elements
 const slideViewer = document.getElementById('slide-viewer');
@@ -71,21 +72,28 @@ function renderSlide(index) {
     switch (slide.type) {
         case 'welcome':
             slideHtml = `
-                <div class="slide-content layout-welcome">
-                    <div class="particles-bg"></div>
+                <div class="slide-content layout-welcome login-portal">
+                    <canvas class="matrix-rain-canvas" id="matrix-canvas"></canvas>
                     <div class="welcome-grid">
                         <div class="welcome-text-side">
-                            <div class="welcome-badge" contenteditable="true">${slide.role}</div>
+                            <div class="welcome-badge" contenteditable="true"><i class="fa-solid fa-user-shield"></i> ${slide.role}</div>
                             <h1 class="welcome-title text-glow" contenteditable="true">${slide.title}</h1>
-                            <p class="welcome-subtitle" contenteditable="true">${slide.subtitle}</p>
-                            <p class="welcome-subject" contenteditable="true">${slide.subject}</p>
+                            <p class="welcome-subtitle" contenteditable="true"><i class="fa-solid fa-code"></i> ${slide.subtitle}</p>
+                            <p class="welcome-subject" contenteditable="true"><i class="fa-solid fa-building-columns"></i> ${slide.subject}</p>
                             <div class="welcome-objectives">
-                                <strong style="color:var(--color-teal);">Mục tiêu bài học:</strong> 
+                                <strong style="color:var(--color-teal);"><i class="fa-solid fa-bullseye"></i> Mục tiêu chiến dịch:</strong> 
                                 <span contenteditable="true">${slide.objectives}</span>
                             </div>
                         </div>
                         <div class="welcome-visual-side draggable-object">
-                            <img src="welcome_ai_classroom.png" class="welcome-cartoon-img" alt="AI Classroom">
+                            <div class="scanner-portal-widget">
+                                <div class="scanner-header"><i class="fa-solid fa-circle-notch fa-spin"></i> HỆ THỐNG ĐANG QUÉT...</div>
+                                <div class="fingerprint-scan-container">
+                                    <div class="fingerprint-laser-line"></div>
+                                    <i class="fa-solid fa-fingerprint fingerprint-icon"></i>
+                                </div>
+                                <div class="scanner-footer">TRUY CẬP BẢO MẬT NOVASTARS</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,20 +105,21 @@ function renderSlide(index) {
                 <div class="slide-content layout-big-question">
                     <div class="bq-glow-bg"></div>
                     <div class="bq-wrapper draggable-object">
-                        <div class="bq-visual-graphic">
-                            <svg class="bq-svg" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(249,115,22,0.12)" stroke-width="0.8"/>
-                                <circle cx="50" cy="50" r="44" fill="none" stroke="var(--color-orange)" stroke-width="0.8" stroke-dasharray="12 28" class="rotate-circuit-cw"/>
-                                <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(6,182,212,0.08)" stroke-width="0.8"/>
-                                <circle cx="50" cy="50" r="36" fill="none" stroke="var(--color-teal)" stroke-width="0.6" stroke-dasharray="16 34" class="rotate-circuit-ccw"/>
-                                <circle cx="50" cy="6" r="2.5" fill="var(--color-orange)" filter="drop-shadow(0 0 4px var(--color-orange))"/>
-                                <circle cx="50" cy="94" r="2.5" fill="var(--color-orange)" filter="drop-shadow(0 0 4px var(--color-orange))"/>
-                                <circle cx="94" cy="50" r="2.5" fill="var(--color-teal)" filter="drop-shadow(0 0 4px var(--color-teal))"/>
-                                <circle cx="6" cy="50" r="2.5" fill="var(--color-teal)" filter="drop-shadow(0 0 4px var(--color-teal))"/>
-                                <text x="50%" y="62%" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="36" fill="var(--color-orange)" filter="drop-shadow(0 0 6px var(--color-orange-glow))" class="pulse-element">?</text>
-                            </svg>
+                        <div class="circuits-brain-vs-ai">
+                            <div class="circuit-brain-container">
+                                <i class="fa-solid fa-brain brain-neon-icon"></i>
+                                <div class="brain-circuit-line line1"></div>
+                                <div class="brain-circuit-line line2"></div>
+                            </div>
+                            <div class="electric-question-mark">
+                                <span class="eq-text text-glow pulse-element">?</span>
+                            </div>
+                            <div class="ai-energy-core-container">
+                                <div class="ai-core-energy volt-lime-glow"></div>
+                                <i class="fa-solid fa-atom ai-neon-icon"></i>
+                            </div>
                         </div>
-                        <span class="bq-tag" contenteditable="true"><i class="fa-solid fa-circle-question"></i> ${slide.title}</span>
+                        <span class="bq-tag" contenteditable="true"><i class="fa-solid fa-key"></i> ${slide.title}</span>
                         <h2 class="bq-text text-glow" contenteditable="true">${slide.question}</h2>
                         <p class="bq-sub" contenteditable="true">${slide.subtext}</p>
                     </div>
@@ -120,20 +129,38 @@ function renderSlide(index) {
             
         case 'role-intro':
             slideHtml = `
-                <div class="slide-content layout-role-intro">
-                    <h2 class="slide-heading" contenteditable="true">${slide.title}</h2>
-                    <div class="role-cards-container">
-                        <div class="role-info-card card-role-name">
-                            <div class="role-icon-box"><i class="fa-solid fa-laptop-code"></i></div>
-                            <span class="role-badge-text" contenteditable="true">${slide.roleName}</span>
+                <div class="slide-content layout-role-intro dashboard-theme">
+                    <h2 class="slide-heading" contenteditable="true"><i class="fa-solid fa-chart-line"></i> ${slide.title}</h2>
+                    <div class="dashboard-grid">
+                        <div class="db-panel db-left-panel draggable-object">
+                            <div class="panel-header">ĐỊNH DANH KỸ SƯ AI</div>
+                            <div class="hologram-avatar-container">
+                                <div class="hologram-glitch-layer"></div>
+                                <i class="fa-solid fa-user-astronaut engineer-avatar-icon"></i>
+                                <div class="avatar-hud-ring"></div>
+                            </div>
+                            <div class="hud-parameters">
+                                <div class="hud-param-row">
+                                    <span>NĂNG LỰC TƯ DUY</span>
+                                    <span class="param-value text-glow-cyan">100%</span>
+                                </div>
+                                <div class="hud-progress"><div class="hud-progress-bar" style="width: 100%;"></div></div>
+                                <div class="hud-param-row" style="margin-top: 8px;">
+                                    <span>TỶ LỆ ĐỒNG BỘ AI</span>
+                                    <span class="param-value text-glow-orange">0%</span>
+                                </div>
+                                <div class="hud-progress"><div class="hud-progress-bar warning-bar" style="width: 0%;"></div></div>
+                            </div>
                         </div>
-                        <div class="role-info-card card-role-desc">
-                            <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-users-gear text-orange"></i> <span contenteditable="true">Vai trò học sinh</span></h3>
-                            <p class="card-content-text" contenteditable="true">${slide.roleDesc}</p>
-                        </div>
-                        <div class="role-info-card card-role-mission">
-                            <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-circle-check text-green"></i> <span contenteditable="true">Nhiệm vụ chính</span></h3>
-                            <p class="card-content-text" contenteditable="true">${slide.roleMission}</p>
+                        <div class="db-panels-right">
+                            <div class="db-panel panel-desc">
+                                <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-user-gear text-teal"></i> <span contenteditable="true">${slide.roleName}</span></h3>
+                                <p class="card-content-text" contenteditable="true">${slide.roleDesc}</p>
+                            </div>
+                            <div class="db-panel panel-mission" style="margin-top: 20px;">
+                                <h3 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-crosshairs text-orange"></i> <span contenteditable="true">Nhiệm vụ chính</span></h3>
+                                <p class="card-content-text" contenteditable="true">${slide.roleMission}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -141,36 +168,232 @@ function renderSlide(index) {
             break;
             
         case 'stage-intro':
-            slideHtml = `
-                <div class="slide-content layout-stage-intro">
-                    <div class="stage-intro-wrapper draggable-object">
-                        <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
-                        <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
-                        <div class="stage-lock-wrapper">
-                            <svg class="stage-lock-svg" viewBox="0 0 100 100">
-                                <path d="M32 45 V 30 A 18 18 0 0 1 68 30 V 45" fill="none" stroke="var(--color-teal)" stroke-width="7" stroke-linecap="round" class="lock-shackle"/>
-                                <rect x="22" y="45" width="56" height="40" rx="8" fill="#0d1527" stroke="var(--color-teal)" stroke-width="3" filter="drop-shadow(0 0 6px var(--color-teal-glow))"/>
-                                <circle cx="50" cy="62" r="5" fill="#080c14"/>
-                                <path d="M48 65 L 46 76 H 54 L 52 65 Z" fill="#080c14"/>
-                            </svg>
+            if (slide.id === 'STAGE-02') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro video-call-incoming">
+                        <div class="glitch-overlay"></div>
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="video-call-screen">
+                                <div class="call-static-noise"></div>
+                                <div class="call-overlay-hud">
+                                    <div class="blink-rec"><i class="fa-solid fa-circle text-danger"></i> ĐANG CÓ CUỘC GỌI...</div>
+                                    <div class="caller-id">HỌC VIỆN AI NOVASTARS</div>
+                                </div>
+                                <i class="fa-solid fa-user-tie caller-avatar-icon"></i>
+                            </div>
+                            <div class="beep-notification-indicator" style="margin-top: 20px;">
+                                <i class="fa-solid fa-bell fa-bounce text-orange"></i>
+                                <span class="blink-text text-orange" style="font-weight:700; margin-left: 8px;">TÍN HIỆU NHIỄU SÓNG - TIN NHẮN MẬT</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            } else if (slide.id === 'STAGE-03') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro radar-scanning-field">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="radar-hud-circle">
+                                <div class="radar-line-sweep"></div>
+                                <div class="barcode-streams-container">
+                                    <div class="barcode-stream-line l1"></div>
+                                    <div class="barcode-stream-line l2"></div>
+                                    <div class="barcode-stream-line l3"></div>
+                                </div>
+                                <i class="fa-solid fa-radar radar-core-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-04') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro brainwave-dashboard">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="wave-dashboard-hud">
+                                <div class="brainwave-graph">
+                                    <svg viewBox="0 0 200 40" class="brainwave-svg">
+                                        <path d="M0,20 Q10,5 20,20 T40,20 T60,20 T80,20 T100,20 T120,20 T140,20 T160,20 T180,20 T200,20" fill="none" stroke="var(--color-teal)" stroke-width="1.5" class="wave-path"></path>
+                                    </svg>
+                                </div>
+                                <div class="dashboard-stats-readout">
+                                    <div>MA TRẬN LOGIC: HOẠT ĐỘNG</div>
+                                    <div>CPU: 42%</div>
+                                    <div>RAM: 12GB</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-05') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro energy-core-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="energy-core-glowing-widget">
+                                <div class="core-orbit">
+                                    <div class="core-nucleus"></div>
+                                </div>
+                                <i class="fa-solid fa-lightbulb core-bulb"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-06') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro mechanical-gears-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="gears-hud-assembly">
+                                <i class="fa-solid fa-gear gear-big fa-spin"></i>
+                                <i class="fa-solid fa-gear gear-small fa-spin-reverse"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-07') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro coder-terminal-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="coder-terminal-hud">
+                                <div class="terminal-text-line">C:\\SYSTEM\\DIARY> ĐANG KHỞI TẠO PHẢN TƯ...</div>
+                                <div class="terminal-text-line">TRẠNG THÁI: KHÓA</div>
+                                <div class="terminal-text-line">ĐANG TRUY CẬP CẢM BIẾN SINH TRẮC HỌC_</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-08') {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro mission-activation-stage">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="mission-activation-grid">
+                                <div class="tick-box active"><i class="fa-solid fa-square-check text-glow-lime"></i> ĐANG QUÉT HOẠT ĐỘNG</div>
+                                <div class="tick-box active"><i class="fa-solid fa-square-check text-glow-lime"></i> KHỞI TẠO GIAO THỨC</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                slideHtml = `
+                    <div class="slide-content layout-stage-intro">
+                        <div class="stage-intro-wrapper draggable-object">
+                            <span class="stage-num-badge" contenteditable="true">${slide.stageNum}</span>
+                            <h1 class="stage-title text-glow" contenteditable="true">${slide.title}</h1>
+                            <div class="stage-lock-wrapper">
+                                <div class="laser-scanner-line cyan-laser"></div>
+                                <svg class="stage-lock-svg" viewBox="0 0 100 100">
+                                    <path d="M32 45 V 30 A 18 18 0 0 1 68 30 V 45" fill="none" stroke="var(--color-teal)" stroke-width="7" stroke-linecap="round" class="lock-shackle"/>
+                                    <rect x="22" y="45" width="56" height="40" rx="8" fill="#0d1527" stroke="var(--color-teal)" stroke-width="3" filter="drop-shadow(0 0 6px var(--color-teal-glow))"/>
+                                    <circle cx="50" cy="62" r="5" fill="#080c14"/>
+                                    <path d="M48 65 L 46 76 H 54 L 52 65 Z" fill="#080c14"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
             break;
             
         case 'act-intro':
+            let visualSideHtml = `<img src="learning_path.png" class="act-cartoon-img" alt="Learning Path">`;
+            if (slide.id === 'STAGE-01-ACT-01') {
+                visualSideHtml = `
+                    <div class="data-split-screen-loader">
+                        <div class="loader-header"><i class="fa-solid fa-spinner fa-spin"></i> LUỒNG DỮ LIỆU ĐANG NẠP...</div>
+                        <div class="loader-status text-glow-cyan">Đang tải Nhật ký người dùng Nam & Lan...</div>
+                        <div class="stream-console">
+                            <div class="console-line">> ĐANG KẾT NỐI CƠ SỞ DỮ LIỆU... THÀNH CÔNG</div>
+                            <div class="console-line">> TẢI NHẬT KÝ_NAM_CHỦ ĐỘNG... 100%</div>
+                            <div class="console-line">> TẢI NHẬT KÝ_LAN_THỤ ĐỘNG... 100%</div>
+                            <div class="console-line">> ĐANG KHỞI TẠO KHÔNG GIAN PHÂN TÍCH... SẴN SÀNG</div>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-02-ACT-01') {
+                visualSideHtml = `
+                    <div class="secure-envelope-hologram pulse-glow-red">
+                        <i class="fa-solid fa-envelope-open-text envelope-icon"></i>
+                        <div class="digital-seal"><i class="fa-solid fa-shield-halved"></i> AN TOÀN</div>
+                        <div class="envelope-hud">HỌC VIỆN AI NOVASTARS</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-03-ACT-01') {
+                visualSideHtml = `
+                    <div class="floating-data-cubes">
+                        <div class="cube cube-nghi text-glow-cyan">NGHĨ</div>
+                        <div class="cube cube-hoi text-glow-orange">HỎI</div>
+                        <div class="cube cube-kiemtra text-glow-lime">KIỂM TRA</div>
+                        <div class="cube cube-lamlai text-glow-pink">LÀM LẠI</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-04-ACT-01') {
+                visualSideHtml = `
+                    <div class="xray-brain-scanner">
+                        <div class="scanner-sweep-bar"></div>
+                        <i class="fa-solid fa-brain scan-brain-icon"></i>
+                        <div class="scanner-hud-grid">
+                            <span>CẢM BIẾN: BẬT</span>
+                            <span>ĐANG QUÉT CẤU TRÚC LOGIC</span>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-05-ACT-01') {
+                visualSideHtml = `
+                    <div class="hologram-assistant-robot">
+                        <i class="fa-solid fa-robot robot-glow-icon"></i>
+                        <div class="robot-glow-ring"></div>
+                        <div class="hud-caption">TRỢ LÝ AI V1.0</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-06-ACT-01') {
+                visualSideHtml = `
+                    <div class="cores-preview-grid">
+                        <div class="core-preview math-core"><i class="fa-solid fa-calculator"></i><span>TOÁN</span></div>
+                        <div class="core-preview lit-core"><i class="fa-solid fa-pen-nib"></i><span>VĂN</span></div>
+                        <div class="core-preview eng-core"><i class="fa-solid fa-language"></i><span>ANH</span></div>
+                        <div class="core-preview sci-core"><i class="fa-solid fa-flask"></i><span>KHOA HỌC</span></div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-07-ACT-01') {
+                visualSideHtml = `
+                    <div class="biometric-diary">
+                        <i class="fa-solid fa-book-bookmark diary-icon"></i>
+                        <div class="diary-fingerprint"><i class="fa-solid fa-fingerprint fa-pulse"></i></div>
+                        <div class="hud-status">NHẬT KÝ ĐÃ KHÓA - CHẠM CẢM BIẾN</div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-08-ACT-01') {
+                visualSideHtml = `
+                    <div class="mission-countdown-hud">
+                        <div class="hud-title">NHIỆM VỤ ĐANG HOẠT ĐỘNG</div>
+                        <div class="countdown-digits">07:00:00</div>
+                        <div class="hud-subtitle">NGÀY : GIỜ : PHÚT</div>
+                    </div>
+                `;
+            }
+            
             slideHtml = `
                 <div class="slide-content layout-act-intro">
                     <div class="act-intro-grid">
                         <div class="act-intro-card">
                             <i class="${slide.icon} act-intro-icon"></i>
-                            <span class="act-intro-badge" contenteditable="true">HOẠT ĐỘNG KHÁM PHÁ</span>
+                            <span class="act-intro-badge" contenteditable="true">HOẠT ĐỘNG HUÂN LUYỆN</span>
                             <h1 class="act-intro-title" contenteditable="true">${slide.title}</h1>
                             <p class="act-intro-goal" contenteditable="true">${slide.goal}</p>
                         </div>
                         <div class="act-intro-visual draggable-object">
-                            <img src="learning_path.png" class="act-cartoon-img" alt="Learning Path">
+                            ${visualSideHtml}
                         </div>
                     </div>
                 </div>
@@ -178,17 +401,82 @@ function renderSlide(index) {
             break;
             
         case 'act-prep':
+            let prepVisualHtml = `<img src="prep_supplies.png" style="width:100%; max-height:220px; object-fit:contain;" alt="Supplies">`;
+            if (slide.id === 'STAGE-01-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="cyber-toolkit-box">
+                        <div class="box-lid"></div>
+                        <i class="fa-solid fa-briefcase toolkit-icon"></i>
+                        <div class="tools-inside">
+                            <i class="fa-solid fa-pen-fancy pen-digital"></i>
+                            <i class="fa-solid fa-book-journal-whills logbook-secured"></i>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-02-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="radar-scan-container">
+                        <div class="radar-sweep"></div>
+                        <i class="fa-solid fa-magnifying-glass radar-magnifier"></i>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-03-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="engineers-squad-chips">
+                        <i class="fa-solid fa-users squad-icon"></i>
+                        <div class="chips-row">
+                            <span class="nano-chip color-blue"></span>
+                            <span class="nano-chip color-orange"></span>
+                            <span class="nano-chip color-lime"></span>
+                        </div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-04-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="matrix-empty-glow">
+                        <div class="blinking-led"></div>
+                        <i class="fa-solid fa-table-cells matrix-led-icon"></i>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-05-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="concentration-beam-scanner">
+                        <i class="fa-solid fa-robot robot-beam-icon"></i>
+                        <div class="scanning-laser-cone"></div>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-06-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="blueprint-assembly">
+                        <i class="fa-solid fa-diagram-project assembly-icon"></i>
+                        <i class="fa-solid fa-gears gears-assembly"></i>
+                    </div>
+                `;
+            } else if (slide.id === 'STAGE-07-ACT-01B') {
+                prepVisualHtml = `
+                    <div class="biometric-unlocked">
+                        <i class="fa-solid fa-lock-open unlocked-lock"></i>
+                        <i class="fa-solid fa-id-card unlocked-badge"></i>
+                    </div>
+                `;
+            }
+            
             slideHtml = `
                 <div class="slide-content layout-act-prep">
                     <h2 class="slide-heading" contenteditable="true">${slide.title}</h2>
-                    <div class="prep-cards-container">
-                        <div class="prep-box glass-card theme-teal">
-                            <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-screwdriver-wrench text-teal"></i> <span contenteditable="true">Đồ dùng cần chuẩn bị:</span></h3>
-                            <div class="prep-text" contenteditable="true">${slide.prep}</div>
+                    <div class="prep-grid-cols">
+                        <div class="prep-text-side">
+                            <div class="prep-box glass-card theme-teal">
+                                <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-suitcase-rolling text-teal"></i> <span contenteditable="true">Trang bị chuyên gia:</span></h3>
+                                <div class="prep-text" contenteditable="true">${slide.prep}</div>
+                            </div>
+                            <div class="prep-box glass-card theme-orange" style="margin-top:20px;">
+                                <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-sitemap text-orange"></i> <span contenteditable="true">Đội hình tác chiến:</span></h3>
+                                <div class="prep-text" contenteditable="true">${slide.format}</div>
+                            </div>
                         </div>
-                        <div class="prep-box glass-card theme-orange">
-                            <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-users text-orange"></i> <span contenteditable="true">Hình thức tổ chức:</span></h3>
-                            <div class="prep-text" contenteditable="true">${slide.format}</div>
+                        <div class="prep-visual-side draggable-object">
+                            ${prepVisualHtml}
                         </div>
                     </div>
                 </div>
@@ -223,7 +511,6 @@ function renderSlide(index) {
             if (slide.workspaceType === 'matrix-table-results') {
                 reportContentHtml = `<div class="matrix-grid draggable-object"></div>`;
             } else if (slide.workspaceType === 'golden-flow' || slide.flow) {
-                // Sơ đồ quy trình liên kết tuần hoàn dạng mạch điện neon
                 reportContentHtml = `
                     <div class="golden-flow-wrapper draggable-object">
                         ${slide.flow.map((node, i) => `
@@ -236,11 +523,10 @@ function renderSlide(index) {
                     </div>
                 `;
             } else if (slide.id === 'STAGE-03-ACT-04') {
-                // Sơ đồ hóa 2 quy trình song song (Active vs Passive)
                 reportContentHtml = `
                     <div class="flowchart-container draggable-object">
                         <div class="flowchart-path path-active">
-                            <h4 contenteditable="true"><i class="fa-solid fa-graduation-cap"></i> Quy trình Học thực sự (Chủ động):</h4>
+                            <h4 contenteditable="true" style="color:var(--color-teal);"><i class="fa-solid fa-graduation-cap"></i> Quy trình Học tập Hiệu quả (Hệ thống Xanh):</h4>
                             <div class="flowchart-steps">
                                 <div class="fc-step step-teal">
                                     <i class="fa-solid fa-book-open"></i>
@@ -253,12 +539,12 @@ function renderSlide(index) {
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
                                 <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-laptop-code"></i>
+                                    <i class="fa-solid fa-circle-question"></i>
                                     <span contenteditable="true">Hỏi AI</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
                                 <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <i class="fa-solid fa-shield-halved"></i>
                                     <span contenteditable="true">Kiểm tra</span>
                                 </div>
                                 <i class="fa-solid fa-arrow-right fc-arrow"></i>
@@ -268,8 +554,8 @@ function renderSlide(index) {
                                 </div>
                             </div>
                         </div>
-                        <div class="flowchart-path path-passive" style="margin-top: 20px;">
-                            <h4 contenteditable="true"><i class="fa-solid fa-circle-exclamation"></i> Quy trình Đối phó (Thụ động):</h4>
+                        <div class="flowchart-path path-passive" style="margin-top: 25px;">
+                            <h4 contenteditable="true" style="color:var(--color-orange);"><i class="fa-solid fa-circle-exclamation"></i> Quy trình Đối phó (Hệ thống Lỗi):</h4>
                             <div class="flowchart-steps">
                                 <div class="fc-step step-orange">
                                     <i class="fa-solid fa-copy"></i>
@@ -308,9 +594,25 @@ function renderSlide(index) {
             break;
             
         case 'act-report-subject':
+            let subjectClass = '';
+            let subjectIcon = '';
+            if (slide.subject.includes('TOÁN')) {
+                subjectClass = 'core-blue';
+                subjectIcon = 'fa-calculator';
+            } else if (slide.subject.includes('VĂN')) {
+                subjectClass = 'core-pink';
+                subjectIcon = 'fa-pen-nib';
+            } else if (slide.subject.includes('ANH')) {
+                subjectClass = 'core-volt';
+                subjectIcon = 'fa-language';
+            } else if (slide.subject.includes('KHOA HỌC')) {
+                subjectClass = 'core-green';
+                subjectIcon = 'fa-flask';
+            }
+            
             slideHtml = `
-                <div class="slide-content layout-subject-report">
-                    <h2 class="slide-heading" contenteditable="true">KẾT QUẢ PHIẾU MẪU: ${slide.subject}</h2>
+                <div class="slide-content layout-subject-report ${subjectClass}">
+                    <h2 class="slide-heading" contenteditable="true"><i class="fa-solid ${subjectIcon}"></i> CẤU HÌNH CHUẨN: ${slide.subject}</h2>
                     <div class="subject-report-grid">
                         <div class="subject-step-box box-nghi">
                             <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-lightbulb"></i> <span contenteditable="true">NGHĨ</span></h4>
@@ -329,14 +631,14 @@ function renderSlide(index) {
                             <p class="subject-step-text" contenteditable="true">${slide.lamlai}</p>
                         </div>
                     </div>
-                    <div class="report-highlight-banner" style="margin-top: 25px;">
-                        <div class="report-highlight-icon"><i class="fa-solid fa-circle-nodes text-orange"></i></div>
+                    <div class="report-highlight-banner" style="margin-top: 20px;">
+                        <div class="report-highlight-icon"><i class="fa-solid fa-circle-nodes"></i></div>
                         <div class="report-highlight-text" contenteditable="true">${slide.message}</div>
                     </div>
                 </div>
             `;
             break;
-            
+
         case 'act-transition':
             slideHtml = `
                 <div class="slide-content layout-act-transition">
@@ -362,7 +664,7 @@ function renderSlide(index) {
             let innerTakeawayHtml = '';
             if (slide.points) {
                 innerTakeawayHtml = `
-                    <div class="takeaway-large-card glass-card">
+                    <div class="takeaway-large-card glass-card master-data-card">
                         <div class="takeaway-label" contenteditable="true">${slide.label}</div>
                         <div class="takeaway-points-flex">
                             ${slide.points.map(pt => `<p class="takeaway-point-item" contenteditable="true">${pt}</p>`).join('')}
@@ -371,7 +673,7 @@ function renderSlide(index) {
                 `;
             } else if (slide.flow) {
                 innerTakeawayHtml = `
-                    <div class="takeaway-large-card glass-card" style="align-items:center;">
+                    <div class="takeaway-large-card glass-card master-data-card" style="align-items:center;">
                         <div class="takeaway-label" contenteditable="true">${slide.label}</div>
                         <div class="golden-flow-wrapper">
                             ${slide.flow.map((node, i) => `
@@ -386,7 +688,7 @@ function renderSlide(index) {
                 `;
             } else if (slide.quote) {
                 innerTakeawayHtml = `
-                    <div class="takeaway-large-card glass-card" style="border-color: var(--color-orange);">
+                    <div class="takeaway-large-card glass-card master-data-card" style="border-color: var(--color-orange);">
                         <div class="takeaway-label" style="color:var(--color-orange); background:rgba(249,115,22,0.08); border-color:rgba(249,115,22,0.15);" contenteditable="true">${slide.label}</div>
                         <div class="takeaway-quote-box text-glow" contenteditable="true">"${slide.quote}"</div>
                         <p class="takeaway-message-text" contenteditable="true">${slide.message}</p>
@@ -426,12 +728,12 @@ function renderSlide(index) {
             
         case 'bq-revisit':
             slideHtml = `
-                <div class="slide-content layout-big-question">
+                <div class="slide-content layout-big-question bq-revisit-solved">
                     <div class="bq-glow-bg"></div>
-                    <div class="bq-wrapper" style="border-color: var(--color-teal);">
-                        <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-teal); filter:drop-shadow(0 0 10px rgba(6,182,212,0.4));"></i>
-                        <span class="bq-tag" style="color:var(--color-teal);" contenteditable="true" id="bq-revisit-tag"><i class="fa-solid fa-circle-question"></i> CÂU HỎI LỚN</span>
-                        <h2 class="bq-text text-glow" style="font-size:2.1rem; padding-top:0.1em; line-height:1.45;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
+                    <div class="bq-wrapper" style="border-color: var(--color-green);">
+                        <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-green); filter:drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));"></i>
+                        <span class="bq-tag" style="color:var(--color-green); background:rgba(16,185,129,0.08); border-color:rgba(16,185,129,0.15);" contenteditable="true" id="bq-revisit-tag"><i class="fa-solid fa-circle-check"></i> MÃ KHÓA THÀNH CÔNG</span>
+                        <h2 class="bq-text text-glow-green" style="font-size:1.8rem; padding-top:0.1em; line-height:1.45;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
                         <div style="width: 100%; height: 1px; background: var(--border-glass); margin: 20px 0;"></div>
                         <p class="card-content-text" style="font-size:1.15rem; text-align:left; line-height:1.7; color: #f1f5f9;" contenteditable="true" id="bq-revisit-answer">${slide.answer}</p>
                     </div>
@@ -467,8 +769,8 @@ function renderSlide(index) {
                                 <p class="commitment-item-row"><i class="fa-solid fa-square-check"></i> <span contenteditable="true">${commit}</span></p>
                             `).join('')}
                         </div>
-                        <button class="btn-cert-sign" id="btn-sign-cert">
-                            <i class="fa-solid fa-signature"></i> KÝ TÊN & TỐT NGHIỆP
+                        <button class="btn-cert-sign pulse-warning-glow" id="btn-sign-cert">
+                            <i class="fa-solid fa-signature"></i> CAM KẾT & ĐĂNG XUẤT HỆ THỐNG
                         </button>
                     </div>
                 </div>
@@ -579,7 +881,7 @@ function renderWorkspaceLayout(slide) {
                     </div>
                     <p class="mission-text" style="font-size:1.25rem; padding:10px 20px; margin-bottom:20px;" contenteditable="true">${slide.missionText}</p>
                     <div class="investigation-questions">
-                        <h4 style="color:var(--color-orange);" contenteditable="true">Hồ sơ điều tra:</h4>
+                        <h4 style="color:var(--color-orange);" contenteditable="true">Tọa độ mục tiêu cần bám sát:</h4>
                         <ul>
                             ${slide.investigations.map(inv => `<li style="color:#e2e8f0;" contenteditable="true">${inv}</li>`).join('')}
                         </ul>
@@ -599,10 +901,10 @@ function renderWorkspaceLayout(slide) {
                     </div>
                     <div class="sorting-drop-zones">
                         <div class="sorting-column drop-zone teal-theme" id="drop-teal" ondragover="allowDrop(event)" ondrop="dropTag(event)">
-                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-graduation-cap"></i> <span contenteditable="true">Quy trình học hiệu quả</span></h4>
+                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-graduation-cap"></i> <span contenteditable="true">CỔNG 01: Quy trình Học tập Hiệu quả (Hệ thống Xanh)</span></h4>
                         </div>
                         <div class="sorting-column drop-zone orange-theme" id="drop-orange" ondragover="allowDrop(event)" ondrop="dropTag(event)">
-                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-exclamation"></i> <span contenteditable="true">Quy trình chỉ hoàn thành nhiệm vụ</span></h4>
+                            <h4 style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-circle-exclamation"></i> <span contenteditable="true">CỔNG 02: Quy trình Đối phó/Lười biếng (Hệ thống Lỗi)</span></h4>
                         </div>
                     </div>
                 </div>
@@ -613,15 +915,15 @@ function renderWorkspaceLayout(slide) {
             workspaceContentHtml = `
                 <div class="matrix-grid">
                     <div class="matrix-row hdr">
-                        <div>Bước cốt lõi</div>
-                        <div>Vai trò / Giá trị học tập</div>
-                        <div>Hậu quả nếu bỏ qua</div>
+                        <div>Vi mạch cốt lõi</div>
+                        <div>Chức năng</div>
+                        <div>Nếu ngắt mạch (bỏ qua bước)</div>
                     </div>
                     ${slide.stepsList.map(step => `
                         <div class="matrix-row">
                             <div class="matrix-cell-label" contenteditable="true">${step}</div>
-                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền vào phiếu...</div>
-                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền vào phiếu...</div>
+                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền chức năng...</div>
+                            <div class="matrix-cell-content" contenteditable="true" style="color:var(--text-muted); font-style:italic;">Thảo luận điền hệ quả...</div>
                         </div>
                     `).join('')}
                 </div>
@@ -631,7 +933,7 @@ function renderWorkspaceLayout(slide) {
         case 'drawing-board':
             workspaceContentHtml = `
                 <div class="drawing-placeholder">
-                    <i class="fa-solid fa-diagram-project"></i>
+                    <i class="fa-solid fa-diagram-project text-glow"></i>
                     <p contenteditable="true">${slide.instructions}</p>
                 </div>
             `;
@@ -640,13 +942,13 @@ function renderWorkspaceLayout(slide) {
         case 'form-filling-blank':
             workspaceContentHtml = `
                 <div class="glass-card" style="border-top:3px solid var(--color-teal); display:flex; flex-direction:column; gap:15px; padding:20px;">
-                    <p contenteditable="true" style="color:var(--color-teal); font-weight:700;">Học sinh chọn 1 môn học và hoàn thành mẫu sau:</p>
-                    <h3 contenteditable="true" style="font-size:1.3rem;">Khi học môn ____________ với AI, chúng tôi sẽ:</h3>
-                    <div style="display:flex; flex-direction:column; gap:10px; font-size: 0.95rem;">
-                        <p><strong>Nghĩ:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi sẽ tự suy nghĩ điều gì trước?) _______________________</span></p>
-                        <p><strong>Hỏi:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi sẽ nhập câu lệnh/prompt gì để hỏi AI?) ___________________</span></p>
-                        <p><strong>Kiểm tra:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi kiểm tra tính đúng đắn bằng cách nào?) ______________</span></p>
-                        <p><strong>Làm lại:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic;">(Chúng tôi tự luyện tập lại ra sao?) __________________________</span></p>
+                    <p contenteditable="true" style="color:var(--color-teal); font-weight:700; text-transform:uppercase; letter-spacing:0.5px;"><i class="fa-solid fa-code-branch"></i> CẤU HÌNH THUẬT TOÁN HỌC TẬP</p>
+                    <h3 contenteditable="true" style="font-size:1.2rem;">Khi tối ưu hóa môn <span style="border-bottom: 2px dashed var(--color-teal); padding: 0 10px;">[Tên môn học]</span> cùng AI, Kỹ sư chúng tôi sẽ hành động…</h3>
+                    <div style="display:flex; flex-direction:column; gap:15px; font-size: 0.95rem; margin-top:10px;">
+                        <p><strong><i class="fa-solid fa-lightbulb text-teal"></i> Nghĩ:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi sẽ tự kích hoạt tư duy điều gì trước?) ___________________________________</span></p>
+                        <p><strong><i class="fa-solid fa-circle-question text-orange"></i> Hỏi:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi sẽ nạp câu lệnh/prompt tối mật nào để điều khiển AI?) _________________________</span></p>
+                        <p><strong><i class="fa-solid fa-shield-halved text-green"></i> Kiểm tra:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi thẩm định tính đúng đắn bằng cách nào?) _____________________</span></p>
+                        <p><strong><i class="fa-solid fa-arrows-rotate text-pink"></i> Làm lại:</strong> <span contenteditable="true" style="color:var(--text-muted); font-style:italic; margin-left: 10px;">(Chúng tôi tự chạy lại quy trình để ghi nhớ ra sao?) _________________________________</span></p>
                     </div>
                 </div>
             `;
@@ -657,8 +959,8 @@ function renderWorkspaceLayout(slide) {
                 <div class="reflection-grid-card" style="background:transparent; border:none; box-shadow:none; padding:0; gap:15px;">
                     ${slide.prompts.map(pr => `
                         <div class="reflection-prompt-item">
-                            <label contenteditable="true" style="font-size:1rem;">${pr}</label>
-                            <div class="reflection-textarea-mock" contenteditable="true" style="min-height:50px; padding:10px; font-size:0.95rem;" placeholder="Nhập câu trả lời phản tư..."></div>
+                            <label contenteditable="true" style="font-size:1.05rem;">${pr}</label>
+                            <div class="reflection-textarea-mock" contenteditable="true" style="min-height:60px; padding:10px; font-size:0.95rem;" placeholder="Nhập câu trả lời phản tư..."></div>
                         </div>
                     `).join('')}
                 </div>
@@ -703,6 +1005,14 @@ function renderWorkspaceLayout(slide) {
                             <button class="btn-timer btn-reset" onclick="resetWorkspaceTimer('${slide.id}', ${slide.duration || 60})"><i class="fa-solid fa-rotate-left"></i></button>
                         </div>
                     </div>
+                    ${slide.workspaceType === 'card-sorting' ? `
+                    <div class="sorting-controls-side" style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%;">
+                        <button class="btn-check-sorting" onclick="checkSortingAnswers()" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-square-check"></i> Kiểm tra đáp án
+                        </button>
+                        <div id="sorting-feedback" style="width: 100%; text-align: center; margin-top: 5px;"></div>
+                    </div>
+                    ` : ''}
                 </div>
             </div>
         </div>
@@ -713,6 +1023,11 @@ function renderWorkspaceLayout(slide) {
 // INTERACTIVE COMPONENT HANDLERS
 // ==========================================
 function initSlideInteractions(slide) {
+    // Welcome Matrix rain check
+    if (slide.type === 'welcome') {
+        initMatrixRain();
+    }
+
     // 1. Initialize Workspace Timer if slide has one
     if (slide.type === 'act-workspace' && slide.duration) {
         initTimerState(slide.id, slide.duration);
@@ -754,6 +1069,49 @@ function initSlideInteractions(slide) {
     if (slide.workspaceType === 'commitment-checklist') {
         restoreCheckboxState(slide.id);
     }
+}
+
+function initMatrixRain() {
+    const canvas = document.getElementById('matrix-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const parent = canvas.parentElement;
+    canvas.width = parent.clientWidth || 1200;
+    canvas.height = parent.clientHeight || 675;
+    
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const yPositions = Array(columns).fill(0);
+    
+    if (matrixIntervalId) {
+        clearInterval(matrixIntervalId);
+    }
+    
+    ctx.fillStyle = '#080c14';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    matrixIntervalId = setInterval(() => {
+        ctx.fillStyle = 'rgba(8, 12, 20, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.35)'; // Cyan Blue Matrix rain
+        ctx.font = `${fontSize}px monospace`;
+        
+        for (let i = 0; i < yPositions.length; i++) {
+            const text = String.fromCharCode(33 + Math.random() * 93);
+            const x = i * fontSize;
+            const y = yPositions[i];
+            
+            ctx.fillText(text, x, y);
+            
+            if (y > canvas.height && Math.random() > 0.975) {
+                yPositions[i] = 0;
+            } else {
+                yPositions[i] = y + fontSize;
+            }
+        }
+    }, 50);
 }
 
 // Timer sub-logic
@@ -955,6 +1313,13 @@ slidesData.forEach((slide, idx) => {
 
 function goToSlide(index) {
     if (index < 0 || index >= totalSlides) return;
+    
+    // Clear matrix rain animation timer when leaving welcome slide
+    if (matrixIntervalId) {
+        clearInterval(matrixIntervalId);
+        matrixIntervalId = null;
+    }
+    
     currentSlideIndex = index;
     renderSlide(index);
     if (presSlideNum) {
@@ -1433,7 +1798,15 @@ function restoreAndSetupDraggables(slideId) {
         '.reflection-prompt-item',
         '.commitment-end-card',
         '.fc-step',
-        '.glass-card', '.slide-heading'
+        '.glass-card', '.slide-heading',
+        '.scanner-portal-widget', '.circuits-brain-vs-ai', '.dashboard-grid', '.db-panel', '.db-panels-right',
+        '.video-call-screen', '.beep-notification-indicator', '.radar-hud-circle', '.wave-dashboard-hud',
+        '.energy-core-glowing-widget', '.gears-hud-assembly', '.coder-terminal-hud', '.mission-activation-grid',
+        '.data-split-screen-loader', '.secure-envelope-hologram', '.floating-data-cubes', '.xray-brain-scanner',
+        '.hologram-assistant-robot', '.cores-preview-grid', '.biometric-diary', '.mission-countdown-hud',
+        '.cyber-toolkit-box', '.radar-scan-container', '.engineers-squad-chips', '.matrix-empty-glow',
+        '.concentration-beam-scanner', '.blueprint-assembly', '.biometric-unlocked', '.stories-columns',
+        '.prep-grid-cols', '.prep-text-side', '.prep-visual-side', '.subject-report-grid'
     ];
     
     if (!slideObjectOffsets[slideId]) {
@@ -1871,6 +2244,7 @@ window.dragTag = function(ev) {
     }
     const tag = ev.target.closest('.sorting-tag');
     if (tag) {
+        tag.classList.remove('tag-correct', 'tag-incorrect');
         ev.dataTransfer.setData("text", tag.id);
     }
 };
@@ -1882,8 +2256,63 @@ window.dropTag = function(ev) {
     const dropZone = ev.target.closest('.drop-zone');
     if (dropZone && tagElement) {
         dropZone.appendChild(tagElement);
+        tagElement.classList.remove('tag-correct', 'tag-incorrect');
+        // Hide feedback when a card is moved again
+        const feedbackBox = document.getElementById('sorting-feedback');
+        if (feedbackBox) {
+            feedbackBox.style.display = 'none';
+        }
         // Save sorting state after tag is dropped
         saveCardSortingState();
+    }
+};
+
+window.checkSortingAnswers = function() {
+    const tealItems = ["Đọc đề bài", "Tự suy nghĩ", "Hỏi AI", "Kiểm tra câu trả lời", "Tự làm lại"];
+    const orangeItems = ["Chép đáp án", "Nộp bài ngay"];
+    
+    const tags = document.querySelectorAll('.sorting-tag');
+    let correctCount = 0;
+    let incorrectCount = 0;
+    let unplacedCount = 0;
+    
+    tags.forEach(tag => {
+        const text = tag.textContent.trim();
+        const parent = tag.parentElement;
+        
+        tag.classList.remove('tag-correct', 'tag-incorrect');
+        
+        if (parent.id === 'drop-teal') {
+            if (tealItems.includes(text)) {
+                tag.classList.add('tag-correct');
+                correctCount++;
+            } else {
+                tag.classList.add('tag-incorrect');
+                incorrectCount++;
+            }
+        } else if (parent.id === 'drop-orange') {
+            if (orangeItems.includes(text)) {
+                tag.classList.add('tag-correct');
+                correctCount++;
+            } else {
+                tag.classList.add('tag-incorrect');
+                incorrectCount++;
+            }
+        } else if (parent.id === 'sorting-pool') {
+            unplacedCount++;
+        }
+    });
+    
+    const feedbackBox = document.getElementById('sorting-feedback');
+    if (feedbackBox) {
+        if (unplacedCount > 0) {
+            feedbackBox.innerHTML = `<span style="color: var(--color-orange); font-size: 0.85rem;"><i class="fa-solid fa-triangle-exclamation"></i> Vui lòng xếp tất cả các thẻ trước khi kiểm tra! (Còn ${unplacedCount} thẻ chưa xếp)</span>`;
+        } else if (incorrectCount > 0) {
+            feedbackBox.innerHTML = `<span style="color: var(--color-orange); font-size: 0.85rem;"><i class="fa-solid fa-circle-xmark"></i> Phát hiện ${incorrectCount} kết nối bị lỗi cổng! Hãy sắp xếp lại.</span>`;
+        } else {
+            feedbackBox.innerHTML = `<span style="color: var(--color-volt); font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Tuyệt vời! Thuật toán phân loại hoàn toàn chính xác.</span>`;
+        }
+        feedbackBox.style.display = 'block';
     }
 };
 
