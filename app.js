@@ -524,50 +524,14 @@ function renderSlide(index) {
                 `;
             } else if (slide.id === 'STAGE-03-ACT-04') {
                 reportContentHtml = `
-                    <div class="flowchart-container draggable-object">
-                        <div class="flowchart-path path-active">
-                            <h4 contenteditable="true" style="color:var(--color-teal);"><i class="fa-solid fa-graduation-cap"></i> Quy trình Học tập Hiệu quả (Hệ thống Xanh):</h4>
-                            <div class="flowchart-steps">
-                                <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-book-open"></i>
-                                    <span contenteditable="true">Đọc đề bài</span>
-                                </div>
-                                <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-brain"></i>
-                                    <span contenteditable="true">Tự suy nghĩ</span>
-                                </div>
-                                <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-circle-question"></i>
-                                    <span contenteditable="true">Hỏi AI</span>
-                                </div>
-                                <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    <span contenteditable="true">Kiểm tra</span>
-                                </div>
-                                <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-teal">
-                                    <i class="fa-solid fa-arrows-rotate"></i>
-                                    <span contenteditable="true">Làm lại</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flowchart-path path-passive" style="margin-top: 25px;">
-                            <h4 contenteditable="true" style="color:var(--color-orange);"><i class="fa-solid fa-circle-exclamation"></i> Quy trình Đối phó (Hệ thống Lỗi):</h4>
-                            <div class="flowchart-steps">
-                                <div class="fc-step step-orange">
-                                    <i class="fa-solid fa-copy"></i>
-                                    <span contenteditable="true">Chép đáp án</span>
-                                </div>
-                                <i class="fa-solid fa-arrow-right fc-arrow"></i>
-                                <div class="fc-step step-orange">
-                                    <i class="fa-solid fa-paper-plane"></i>
-                                    <span contenteditable="true">Nộp bài ngay</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="shuffled-actions-container draggable-object" style="display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 15px; margin: 30px auto; max-width: 900px; padding: 25px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-glass); border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,240,255,0.05);">
+                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-circle-question"></i> <span contenteditable="true">Hỏi AI</span></div>
+                        <div class="fc-step step-orange" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(255,95,0,0.1);"><i class="fa-solid fa-paper-plane"></i> <span contenteditable="true">Nộp bài ngay</span></div>
+                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-brain"></i> <span contenteditable="true">Tự suy nghĩ</span></div>
+                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-book-open"></i> <span contenteditable="true">Đọc đề bài</span></div>
+                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-shield-halved"></i> <span contenteditable="true">Kiểm tra</span></div>
+                        <div class="fc-step step-orange" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(255,95,0,0.1);"><i class="fa-solid fa-copy"></i> <span contenteditable="true">Chép đáp án</span></div>
+                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-arrows-rotate"></i> <span contenteditable="true">Làm lại</span></div>
                     </div>
                 `;
             } else if (slide.results) {
@@ -585,10 +549,12 @@ function renderSlide(index) {
                 <div class="slide-content layout-act-report">
                     <h2 class="slide-heading" contenteditable="true">${slide.title}</h2>
                     ${reportContentHtml}
+                    ${slide.id !== 'STAGE-03-ACT-04' ? `
                     <div class="report-highlight-banner draggable-object">
                         <div class="report-highlight-icon"><i class="fa-solid fa-quote-left"></i></div>
                         <div class="report-highlight-text" contenteditable="true">${slide.message}</div>
                     </div>
+                    ` : ''}
                 </div>
             `;
             break;
@@ -995,6 +961,13 @@ function renderWorkspaceLayout(slide) {
                     ${workspaceContentHtml}
                 </div>
                 <div class="workspace-side">
+                    <!-- Step box if specified -->
+                    ${slide.stepText ? `
+                    <div class="workspace-step-box" style="margin-bottom: 12px; width: 100%;">
+                        <div class="workspace-step-title"><i class="fa-solid fa-circle-info"></i> BƯỚC ${slide.stepNum || 3}</div>
+                        <div class="workspace-step-text" contenteditable="true">${slide.stepText}</div>
+                    </div>
+                    ` : ''}
                     <!-- Timer widget -->
                     <div class="workspace-timer-widget" id="timer-widget-${slide.id}" data-duration="${slide.duration || 60}">
                         <span class="ws-timer-label">THỜI GIAN HOẠT ĐỘNG</span>

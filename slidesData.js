@@ -224,6 +224,8 @@ const slidesData = [
     title: "PHÂN MẠCH KHỐI LỆNH HÀNH ĐỘNG",
     duration: 480, // 8 mins
     workspaceType: "card-sorting",
+    stepText: "Thảo luận, phân loại và cắm các chip này vào đúng 2 cổng quy trình trên sơ đồ hệ thống.",
+    stepNum: 3,
     cards: [
       "Đọc đề bài", "Tự suy nghĩ", "Hỏi AI", 
       "Kiểm tra câu trả lời", "Tự làm lại", 

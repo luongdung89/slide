@@ -880,32 +880,100 @@ body {
     color: var(--text-muted);
 }
 
-/* Workspace Timers */
+/* Workspace Timers (Sleeker and smaller to prevent overflow) */
 .workspace-timer-widget {
     background: var(--bg-card);
     border: 1px solid var(--border-glass);
-    border-radius: 16px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 12px 14px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
+    width: 100%;
 }
 .ws-timer-label {
     font-family: var(--font-heading);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     color: var(--text-muted);
 }
 .ws-timer-display {
     font-family: var(--font-heading);
-    font-size: 2.8rem;
+    font-size: 2.0rem;
     font-weight: 900;
     color: var(--color-orange);
-    text-shadow: 0 0 10px var(--color-orange-glow);
+    text-shadow: 0 0 8px var(--color-orange-glow);
     letter-spacing: 1px;
+}
+
+/* Timer controls buttons styles */
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+.btn-timer {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-timer:hover {
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--color-cyan);
+    color: var(--color-cyan);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+.btn-timer.btn-start:hover {
+    background: rgba(57, 255, 20, 0.15);
+    border-color: #39ff14;
+    color: #39ff14;
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+.btn-timer.btn-pause:hover {
+    background: rgba(255, 95, 0, 0.15);
+    border-color: var(--color-orange);
+    color: var(--color-orange);
+    box-shadow: 0 0 8px rgba(255, 95, 0, 0.4);
+}
+
+/* Workspace Step Box */
+.workspace-step-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+.workspace-step-title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: var(--color-cyan);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+.workspace-step-text {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--text-color);
 }
 
 /* ==========================================
