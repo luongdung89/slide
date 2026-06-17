@@ -721,8 +721,8 @@ body {
 }
 .workspace-wrapper {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 30px;
+    grid-template-columns: 1fr 220px;
+    gap: 15px;
     flex: 1;
     align-items: stretch;
 }
@@ -734,7 +734,7 @@ body {
 .workspace-side {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 12px;
 }
 .workspace-title-bar {
     font-family: var(--font-heading);
@@ -885,24 +885,24 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-glass);
     border-radius: 12px;
-    padding: 12px 14px;
+    padding: 8px 10px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     width: 100%;
 }
 .ws-timer-label {
     font-family: var(--font-heading);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 1.2px;
     color: var(--text-muted);
 }
 .ws-timer-display {
     font-family: var(--font-heading);
-    font-size: 2.0rem;
+    font-size: 1.5rem;
     font-weight: 900;
     color: var(--color-orange);
     text-shadow: 0 0 8px var(--color-orange-glow);
@@ -920,11 +920,11 @@ body {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-glass);
     color: var(--text-muted);
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     transition: all 0.25s ease;
     display: flex;
     align-items: center;

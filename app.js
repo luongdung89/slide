@@ -388,7 +388,7 @@ function renderSlide(index) {
                     <div class="act-intro-grid">
                         <div class="act-intro-card">
                             <i class="${slide.icon} act-intro-icon"></i>
-                            <span class="act-intro-badge" contenteditable="true">HOẠT ĐỘNG HUÂN LUYỆN</span>
+                            <span class="act-intro-badge" contenteditable="true">NHIỆM VỤ</span>
                             <h1 class="act-intro-title" contenteditable="true">${slide.title}</h1>
                             <p class="act-intro-goal" contenteditable="true">${slide.goal}</p>
                         </div>
@@ -471,7 +471,7 @@ function renderSlide(index) {
                                 <div class="prep-text" contenteditable="true">${slide.prep}</div>
                             </div>
                             <div class="prep-box glass-card theme-orange" style="margin-top:20px;">
-                                <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-sitemap text-orange"></i> <span contenteditable="true">Đội hình tác chiến:</span></h3>
+                                <h3 style="display:flex; align-items:center; gap:10px; margin-bottom:15px;"><i class="fa-solid fa-sitemap text-orange"></i> <span contenteditable="true">Đội hình triển khai:</span></h3>
                                 <div class="prep-text" contenteditable="true">${slide.format}</div>
                             </div>
                         </div>
@@ -524,14 +524,45 @@ function renderSlide(index) {
                 `;
             } else if (slide.id === 'STAGE-03-ACT-04') {
                 reportContentHtml = `
-                    <div class="shuffled-actions-container draggable-object" style="display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 15px; margin: 30px auto; max-width: 900px; padding: 25px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-glass); border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,240,255,0.05);">
-                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-circle-question"></i> <span contenteditable="true">Hỏi AI</span></div>
-                        <div class="fc-step step-orange" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(255,95,0,0.1);"><i class="fa-solid fa-paper-plane"></i> <span contenteditable="true">Nộp bài ngay</span></div>
-                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-brain"></i> <span contenteditable="true">Tự suy nghĩ</span></div>
-                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-book-open"></i> <span contenteditable="true">Đọc đề bài</span></div>
-                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-shield-halved"></i> <span contenteditable="true">Kiểm tra</span></div>
-                        <div class="fc-step step-orange" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(255,95,0,0.1);"><i class="fa-solid fa-copy"></i> <span contenteditable="true">Chép đáp án</span></div>
-                        <div class="fc-step step-teal" style="margin: 0; padding: 12px 20px; font-size: 1.05rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,240,255,0.1);"><i class="fa-solid fa-arrows-rotate"></i> <span contenteditable="true">Làm lại</span></div>
+                    <div class="flowchart-container draggable-object">
+                        <div class="flowchart-path path-active">
+                            <h4 contenteditable="true" style="color:var(--color-teal);"><i class="fa-solid fa-graduation-cap"></i> Quy trình Học tập Hiệu quả (Hệ thống Xanh):</h4>
+                            <div class="flowchart-steps">
+                                <div class="fc-step step-teal">
+                                    <i class="fa-solid fa-circle-question"></i>
+                                    <span contenteditable="true">Hỏi AI</span>
+                                </div>
+                                <div class="fc-step step-teal">
+                                    <i class="fa-solid fa-brain"></i>
+                                    <span contenteditable="true">Tự suy nghĩ</span>
+                                </div>
+                                <div class="fc-step step-teal">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <span contenteditable="true">Đọc đề bài</span>
+                                </div>
+                                <div class="fc-step step-teal">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span contenteditable="true">Kiểm tra</span>
+                                </div>
+                                <div class="fc-step step-teal">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                    <span contenteditable="true">Làm lại</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flowchart-path path-passive" style="margin-top: 20px;">
+                            <h4 contenteditable="true" style="color:var(--color-orange);"><i class="fa-solid fa-circle-exclamation"></i> Quy trình Đối phó (Hệ thống Lỗi):</h4>
+                            <div class="flowchart-steps">
+                                <div class="fc-step step-orange">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                    <span contenteditable="true">Nộp bài ngay</span>
+                                </div>
+                                <div class="fc-step step-orange">
+                                    <i class="fa-solid fa-copy"></i>
+                                    <span contenteditable="true">Chép đáp án</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
             } else if (slide.results) {

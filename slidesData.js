@@ -1,4 +1,4 @@
-const slidesData = [
+﻿const slidesData = [
   // ==================== PART 1: PRE-LESSON ====================
   {
     id: "P0-01",
@@ -60,7 +60,7 @@ const slidesData = [
     id: "STAGE-01-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    title: "TRANG BỊ & ĐỘI HÌNH TRIỂN KHAI",
     prep: "Nhật ký ghi chép (Giấy, bút).",
     format: "Tổ hợp 4 Kỹ sư (Nhóm 4 học sinh).",
     icon: "fa-solid fa-book",
@@ -77,7 +77,7 @@ const slidesData = [
       "Bước 2: Đối chiếu dữ liệu, đưa ra nhận định và lập luận giải thích.",
       "Bước 3: Trưởng nhóm kỹ sư đại diện phát biểu báo cáo trước toàn bộ Hội đồng."
     ],
-    teacherNotes: `<h3>Hướng dẫn vận hành</h3>
+    teacherNotes: `<h3>Mã lệnh vận hành</h3>
                    <p><strong>Hướng dẫn hành động:</strong> Giáo viên đọc nhanh 3 mã lệnh vận hành để học sinh bắt đầu thực thi.</p>`
   },
   {
@@ -198,7 +198,7 @@ const slidesData = [
     id: "STAGE-03-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    title: "TRANG BỊ & ĐỘI HÌNH TRIỂN KHAI",
     prep: "Bộ chip hành động (Bộ thẻ do Giáo viên cấp).",
     format: "Nhóm 4 Kỹ sư.",
     icon: "fa-solid fa-users",
@@ -279,7 +279,7 @@ const slidesData = [
     id: "STAGE-04-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    title: "TRANG BỊ & ĐỘI HÌNH TRIỂN KHAI",
     prep: "Nhật ký phân tích (Giấy, bút).",
     format: "Duy trì nhóm 4 Kỹ sư.",
     icon: "fa-solid fa-table-cells",
@@ -356,7 +356,7 @@ const slidesData = [
     id: "STAGE-05-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    title: "TRANG BỊ & ĐỘI HÌNH TRIỂN KHAI",
     prep: "Giấy, bút.",
     format: "Cá nhân.",
     icon: "fa-solid fa-pen-nib",
@@ -425,9 +425,9 @@ const slidesData = [
     id: "STAGE-06-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    title: "TRANG BỊ & ĐỘI HÌNH TRIỂN KHAI",
     prep: "nhận Phiếu cấu hình môn học từ Giáo viên.",
-    format: "4 Nhóm Kỹ sư tác chiến.",
+    format: "4 Nhóm Kỹ sư triển khai.",
     icon: "fa-solid fa-screwdriver-wrench",
     teacherNotes: `<h3>Chuẩn bị phiếu và bốc thăm</h3>`
   },
@@ -534,7 +534,7 @@ const slidesData = [
     id: "STAGE-07-ACT-01B",
     period: 1,
     type: "act-prep",
-    title: "TRANG BỊ & ĐỘI HÌNH TÁC CHIẾN",
+    title: "TRANG BỊ & ĐỘI HÌNH TRIỂN KHAI",
     prep: "Bút và giấy nhật ký.",
     format: "Cá nhân.",
     icon: "fa-solid fa-key",
