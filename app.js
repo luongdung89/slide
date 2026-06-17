@@ -628,10 +628,12 @@ function renderSlide(index) {
                             <p class="subject-step-text" contenteditable="true">${slide.lamlai}</p>
                         </div>
                     </div>
+                    ${slide.message ? `
                     <div class="report-highlight-banner" style="margin-top: 20px;">
                         <div class="report-highlight-icon"><i class="fa-solid fa-circle-nodes"></i></div>
                         <div class="report-highlight-text" contenteditable="true">${slide.message}</div>
                     </div>
+                    ` : ''}
                 </div>
             `;
             break;

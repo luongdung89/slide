@@ -1,4 +1,4 @@
-﻿const slidesData = [
+const slidesData = [
   // ==================== PART 1: PRE-LESSON ====================
   {
     id: "P0-01",
@@ -445,16 +445,6 @@
     teacherNotes: `<h3>Hướng dẫn lập trình môn học</h3>`
   },
   {
-    id: "STAGE-06-ACT-03",
-    period: 1,
-    type: "act-workspace",
-    title: "THIẾT LẬP THUẬT TOÁN THỰC CHIẾN",
-    duration: 600, // 10 mins
-    workspaceType: "form-filling-blank",
-    instructions: "Nhiệm vụ Chế tạo: Hoàn thiện Phiếu thiết lập thuật toán: “Khi tối ưu hóa môn [Tên môn học] cùng AI, Kỹ sư chúng tôi sẽ hành động…”",
-    teacherNotes: `<h3>Lập trình phiếu môn học (10 phút)</h3>`
-  },
-  {
     id: "STAGE-06-ACT-04-1",
     period: 1,
     type: "act-report-subject",
@@ -463,7 +453,6 @@
     hoi: "Tôi là Kỹ sư điều khiển. Tôi đang giải quyết bài toán [nhập đề bài]. Hãy cung cấp cho tôi 2 bước gợi ý tư duy đầu tiên hoặc công thức cốt lõi. Tuyệt đối không được xuất ra đáp án cuối cùng.",
     kiemtra: "Đối chiếu công thức AI đưa ra với cơ sở dữ liệu Sách giáo khoa, thẩm định tính logic của các bước giải xem có khớp với thuật toán giảng dạy của thầy cô không.",
     lamlai: "Ngắt kết nối màn hình thiết bị. Tự giải lại toàn bộ bài toán vào vở bằng chính năng lực tư duy đã mở khóa của mình.",
-    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
     teacherNotes: `<h3>Cấu hình chuẩn môn Toán (2 phút)</h3>`
   },
   {
@@ -475,7 +464,6 @@
     hoi: "Hãy cung cấp cho tôi một bộ khung dàn ý 3 phần cho đề văn [nhập đề bài], kèm theo gợi ý 5 từ vựng đắt giá hoặc hình ảnh ẩn dụ độc đáo để tôi tham khảo phát triển bài viết.",
     kiemtra: "Thẩm định văn phong của AI để lọc bỏ các đoạn văn rập khuôn, thiếu cảm xúc tự nhiên hoặc bị đi chệch hướng tiêu chuẩn.",
     lamlai: "Ẩn toàn bộ phần gợi ý của AI. Tự chắp bút viết nên một tác phẩm văn học hoàn chỉnh bằng ngôn ngữ cá nhân và cảm xúc chân thật của chính mình.",
-    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
     teacherNotes: `<h3>Cấu hình chuẩn môn Ngữ văn (2 phút)</h3>`
   },
   {
@@ -487,7 +475,6 @@
     hoi: "Hãy đóng vai Chuyên gia ngôn ngữ, kiểm tra và quét toàn bộ lỗi ngữ pháp, từ vựng trong câu sau: [nhập câu của học sinh]. Hãy giải thích lý do tại sao sai và đề xuất cách sửa dễ hiểu nhất.",
     kiemtra: "Tra cứu ngược lại từ vựng AI gợi ý bằng các hệ từ điển chuẩn quốc tế (Cambridge/Oxford) để xác thực ngữ cảnh và cách phát âm chuẩn.",
     lamlai: "Không xem gợi ý nữa, tự viết lại câu đúng và thực hành phát âm to rõ ràng.",
-    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
     teacherNotes: `<h3>Cấu hình chuẩn môn Tiếng Anh (2 phút)</h3>`
   },
   {
@@ -499,8 +486,17 @@
     hoi: "Hãy đóng vai một Giáo sư Khoa học, giải thích nguyên lý vận hành của hiện tượng [tên hiện tượng] cho học sinh trung học hiểu một cách trực quan, sinh động nhất kèm ví dụ thực tế.",
     kiemtra: "Đối chiếu nghiêm ngặt thông tin AI cung cấp với các định luật, kiến thức chính thống trong Sách giáo khoa để loại bỏ thông tin sai lệch.",
     lamlai: "Tự mã hóa lại kiến thức bằng cách vẽ một sơ đồ tư duy (Mindmap) hoặc sơ đồ vòng tuần hoàn của hiện tượng ra giấy bằng ngôn ngữ của riêng mình.",
-    message: "Sản phẩm thiết kế này là minh chứng: Công nghệ chỉ mạnh mẽ nhất khi được dẫn dắt bởi một Tư duy có chiến lược.",
     teacherNotes: `<h3>Cấu hình chuẩn môn Khoa học (2 phút)</h3>`
+  },
+  {
+    id: "STAGE-06-ACT-03",
+    period: 1,
+    type: "act-workspace",
+    title: "THIẾT LẬP THUẬT TOÁN THỰC CHIẾN",
+    duration: 600, // 10 mins
+    workspaceType: "form-filling-blank",
+    instructions: "Nhiệm vụ Chế tạo: Hoàn thiện Phiếu thiết lập thuật toán: “Khi tối ưu hóa môn [Tên môn học] cùng AI, Kỹ sư chúng tôi sẽ hành động…”",
+    teacherNotes: `<h3>Lập trình phiếu môn học (10 phút)</h3>`
   },
   {
     id: "STAGE-06-ACT-05",
