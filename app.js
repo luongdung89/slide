@@ -762,10 +762,15 @@ function renderSlide(index) {
                     <div class="confetti-container" id="confetti-holder"></div>
                     <div class="commitment-end-card">
                         <div class="cert-ribbon-widget"><i class="fa-solid fa-medal"></i></div>
-                        <h2 contenteditable="true">${slide.title}</h2>
-                        <div class="commitments-end-list">
-                            ${slide.commitments.map(commit => `
-                                <p class="commitment-item-row"><i class="fa-solid fa-square-check"></i> <span contenteditable="true">${commit}</span></p>
+                        <h2 id="commitment-title" contenteditable="true">${slide.title}</h2>
+                        <p id="commitment-subtitle" class="commitment-subtitle" contenteditable="true" style="color:var(--text-muted); font-size:1.0rem; margin-top:10px; margin-bottom:20px; line-height:1.5; max-width:800px; text-align:center;">${slide.subtitle || 'Trong 1 tuần tới, các kĩ sư hãy áp dụng nghiêm túc quy trình học với AI, tích chọn vào các ô đã thực hiện:'}</p>
+                        <div class="commitments-end-list checklist-interactive" style="margin: 0 auto 25px auto;">
+                            ${slide.commitments.map((commit, idx) => `
+                                <label class="checkbox-container" style="text-align: left;">
+                                    <input type="checkbox" id="check-${slide.id}-${idx}" onchange="saveCheckboxState('${slide.id}')">
+                                    <span class="checkmark"></span>
+                                    <span id="commitment-item-${idx}" contenteditable="true">${commit}</span>
+                                </label>
                             `).join('')}
                         </div>
                         <button class="btn-cert-sign pulse-warning-glow" id="btn-sign-cert">
@@ -1072,7 +1077,7 @@ function initSlideInteractions(slide) {
     }
     
     // 5. Setup commitment-checklist restoration
-    if (slide.workspaceType === 'commitment-checklist') {
+    if (slide.workspaceType === 'commitment-checklist' || slide.type === 'action-commitment-end') {
         restoreCheckboxState(slide.id);
     }
 }

@@ -559,18 +559,18 @@ const slidesData = [
     teacherNotes: `<h3>Giới thiệu chiến dịch 7 ngày</h3>`
   },
   {
-    id: "STAGE-08-ACT-03",
+    id: "END-05",
     period: 1,
-    type: "act-workspace",
-    title: "BẢNG CHECKLIST KỸ SƯ",
-    workspaceType: "commitment-checklist",
-    checklist: [
-      "Đã kích hoạt mạch NGHĨ trước khi nạp dữ liệu hỏi AI.",
-      "Đã thẩm định và KIỂM TRA lại câu trả lời để lọc thông tin rác.",
-      "Đã ngắt thiết bị và TỰ LÀM LẠI bài tập bằng bộ não của mình.",
-      "Đã ghi nhận kiến thức mới vào bộ nhớ dài hạn."
+    type: "action-commitment-end",
+    title: "TUYÊN NGÔN HÀNH ĐỘNG CỦA KỸ SƯ",
+    subtitle: "Trong 1 tuần tới, các kĩ sư hãy áp dụng nghiêm túc quy trình học với AI, tích chọn vào các ô đã thực hiện:",
+    commitments: [
+      "NGHĨ: Tự suy nghĩ độc lập và nháp bài trước khi tìm AI.",
+      "HỎI: Chỉ hỏi gợi ý hoặc câu lệnh (prompt) thông minh gợi mở, tuyệt đối không chép lời giải.",
+      "KIỂM TRA: Luôn đối chiếu câu trả lời của AI với SGK và tài liệu để phát hiện thông tin lỗi.",
+      "LÀM LẠI: Tắt thiết bị, tự tay giải lại bài tập bằng chính bộ não của mình."
     ],
-    teacherNotes: `<h3>Cam kết thực thi (2 phút)</h3>`
+    teacherNotes: `<h3>Ký cam kết & Đăng xuất (2 phút)</h3>`
   },
   {
     id: "STAGE-08-ACT-05",
@@ -622,19 +622,5 @@ const slidesData = [
     question: "Làm thế nào để điều khiển AI hỗ trợ học tập mà không làm suy giảm tư duy của chính mình?",
     answer: "Để làm chủ cuộc chơi tư duy trước Siêu trí tuệ nhân tạo, Kỹ sư Novastars bắt buộc phải tuân thủ kỷ luật thuật toán:<br><br><strong>Chủ động NGHĨ độc lập → Khôn ngoan khi HỎI AI → Tỉnh táo KIỂM TRA chéo dữ liệu → Kiên trì LÀM LẠI bằng chính năng lực tự thân.</strong>",
     teacherNotes: `<h3>Giải quyết câu hỏi lớn (1 phút)</h3>`
-  },
-
-  {
-    id: "END-05",
-    period: 1,
-    type: "action-commitment-end",
-    title: "TUYÊN NGÔN HÀNH ĐỘNG CỦA KỸ SƯ",
-    commitments: [
-      "NGHĨ: Luôn tự suy nghĩ và nháp bài trước khi tìm AI.",
-      "HỎI: Chỉ hỏi gợi ý cách làm, tuyệt đối không xin đáp án.",
-      "KIỂM TRA: Luôn đối chiếu lời giải của AI với Sách giáo khoa.",
-      "LÀM LẠI: Tắt thiết bị, tự tay giải lại bài bằng năng lực của mình."
-    ],
-    teacherNotes: `<h3>Ký cam kết & Đăng xuất (2 phút)</h3>`
   }
 ];
