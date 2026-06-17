@@ -455,39 +455,7 @@ const slidesData = [
     lamlai: "Ngắt kết nối màn hình thiết bị. Tự giải lại toàn bộ bài toán vào vở bằng chính năng lực tư duy đã mở khóa của mình.",
     teacherNotes: `<h3>Cấu hình chuẩn môn Toán (2 phút)</h3>`
   },
-  {
-    id: "STAGE-06-ACT-04-2",
-    period: 1,
-    type: "act-report-subject",
-    subject: "MÔN NGỮ VĂN",
-    nghi: "Tự gạch đầu dòng các luận điểm cốt lõi (Lập cấu trúc dàn ý sơ bộ) và định hình cảm xúc, quan điểm cá nhân về đề bài.",
-    hoi: "Hãy cung cấp cho tôi một bộ khung dàn ý 3 phần cho đề văn [nhập đề bài], kèm theo gợi ý 5 từ vựng đắt giá hoặc hình ảnh ẩn dụ độc đáo để tôi tham khảo phát triển bài viết.",
-    kiemtra: "Thẩm định văn phong của AI để lọc bỏ các đoạn văn rập khuôn, thiếu cảm xúc tự nhiên hoặc bị đi chệch hướng tiêu chuẩn.",
-    lamlai: "Ẩn toàn bộ phần gợi ý của AI. Tự chắp bút viết nên một tác phẩm văn học hoàn chỉnh bằng ngôn ngữ cá nhân và cảm xúc chân thật của chính mình.",
-    teacherNotes: `<h3>Cấu hình chuẩn môn Ngữ văn (2 phút)</h3>`
-  },
-  {
-    id: "STAGE-06-ACT-04-3",
-    period: 1,
-    type: "act-report-subject",
-    subject: "MÔN TIẾNG ANH",
-    nghi: "Tự viết câu hoặc dịch đoạn văn bằng vốn từ vựng và cấu trúc ngữ pháp hiện tại trong não bộ trước khi tìm trợ giúp.",
-    hoi: "Hãy đóng vai Chuyên gia ngôn ngữ, kiểm tra và quét toàn bộ lỗi ngữ pháp, từ vựng trong câu sau: [nhập câu của học sinh]. Hãy giải thích lý do tại sao sai và đề xuất cách sửa dễ hiểu nhất.",
-    kiemtra: "Tra cứu ngược lại từ vựng AI gợi ý bằng các hệ từ điển chuẩn quốc tế (Cambridge/Oxford) để xác thực ngữ cảnh và cách phát âm chuẩn.",
-    lamlai: "Không xem gợi ý nữa, tự viết lại câu đúng và thực hành phát âm to rõ ràng.",
-    teacherNotes: `<h3>Cấu hình chuẩn môn Tiếng Anh (2 phút)</h3>`
-  },
-  {
-    id: "STAGE-06-ACT-04-4",
-    period: 1,
-    type: "act-report-subject",
-    subject: "MÔN KHOA HỌC TỰ NHIÊN",
-    nghi: "Tự quan sát các hiện tượng thực tiễn, truy xuất kiến thức nền tảng và đặt ra giả thuyết khoa học của riêng mình.",
-    hoi: "Hãy đóng vai một Giáo sư Khoa học, giải thích nguyên lý vận hành của hiện tượng [tên hiện tượng] cho học sinh trung học hiểu một cách trực quan, sinh động nhất kèm ví dụ thực tế.",
-    kiemtra: "Đối chiếu nghiêm ngặt thông tin AI cung cấp với các định luật, kiến thức chính thống trong Sách giáo khoa để loại bỏ thông tin sai lệch.",
-    lamlai: "Tự mã hóa lại kiến thức bằng cách vẽ một sơ đồ tư duy (Mindmap) hoặc sơ đồ vòng tuần hoàn của hiện tượng ra giấy bằng ngôn ngữ của riêng mình.",
-    teacherNotes: `<h3>Cấu hình chuẩn môn Khoa học (2 phút)</h3>`
-  },
+
   {
     id: "STAGE-06-ACT-03",
     period: 1,
