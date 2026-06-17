@@ -620,7 +620,13 @@ const slidesData = [
     type: "bq-revisit",
     title: "MÃ KHÓA LỜI GIẢI SAU CHIẾN DỊCH",
     question: "Làm thế nào để điều khiển AI hỗ trợ học tập mà không làm suy giảm tư duy của chính mình?",
-    answer: "Để làm chủ cuộc chơi tư duy trước Siêu trí tuệ nhân tạo, Kỹ sư Novastars bắt buộc phải tuân thủ kỷ luật thuật toán:<br><br><strong>Chủ động NGHĨ độc lập → Khôn ngoan khi HỎI AI → Tỉnh táo KIỂM TRA chéo dữ liệu → Kiên trì LÀM LẠI bằng chính năng lực tự thân.</strong>",
+    answer: "Để làm chủ cuộc chơi tư duy trước Siêu trí tuệ nhân tạo, Kỹ sư Novastars bắt buộc phải tuân thủ kỷ luật thuật toán:",
+    flow: [
+      { label: "NGHĨ ĐỘC LẬP", desc: "Chủ động tự nháp bài trước khi tìm AI", icon: "fa-solid fa-brain" },
+      { label: "HỎI KHÔN NGOAN", desc: "Chỉ hỏi gợi ý cách làm, không xin đáp án", icon: "fa-solid fa-circle-question" },
+      { label: "KIỂM TRA CHÉO", desc: "Luôn đối chiếu lời giải với sách giáo khoa", icon: "fa-solid fa-shield-halved" },
+      { label: "TỰ LÀM LẠI", desc: "Tắt thiết bị và giải lại bằng thực lực của mình", icon: "fa-solid fa-arrows-rotate" }
+    ],
     teacherNotes: `<h3>Giải quyết câu hỏi lớn (1 phút)</h3>`
   }
 ];

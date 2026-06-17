@@ -2187,7 +2187,7 @@ body {
 
 .checkbox-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     padding-left: 35px;
     cursor: pointer;
@@ -2207,9 +2207,8 @@ body {
 /* Custom checkmark */
 .checkmark {
     position: absolute;
-    top: 50%;
+    top: 2px;
     left: 0;
-    transform: translateY(-50%);
     height: 22px;
     width: 22px;
     background-color: rgba(255, 255, 255, 0.03);

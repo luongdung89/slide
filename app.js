@@ -729,12 +729,24 @@ function renderSlide(index) {
             slideHtml = `
                 <div class="slide-content layout-big-question bq-revisit-solved">
                     <div class="bq-glow-bg"></div>
-                    <div class="bq-wrapper" style="border-color: var(--color-green);">
-                        <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-green); filter:drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));"></i>
+                    <div class="bq-wrapper" style="border-color: var(--color-green); padding: 25px 35px; max-width: 950px; margin-top: 10px;">
+                        <i class="fa-solid fa-award bq-graphic-icon" style="color:var(--color-green); filter:drop-shadow(0 0 10px rgba(16, 185, 129, 0.4)); margin-bottom: 8px;"></i>
                         <span class="bq-tag" style="color:var(--color-green); background:rgba(16,185,129,0.08); border-color:rgba(16,185,129,0.15);" contenteditable="true" id="bq-revisit-tag"><i class="fa-solid fa-circle-check"></i> MÃ KHÓA THÀNH CÔNG</span>
-                        <h2 class="bq-text text-glow-green" style="font-size:1.8rem; padding-top:0.1em; line-height:1.45;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
-                        <div style="width: 100%; height: 1px; background: var(--border-glass); margin: 20px 0;"></div>
-                        <p class="card-content-text" style="font-size:1.15rem; text-align:left; line-height:1.7; color: #f1f5f9;" contenteditable="true" id="bq-revisit-answer">${slide.answer}</p>
+                        <h2 class="bq-text text-glow-green" style="font-size:1.6rem; padding-top:0.1em; line-height:1.4;" contenteditable="true" id="bq-revisit-question">${slide.question}</h2>
+                        <div style="width: 100%; height: 1px; background: var(--border-glass); margin: 15px 0;"></div>
+                        <p class="card-content-text" style="font-size:1.1rem; text-align:left; line-height:1.6; color: #f1f5f9; margin-bottom: 15px;" contenteditable="true" id="bq-revisit-answer">${slide.answer}</p>
+                        ${slide.flow ? `
+                            <div class="flowchart-steps" style="display: flex; align-items: stretch; justify-content: center; gap: 12px; width: 100%; margin-top: 15px; flex-wrap: nowrap;">
+                                ${slide.flow.map((step, idx) => `
+                                    <div class="fc-step" style="border-top: 3.5px solid var(--color-green); min-width: 150px; padding: 12px 10px; background: rgba(13, 21, 37, 0.85); box-shadow: 0 4px 15px rgba(16,185,129,0.1); border-radius: 10px; flex: 1;">
+                                        <i class="${step.icon}" style="font-size: 1.5rem; color: var(--color-green); margin-bottom: 6px;"></i>
+                                        <span style="font-size: 0.9rem; font-weight: 800; display: block; margin-bottom: 3px; color: var(--text-primary);">${step.label}</span>
+                                        <span id="bq-step-desc-${idx}" contenteditable="true" style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500; line-height: 1.3;">${step.desc}</span>
+                                    </div>
+                                    ${idx < slide.flow.length - 1 ? `<i class="fa-solid fa-angles-right fc-arrow" style="font-size: 1.1rem; color: var(--color-green); opacity: 0.5; align-self: center;"></i>` : ''}
+                                `).join('')}
+                            </div>
+                        ` : ''}
                     </div>
                 </div>
             `;
@@ -760,20 +772,20 @@ function renderSlide(index) {
             slideHtml = `
                 <div class="slide-content layout-graduation">
                     <div class="confetti-container" id="confetti-holder"></div>
-                    <div class="commitment-end-card">
-                        <div class="cert-ribbon-widget"><i class="fa-solid fa-medal"></i></div>
-                        <h2 id="commitment-title" contenteditable="true">${slide.title}</h2>
-                        <p id="commitment-subtitle" class="commitment-subtitle" contenteditable="true" style="color:var(--text-muted); font-size:1.0rem; margin-top:10px; margin-bottom:20px; line-height:1.5; max-width:800px; text-align:center;">${slide.subtitle || 'Trong 1 tuần tới, các kĩ sư hãy áp dụng nghiêm túc quy trình học với AI, tích chọn vào các ô đã thực hiện:'}</p>
-                        <div class="commitments-end-list checklist-interactive" style="margin: 0 auto 25px auto;">
+                    <div class="commitment-end-card" style="padding: 15px 25px; margin-top: 0;">
+                        <div class="cert-ribbon-widget" style="font-size: 1.8rem; margin-bottom: 5px;"><i class="fa-solid fa-medal"></i></div>
+                        <h2 id="commitment-title" style="font-size: 1.4rem; margin-bottom: 8px;" contenteditable="true">${slide.title}</h2>
+                        <p id="commitment-subtitle" class="commitment-subtitle" contenteditable="true" style="color:var(--text-muted); font-size:0.95rem; margin-top:5px; margin-bottom:12px; line-height:1.4; max-width:800px; text-align:center;">${slide.subtitle || 'Trong 1 tuần tới, các kĩ sư hãy áp dụng nghiêm túc quy trình học với AI, tích chọn vào các ô đã thực hiện:'}</p>
+                        <div class="commitments-end-list checklist-interactive" style="margin: 0 auto 12px auto; padding: 10px 15px; gap: 10px;">
                             ${slide.commitments.map((commit, idx) => `
-                                <label class="checkbox-container" style="text-align: left;">
+                                <label class="checkbox-container" style="text-align: left; font-size: 0.95rem; line-height: 1.4; padding-left: 30px;">
                                     <input type="checkbox" id="check-${slide.id}-${idx}" onchange="saveCheckboxState('${slide.id}')">
                                     <span class="checkmark"></span>
                                     <span id="commitment-item-${idx}" contenteditable="true">${commit}</span>
                                 </label>
                             `).join('')}
                         </div>
-                        <button class="btn-cert-sign pulse-warning-glow" id="btn-sign-cert">
+                        <button class="btn-cert-sign pulse-warning-glow" id="btn-sign-cert" style="padding: 8px 20px; font-size: 0.95rem;">
                             <i class="fa-solid fa-signature"></i> CAM KẾT & ĐĂNG XUẤT HỆ THỐNG
                         </button>
                     </div>
