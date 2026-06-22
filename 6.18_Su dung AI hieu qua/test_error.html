@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JS Error Test</title>
+  <script>
+    window.errors = [];
+    window.onerror = function(msg, url, line, col, error) {
+      window.errors.push(msg + " at " + url + ":" + line + ":" + col);
+      return false;
+    };
+  </script>
+  <script src="slides_data.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <div id="status">Testing...</div>
+  <div id="error-output"></div>
+  <script>
+    setTimeout(function() {
+      var statusDiv = document.getElementById('status');
+      var outputDiv = document.getElementById('error-output');
+      if (window.errors.length > 0) {
+        statusDiv.innerHTML = "FAILED";
+        outputDiv.innerHTML = window.errors.join("<br>");
+      } else {
+        statusDiv.innerHTML = "SUCCESS";
+        outputDiv.innerHTML = "No errors detected. slides count: " + (typeof slides !== 'undefined' ? slides.length : 'undefined');
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

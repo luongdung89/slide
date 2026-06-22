@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hệ thống trình chiếu slide AI - Bài 6.18: Sử dụng AI hiệu quả</title>
+  <link rel="stylesheet" href="styles.css?v=27">
+</head>
+<body>
+
+  <!-- HEADER HOVER ZONE FOR PRESENTATION MODE -->
+  <div class="header-hover-zone"></div>
+
+  <!-- SYSTEM TOP HEADER -->
+  <header>
+    <div class="system-title">
+      <div class="system-logo">VIỆN CÔNG NGHỆ NOVASTARS</div>
+      <div class="system-status" id="system-status-indicator">HỆ THỐNG ONLINE</div>
+    </div>
+    
+    <div class="system-controls">
+      <!-- Mode Selection -->
+      <button class="btn btn-secondary" id="mode-btn-design" onclick="toggleDesignMode()" style="margin-right: 10px;">Thiết Kế</button>
+
+      <!-- File & Storage Operations -->
+      <button class="btn btn-secondary" id="btn-undo" onclick="undoAction()" disabled style="opacity: 0.5; cursor: not-allowed; margin-right: 5px;">Hoàn Tác (Ctrl+Z)</button>
+      <button class="btn btn-primary" onclick="saveSlides()">Lưu Lại</button>
+      <button class="btn btn-danger" onclick="resetDefaultSlides()">Khôi Phục Gốc</button>
+    </div>
+  </header>
+
+  <!-- CONTAINER GRID -->
+  <div class="app-container" id="app-container">
+    
+    <!-- LEFT SIDEBAR: INDEX / SLIDES SELECTOR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>DANH SÁCH SLIDE</h2>
+        <div class="period-tabs">
+          <button class="period-tab active" id="period-tab-all" onclick="setPeriodFilter('all')">Tất cả</button>
+          <button class="period-tab" id="period-tab-t1" onclick="setPeriodFilter('t1')">Tiết 1</button>
+          <button class="period-tab locked" id="period-tab-t2" onclick="setPeriodFilter('t2')">Tiết 2 🔒</button>
+          <button class="period-tab locked" id="period-tab-t3" onclick="setPeriodFilter('t3')">Tiết 3 🔒</button>
+        </div>
+        <input type="text" class="sidebar-search" id="slide-search" placeholder="Tìm kiếm slide..." onkeyup="filterSlides()">
+      </div>
+      <div class="slide-list" id="slide-list-container">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD SCREEN (16:9 VIEWPORT) -->
+    <main class="main-stage">
+      <div class="slide-viewport" id="slide-viewport">
+        <div class="slide-canvas" id="slide-canvas">
+          <!-- Slide items rendered dynamically by app.js -->
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: PROPERTIES INSPECTOR (DESIGN MODE) -->
+    <aside class="inspector">
+      <div class="inspector-header">
+        <h2>THUỘC TÍNH BẢN VẼ</h2>
+      </div>
+      <div class="inspector-body">
+        
+        <!-- Element Creation Toolbox -->
+        <div class="inspector-section">
+          <h3>Thêm Đối Tượng</h3>
+          <div class="inspector-grid">
+            <button class="btn btn-primary" style="font-size: 10px; padding: 6px;" onclick="addNewElement('heading')">+ Tiêu đề</button>
+            <button class="btn btn-primary" style="font-size: 10px; padding: 6px;" onclick="addNewElement('text')">+ Đoạn văn</button>
+            <button class="btn btn-primary" style="font-size: 10px; padding: 6px;" onclick="addNewElement('box')">+ Bảng/Hộp</button>
+            <button class="btn btn-primary" style="font-size: 10px; padding: 6px;" onclick="addNewElement('badge')">+ Nhãn nhỏ</button>
+          </div>
+        </div>
+
+        <!-- Selected Element Inspector -->
+        <div class="inspector-section" id="inspector-element-properties" style="display: none;">
+          <h3>Chi Tiết Đối Tượng</h3>
+          
+          <!-- Content Input -->
+          <div class="input-group" style="margin-bottom: 10px;">
+            <label for="inspector-content">Nội dung (Hỗ trợ HTML)</label>
+            <textarea class="input-field" id="inspector-content" rows="4" oninput="updateSelectedElementProperty('content', this.value)"></textarea>
+          </div>
+
+          <!-- Layout Config -->
+          <div class="inspector-grid">
+            <div class="input-group">
+              <label for="inspector-x">Tọa độ X (%)</label>
+              <input type="number" class="input-field" id="inspector-x" oninput="updateSelectedElementProperty('x', parseFloat(this.value))">
+            </div>
+            <div class="input-group">
+              <label for="inspector-y">Tọa độ Y (%)</label>
+              <input type="number" class="input-field" id="inspector-y" oninput="updateSelectedElementProperty('y', parseFloat(this.value))">
+            </div>
+            <div class="input-group">
+              <label for="inspector-w">Chiều rộng (%)</label>
+              <input type="number" class="input-field" id="inspector-w" oninput="updateSelectedElementProperty('w', parseFloat(this.value))">
+            </div>
+            <div class="input-group">
+              <label for="inspector-h">Chiều cao (%)</label>
+              <input type="number" class="input-field" id="inspector-h" oninput="updateSelectedElementProperty('h', parseFloat(this.value))">
+            </div>
+          </div>
+
+          <!-- Styling Config -->
+          <div class="inspector-grid" style="margin-top: 10px;">
+            <div class="input-group">
+              <label for="inspector-font-size">Cỡ chữ (px)</label>
+              <input type="text" class="input-field" id="inspector-font-size" placeholder="18px" oninput="updateSelectedElementProperty('fontSize', this.value)">
+            </div>
+            <div class="input-group">
+              <label for="inspector-color">Màu chữ</label>
+              <input type="color" class="input-field" id="inspector-color" style="height: 30px; padding: 2px;" oninput="updateSelectedElementProperty('color', this.value)">
+            </div>
+            <div class="input-group">
+              <label for="inspector-align">Căn lề</label>
+              <select class="input-field" id="inspector-align" onchange="updateSelectedElementProperty('align', this.value)">
+                <option value="left">Trái</option>
+                <option value="center">Giữa</option>
+                <option value="right">Phải</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="inspector-bg">Màu nền</label>
+              <input type="text" class="input-field" id="inspector-bg" placeholder="transparent" oninput="updateSelectedElementProperty('bg', this.value)">
+            </div>
+          </div>
+
+          <div style="margin-top: 15px; display: flex; gap: 10px;">
+            <button class="btn btn-danger" style="flex: 1;" onclick="deleteSelectedElement()">Xoá Đối Tượng</button>
+          </div>
+        </div>
+
+        <div id="inspector-no-selection" style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 20px;">
+          Chọn một đối tượng trên slide để chỉnh sửa thuộc tính.
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- BOTTOM CONTROL BAR: NAVIGATION & PAGE INFO -->
+  <footer class="stage-footer">
+    <div class="slide-nav-info">
+      GĐ: <span id="current-slide-stage" style="color: var(--neon-blue); font-weight: bold;">PRE-LESSON</span>
+      <span class="slide-number-badge" id="current-slide-number" onclick="jumpToPagePrompt()" title="Nhấp vào đây để nhảy nhanh đến trang slide...">1 / 53</span>
+      <span id="current-slide-id" style="color: var(--text-secondary); font-size: 11px;">P0-01</span>
+    </div>
+    
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" id="btn-prev" onclick="prevSlide()">◀ TRƯỚC</button>
+      <button class="btn btn-secondary" id="btn-jump" onclick="jumpToPagePrompt()">ĐI ĐẾN TRANG</button>
+      <button class="btn btn-primary" id="btn-next" onclick="nextSlide()">SAU ▶</button>
+      <button class="btn btn-secondary" id="btn-fullscreen" onclick="toggleFullscreen()">TOÀN MÀN HÌNH</button>
+    </div>
+  </footer>
+
+  <!-- LOAD APPLICATION DATA AND LOGIC -->
+  <script src="slides_data.js?v=27"></script>
+  <script src="app.js?v=27"></script>
+</body>
+</html>
